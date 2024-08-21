@@ -10,12 +10,13 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String product_name;
     private String description;
     private BigDecimal price;
     @Lob
     private byte[] image;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Long getId() {
@@ -27,11 +28,11 @@ public class Product {
     }
 
     public String getName() {
-        return name;
+        return product_name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.product_name = name;
     }
 
     public String getDescription() {

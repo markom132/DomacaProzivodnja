@@ -1,5 +1,6 @@
 package com.domaciproizvodi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public class Category {
     private String name;
     private String description;
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
     public Long getId() {
