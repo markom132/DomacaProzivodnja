@@ -1,5 +1,6 @@
 package com.domaciproizvodi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -14,6 +15,8 @@ public class OrderItem {
     private int quantity;
     private BigDecimal price;
     @ManyToOne
+    @JoinColumn(name = "orders_id")
+    @JsonIgnore
     private Order order;
 
     public Long getId() {
