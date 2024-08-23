@@ -1,6 +1,7 @@
 package com.domaciproizvodi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ public class Order {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<OrderItem> items;
 
     public Long getId() {

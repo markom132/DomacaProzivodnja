@@ -1,5 +1,6 @@
 package com.domaciproizvodi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -11,12 +12,13 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
     private int quantity;
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "orders_id")
-    @JsonIgnore
+    @JsonBackReference
     private Order order;
 
     public Long getId() {

@@ -1,7 +1,11 @@
 package com.domaciproizvodi.service;
 
+import com.domaciproizvodi.model.Order;
 import com.domaciproizvodi.model.OrderItem;
+import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.repository.OrderItemRepository;
+import com.domaciproizvodi.repository.OrderRepository;
+import com.domaciproizvodi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +18,23 @@ public class OrderItemService {
     @Autowired
     private OrderItemRepository orderItemRepository;
 
-    public List<OrderItem> findAll() {
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public List<OrderItem> getAllOrderItems() {
         return orderItemRepository.findAll();
     }
 
-    public Optional<OrderItem> findById(Long id) {
+    public Optional<OrderItem> getOrderItemById(Long id) {
         return orderItemRepository.findById(id);
     }
 
     public OrderItem createOrderItem(OrderItem orderItem) {
+
+
         return orderItemRepository.save(orderItem);
     }
 
