@@ -34,6 +34,7 @@ public class OrderService {
     }
 
     public Order createOrder(Order order) {
+
         for (OrderItem item : order.getItems()) {
             Product product = productRepository.findById(item.getProduct().getId())
                     .orElseThrow(() -> new RuntimeException("Proizvod nije pronađen: " + item.getProduct().getId()));

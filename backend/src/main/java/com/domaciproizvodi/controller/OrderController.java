@@ -1,13 +1,17 @@
 package com.domaciproizvodi.controller;
 
+import com.domaciproizvodi.dto.OrderDTO;
+import com.domaciproizvodi.dto.mappers.OrderMapper;
 import com.domaciproizvodi.model.Order;
 import com.domaciproizvodi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -16,35 +20,40 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private OrderMapper orderMapper;
+
     @GetMapping
-    public List<Order> getOrders() {
-        return orderService.getAllOrders();
+    public List<OrderDTO> getOrders() {
+        List<Order> orders = orderService.getAllOrders();
+        return orders.stream().map(orderMapper::toDto).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
         Optional<Order> order = orderService.getOrderById(id);
-        return order.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return order.map(value -> ResponseEntity.ok(orderMapper.toDto(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
         try {
-            System.out.println(order.getOrderStatus());
-
+            Order order = orderMapper.toEntity(orderDTO);
             Order createdOrder = orderService.createOrder(order);
-            System.out.println(order.getOrderDate());
-            return ResponseEntity.ok(createdOrder);
+            return ResponseEntity.ok(orderMapper.toDto(createdOrder));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(null);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
+
     @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order updatedOrder) {
+    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
         try {
-            Order order = orderService.updateOrder(id, updatedOrder);
-            return ResponseEntity.ok(order);
+            Order order = orderMapper.toEntity(orderDTO);
+            Order updatedOrder = orderService.updateOrder(id, order);
+            return ResponseEntity.ok(orderMapper.toDto(updatedOrder));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
