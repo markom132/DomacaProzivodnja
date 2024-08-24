@@ -1,8 +1,6 @@
 package com.domaciproizvodi.service;
 
-import com.domaciproizvodi.model.Order;
 import com.domaciproizvodi.model.OrderItem;
-import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.repository.OrderItemRepository;
 import com.domaciproizvodi.repository.OrderRepository;
 import com.domaciproizvodi.repository.ProductRepository;
