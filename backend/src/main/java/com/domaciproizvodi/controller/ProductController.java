@@ -1,5 +1,7 @@
 package com.domaciproizvodi.controller;
 
+import com.domaciproizvodi.dto.ProductDTO;
+import com.domaciproizvodi.dto.mappers.ProductMapper;
 import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.service.CategoryService;
@@ -8,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -21,50 +25,42 @@ public class ProductController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ProductMapper productMapper;
+
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDTO> getAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        return products.stream().map(productMapper::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         Optional<Product> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        return product.map(value -> ResponseEntity.ok(productMapper.toDTO(value)))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        if (product.getCategory() == null || product.getCategory().getId() == null) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
-        Optional<Category> category = categoryService.getCategoryById(product.getCategory().getId());
-        if (!category.isPresent()) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        Product product = productMapper.toEntity(productDTO);
+        Optional<Category> category = categoryService.getCategoryById(productDTO.getCategoryId());
         product.setCategory(category.get());
 
-        Product savedProduct = productService.addProduct(product);
-        return ResponseEntity.ok(savedProduct);
+        Product createdProduct = productService.addProduct(product);
+        return ResponseEntity.ok(productMapper.toDTO(createdProduct));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
         try {
-            if (updatedProduct.getCategory() == null || updatedProduct.getCategory().getId() == null) {
-                return ResponseEntity.badRequest().body(null);
-            }
+            Product product = productMapper.toEntity(productDTO);
+            Optional<Category> category = categoryService.getCategoryById(productDTO.getCategoryId());
 
-            Optional<Category> category = categoryService.getCategoryById(updatedProduct.getCategory().getId());
-            if (!category.isPresent()) {
-                return ResponseEntity.badRequest().body(null);
-            }
+            product.setCategory(category.get());
+            Product updatedProduct = productService.updateProduct(id, product);
 
-            updatedProduct.setCategory(category.get());
-
-            Product product = productService.updateProduct(id, updatedProduct);
-            return ResponseEntity.ok(product);
+            return ResponseEntity.ok(productMapper.toDTO(updatedProduct));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
