@@ -134,3 +134,56 @@ VALUES ('2024-08-26 14:00:00', 22.00, 'PENDING'),
 INSERT INTO order_item (product_id, quantity, price, orders_id)
 VALUES (1, 2, 10.00, 1),
        (4, 1, 10.22, 2);
+
+CREATE TABLE IF NOT EXISTS users
+(
+    id
+    BIGINT
+    AUTO_INCREMENT
+    PRIMARY
+    KEY,
+    username
+    VARCHAR
+(
+    255
+) NOT NULL UNIQUE,
+    password VARCHAR
+(
+    255
+) NOT NULL,
+    email VARCHAR
+(
+    255
+) NOT NULL UNIQUE,
+    first_name VARCHAR
+(
+    255
+),
+    last_name VARCHAR
+(
+    255
+),
+    address VARCHAR
+(
+    255
+),
+    city VARCHAR
+(
+    255
+),
+    zip_code VARCHAR
+(
+    20
+),
+    phone VARCHAR
+(
+    20
+), -- Dodato polje za broj telefona
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+
+--INSERT INTO users (username, password, email, first_name, last_name, address, city, zip_code, phone)
+--VALUES ('john_doe', '$2a$10$7vC/qR6h1b1eXf3JKRl1zuJ9GHxlXGJmrQfU8Jhml5PfJ3nkl5F2K', 'john.doe@example.com', 'John',
+  --      'Doe', '123 Main St', 'Springfield', '12345', '555-1234');
+
