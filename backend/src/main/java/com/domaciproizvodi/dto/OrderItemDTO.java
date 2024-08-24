@@ -6,6 +6,7 @@ public class OrderItemDTO {
 
     private Long id;
     private Long productId;
+    private Long orderId;
     private int quantity;
     private BigDecimal price;
 
@@ -23,6 +24,14 @@ public class OrderItemDTO {
 
     public void setProductId(Long productId) {
         this.productId = productId;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 
     public int getQuantity() {
