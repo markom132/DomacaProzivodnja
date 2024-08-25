@@ -1,12 +1,16 @@
 package com.domaciproizvodi.controller;
 
+import com.domaciproizvodi.config.AuthenticationResponse;
+import com.domaciproizvodi.config.JwtUtil;
 import com.domaciproizvodi.dto.UserDTO;
 import com.domaciproizvodi.dto.mappers.UserMapper;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +30,12 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @PostMapping("/register")
     public UserDTO registerUser(@RequestBody UserDTO userDTO) {
         User user = userMapper.toEntity(userDTO);
@@ -35,21 +45,22 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
-        Optional<User> userOpt = userService.findUserByUsername(userDTO.getUsername());
-        if (userOpt.isPresent()) {
-            User user = userOpt.get();
-            String storedHash = user.getPassword();
-            String rawPassword = userDTO.getPassword();
-            boolean matches = passwordEncoder.matches(rawPassword, storedHash);
-
-
-            if (matches) {
-                return ResponseEntity.ok(userMapper.toDTO(user));
-            }
+    public ResponseEntity<?> loginUser(@RequestBody UserDTO userDTO) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword())
+            );
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body("Invalid credentials");
         }
-        return ResponseEntity.status(401).build();
+
+        final Optional<User> userDetails = userService.findUserByUsername(userDTO.getUsername());
+        final User user = userDetails.get();
+        final String jwt = jwtUtil.generateToken(user);
+
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
+
 
     @GetMapping
     public List<UserDTO> getAllUsers() {
