@@ -37,11 +37,12 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<UserDTO> loginUser(@RequestBody UserDTO userDTO) {
         Optional<User> userOpt = userService.findUserByUsername(userDTO.getUsername());
-//Error with password checking //todo fix this api
         if (userOpt.isPresent()) {
             User user = userOpt.get();
+            String storedHash = user.getPassword();
+            String rawPassword = userDTO.getPassword();
+            boolean matches = passwordEncoder.matches(rawPassword, storedHash);
 
-            boolean matches = passwordEncoder.matches(userDTO.getPassword(), user.getPassword());
 
             if (matches) {
                 return ResponseEntity.ok(userMapper.toDTO(user));
