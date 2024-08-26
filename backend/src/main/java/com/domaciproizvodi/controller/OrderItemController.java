@@ -2,10 +2,13 @@ package com.domaciproizvodi.controller;
 
 import com.domaciproizvodi.dto.OrderItemDTO;
 import com.domaciproizvodi.dto.mappers.OrderItemMapper;
+import com.domaciproizvodi.exceptions.OrderItemNotFOundException;
+import com.domaciproizvodi.exceptions.OrderNotFoundException;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.service.OrderItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,15 +34,20 @@ public class OrderItemController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderItemDTO> getOrderItemById(@PathVariable Long id) {
-        Optional<OrderItem> orderItem = orderItemService.getOrderItemById(id);
-        return orderItem.map(value -> ResponseEntity.ok(orderItemMapper.toDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
+        OrderItem orderItem = orderItemService.getOrderItemById(id)
+                .orElseThrow(() -> new OrderItemNotFOundException("Order item with not found with id: " + id));
+        return ResponseEntity.ok(orderItemMapper.toDTO(orderItem));
     }
 
     @PostMapping
     public ResponseEntity<OrderItemDTO> createOrderItem(@Valid @RequestBody OrderItemDTO orderItemDTO) {
-        OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
-        OrderItem createdOrderItem = orderItemService.createOrderItem(orderItem);
-        return ResponseEntity.ok(orderItemMapper.toDTO(createdOrderItem));
+        try {
+            OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
+            OrderItem createdOrderItem = orderItemService.createOrderItem(orderItem);
+            return ResponseEntity.status(HttpStatus.CREATED).body(orderItemMapper.toDTO(createdOrderItem));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -47,8 +55,7 @@ public class OrderItemController {
         try {
             OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
             OrderItem updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
-
-            return ResponseEntity.ok(orderItemMapper.toDTO(updatedOrderItem));
+            return ResponseEntity.status(HttpStatus.OK).body(orderItemMapper.toDTO(updatedOrderItem));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -58,6 +65,11 @@ public class OrderItemController {
     public ResponseEntity<Void> deleteOrderItem(@PathVariable Long id) {
         orderItemService.deleteOrderItem(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
 }
