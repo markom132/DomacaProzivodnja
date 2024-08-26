@@ -4,6 +4,7 @@ import com.domaciproizvodi.dto.OrderItemDTO;
 import com.domaciproizvodi.dto.mappers.OrderItemMapper;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.service.OrderItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,14 +36,14 @@ public class OrderItemController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderItemDTO> createOrderItem(@RequestBody OrderItemDTO orderItemDTO) {
+    public ResponseEntity<OrderItemDTO> createOrderItem(@Valid @RequestBody OrderItemDTO orderItemDTO) {
         OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
         OrderItem createdOrderItem = orderItemService.createOrderItem(orderItem);
         return ResponseEntity.ok(orderItemMapper.toDTO(createdOrderItem));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderItemDTO> updateOrderItem(@PathVariable Long id, @RequestBody OrderItemDTO orderItemDTO) {
+    public ResponseEntity<OrderItemDTO> updateOrderItem(@PathVariable Long id, @Valid @RequestBody OrderItemDTO orderItemDTO) {
         try {
             OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
             OrderItem updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
