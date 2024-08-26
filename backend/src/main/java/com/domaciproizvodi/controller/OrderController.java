@@ -3,7 +3,10 @@ package com.domaciproizvodi.controller;
 import com.domaciproizvodi.dto.OrderDTO;
 import com.domaciproizvodi.dto.mappers.OrderMapper;
 import com.domaciproizvodi.model.Order;
+import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.OrderService;
+import com.domaciproizvodi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,9 @@ public class OrderController {
     @Autowired
     private OrderMapper orderMapper;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping
     public List<OrderDTO> getOrders() {
         List<Order> orders = orderService.getAllOrders();
@@ -37,7 +43,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderMapper.toEntity(orderDTO);
             Order createdOrder = orderService.createOrder(order);

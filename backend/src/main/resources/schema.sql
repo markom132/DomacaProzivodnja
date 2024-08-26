@@ -48,6 +48,59 @@ CREATE TABLE IF NOT EXISTS product
 )
     );
 
+CREATE TABLE IF NOT EXISTS users
+(
+    id
+    BIGINT
+    AUTO_INCREMENT
+    PRIMARY
+    KEY,
+    username
+    VARCHAR
+(
+    50
+) NOT NULL UNIQUE,
+    password VARCHAR
+(
+    255
+) NOT NULL,
+    email VARCHAR
+(
+    100
+) NOT NULL UNIQUE,
+    first_name VARCHAR
+(
+    50
+),
+    last_name VARCHAR
+(
+    50
+),
+    address VARCHAR
+(
+    100
+),
+    city VARCHAR
+(
+    50
+),
+    zip_code VARCHAR
+(
+    20
+),
+    phone VARCHAR
+(
+    20
+), -- Dodato polje za broj telefona
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    );
+
+--INSERT INTO users (username, password, email, first_name, last_name, address, city, zip_code, phone)
+--VALUES ('markoAdmin', '$2a$10$7vC/qR6h1b1eXf3JKRl1zuJ9GHxlXGJmrQfU8Jhml5PfJ3nkl5F2K', 'john.doe@example.com', 'John',
+--'Doe', '123 Main St', 'Springfield', '12345', '555-1234');
+
+
 CREATE TABLE IF NOT EXISTS orders
 (
     id
@@ -70,7 +123,15 @@ CREATE TABLE IF NOT EXISTS orders
     'PENDING',
     'SHIPPED',
     'DELIVERED'
-) NOT NULL
+) NOT NULL,
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY
+(
+    user_id
+) REFERENCES users
+(
+    id
+) ON DELETE CASCADE
     );
 
 CREATE TABLE IF NOT EXISTS order_item
@@ -127,63 +188,10 @@ VALUES ('Med sa planine', 'Prirodni med sa planinskih cvetova', 15.99, NULL, 1),
        ('Handmade keramičke šolje', 'Unikatne ručno pravljene keramičke šolje', 25.00, NULL, 3),
        ('Organsko maslinovo ulje', '100% organsko maslinovo ulje iz Dalmacije', 30.99, NULL, 4);
 
-INSERT INTO orders (order_date, total_price, order_status)
-VALUES ('2024-08-26 14:00:00', 22.00, 'PENDING'),
-       ('2024-08-20 14:30:00', 19.00, 'DELIVERED');
+INSERT INTO orders (order_date, total_price, order_status, user_id)
+VALUES ('2024-08-26 14:00:00', 22.00, 'PENDING', 1),
+       ('2024-08-20 14:30:00', 19.00, 'DELIVERED', 1);
 
 INSERT INTO order_item (product_id, quantity, price, orders_id)
 VALUES (1, 2, 10.00, 1),
        (4, 1, 10.22, 2);
-
-CREATE TABLE IF NOT EXISTS users
-(
-    id
-    BIGINT
-    AUTO_INCREMENT
-    PRIMARY
-    KEY,
-    username
-    VARCHAR
-(
-    50
-) NOT NULL UNIQUE,
-    password VARCHAR
-(
-    255
-) NOT NULL,
-    email VARCHAR
-(
-    100
-) NOT NULL UNIQUE,
-    first_name VARCHAR
-(
-    50
-),
-    last_name VARCHAR
-(
-    50
-),
-    address VARCHAR
-(
-    100
-),
-    city VARCHAR
-(
-    50
-),
-    zip_code VARCHAR
-(
-    20
-),
-    phone VARCHAR
-(
-    20
-), -- Dodato polje za broj telefona
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    );
-
---INSERT INTO users (username, password, email, first_name, last_name, address, city, zip_code, phone)
---VALUES ('john_doe', '$2a$10$7vC/qR6h1b1eXf3JKRl1zuJ9GHxlXGJmrQfU8Jhml5PfJ3nkl5F2K', 'john.doe@example.com', 'John',
-  --      'Doe', '123 Main St', 'Springfield', '12345', '555-1234');
-

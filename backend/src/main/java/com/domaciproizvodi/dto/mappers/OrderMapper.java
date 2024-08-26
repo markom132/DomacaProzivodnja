@@ -2,11 +2,9 @@ package com.domaciproizvodi.dto.mappers;
 
 import com.domaciproizvodi.dto.OrderDTO;
 import com.domaciproizvodi.dto.OrderItemDTO;
-import com.domaciproizvodi.model.Order;
-import com.domaciproizvodi.model.OrderItem;
-import com.domaciproizvodi.model.OrderStatus;
-import com.domaciproizvodi.model.Product;
+import com.domaciproizvodi.model.*;
 import com.domaciproizvodi.repository.ProductRepository;
+import com.domaciproizvodi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +16,9 @@ public class OrderMapper {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     public OrderDTO toDto(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
@@ -25,6 +26,7 @@ public class OrderMapper {
         dto.setTotalPrice(order.getTotalPrice());
         dto.setOrderStatus(order.getOrderStatus().name());
         dto.setItems(order.getItems().stream().map(this::toOrderItemDTO).collect(Collectors.toList()));
+        dto.setUserId(order.getUser().getId());
         return dto;
     }
 
@@ -35,6 +37,10 @@ public class OrderMapper {
         order.setTotalPrice(dto.getTotalPrice());
         order.setOrderStatus(OrderStatus.valueOf(dto.getOrderStatus()));
         order.setItems(dto.getItems().stream().map(this::toOrderItemEntity).collect(Collectors.toList()));
+
+        User user = userRepository.findById(dto.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        order.setUser(user);
 
         return order;
     }

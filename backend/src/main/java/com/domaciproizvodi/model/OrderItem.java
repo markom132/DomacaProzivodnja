@@ -12,12 +12,12 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     private int quantity;
     private BigDecimal price;
     @ManyToOne
-    @JoinColumn(name = "orders_id")
+    @JoinColumn(name = "orders_id", nullable = false)
     @JsonBackReference
     private Order order;
 
