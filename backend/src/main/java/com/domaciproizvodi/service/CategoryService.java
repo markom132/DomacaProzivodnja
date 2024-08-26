@@ -1,5 +1,6 @@
 package com.domaciproizvodi.service;
 
+import com.domaciproizvodi.exceptions.CategoryNotFoundException;
 import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,13 @@ public class CategoryService {
                     category.setDescription(updatedCategory.getDescription());
                     return categoryRepository.save(category);
                 })
-                .orElseThrow(() -> new RuntimeException("Category not found"));
+                .orElseThrow(() -> new CategoryNotFoundException("Category with id " + id + " not found"));
     }
 
     public void deleteCategory(Long id) {
+        if (!categoryRepository.existsById(id)) {
+            throw new CategoryNotFoundException("Category with id " + id + " not found");
+        }
         categoryRepository.deleteById(id);
     }
 
