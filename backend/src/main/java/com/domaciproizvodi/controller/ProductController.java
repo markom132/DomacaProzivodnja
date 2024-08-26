@@ -6,6 +6,7 @@ import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.service.CategoryService;
 import com.domaciproizvodi.service.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         Product product = productMapper.toEntity(productDTO);
         Optional<Category> category = categoryService.getCategoryById(productDTO.getCategoryId());
         product.setCategory(category.get());
@@ -52,7 +53,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         try {
             Product product = productMapper.toEntity(productDTO);
             Optional<Category> category = categoryService.getCategoryById(productDTO.getCategoryId());
