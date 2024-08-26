@@ -23,7 +23,7 @@ public class User {
     private String city;
     private String zipCode;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Long getId() {

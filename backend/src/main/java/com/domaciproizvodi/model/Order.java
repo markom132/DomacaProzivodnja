@@ -25,7 +25,7 @@ public class Order {
     private List<OrderItem> items;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Long getId() {
