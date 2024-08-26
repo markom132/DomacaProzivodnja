@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS users
     username
     VARCHAR
 (
-    255
+    50
 ) NOT NULL UNIQUE,
     password VARCHAR
 (
@@ -153,23 +153,23 @@ CREATE TABLE IF NOT EXISTS users
 ) NOT NULL,
     email VARCHAR
 (
-    255
+    100
 ) NOT NULL UNIQUE,
     first_name VARCHAR
 (
-    255
+    50
 ),
     last_name VARCHAR
 (
-    255
+    50
 ),
     address VARCHAR
 (
-    255
+    100
 ),
     city VARCHAR
 (
-    255
+    50
 ),
     zip_code VARCHAR
 (

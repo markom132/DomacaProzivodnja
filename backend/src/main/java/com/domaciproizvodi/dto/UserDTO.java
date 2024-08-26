@@ -1,16 +1,47 @@
 package com.domaciproizvodi.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class UserDTO {
 
     private Long id;
+
+    @NotBlank(message = "Username is mandatory")
     private String username;
+
+    @NotBlank(message = "Password is mandatory")
+    @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
+
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
     private String email;
+
+    @NotBlank(message = "First name is mandatory")
+    @Size(max = 50, message = "First name must be less than 50 characters")
     private String firstName;
+
+    @NotBlank(message = "Last name is mandatory")
+    @Size(max = 50, message = "Last name must be less than 50 characters")
     private String lastName;
+
+    @NotBlank(message = "Phone is mandatory")
+    @Pattern(regexp = "^(\\+\\d{1,3}[- ]?)?\\d{3}[- ]?\\d{3}[- ]?\\d{4}$", message = "Phone number is invalid")
     private String phone;
+
+    @NotBlank(message = "Address is mandatory")
+    @Size(max = 100, message = "Address must be less than 100 characters")
     private String address;
+
+    @NotBlank(message = "City is mandatory")
+    @Size(max = 50, message = "City must be less than 50 characters")
     private String city;
+
+    @NotBlank(message = "Zip code is mandatory")
+    @Pattern(regexp = "^[0-9]{5}$", message = "Zip must be a 5 digit number")
     private String zipCode;
 
     public Long getId() {
