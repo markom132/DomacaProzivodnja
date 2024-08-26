@@ -2,8 +2,8 @@ package com.domaciproizvodi.controller;
 
 import com.domaciproizvodi.dto.OrderDTO;
 import com.domaciproizvodi.dto.mappers.OrderMapper;
+import com.domaciproizvodi.exceptions.OrderNotFoundException;
 import com.domaciproizvodi.model.Order;
-import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.OrderService;
 import com.domaciproizvodi.service.UserService;
 import jakarta.validation.Valid;
@@ -26,9 +26,6 @@ public class OrderController {
     @Autowired
     private OrderMapper orderMapper;
 
-    @Autowired
-    private UserService userService;
-
     @GetMapping
     public List<OrderDTO> getOrders() {
         List<Order> orders = orderService.getAllOrders();
@@ -37,9 +34,9 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
-        Optional<Order> order = orderService.getOrderById(id);
-        return order.map(value -> ResponseEntity.ok(orderMapper.toDto(value)))
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        Order order = orderService.getOrderById(id)
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
+        return ResponseEntity.ok(orderMapper.toDto(order));
     }
 
     @PostMapping
@@ -47,7 +44,7 @@ public class OrderController {
         try {
             Order order = orderMapper.toEntity(orderDTO);
             Order createdOrder = orderService.createOrder(order);
-            return ResponseEntity.ok(orderMapper.toDto(createdOrder));
+            return ResponseEntity.status(HttpStatus.CREATED).body(orderMapper.toDto(createdOrder));
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
@@ -55,7 +52,7 @@ public class OrderController {
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long id, @Valid @RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderMapper.toEntity(orderDTO);
             Order updatedOrder = orderService.updateOrder(id, order);
@@ -69,6 +66,11 @@ public class OrderController {
     public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 
 }

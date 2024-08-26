@@ -7,6 +7,7 @@ import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,7 +43,7 @@ public class CategoryController {
         try {
             Category category = categoryMapper.toEntity(categoryDTO);
             Category createdCategory = categoryService.createCategory(category);
-            return ResponseEntity.ok(categoryMapper.toDTO(createdCategory));
+            return ResponseEntity.status(HttpStatus.CREATED).body(categoryMapper.toDTO(createdCategory));
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().build();
         }
