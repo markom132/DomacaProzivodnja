@@ -4,6 +4,7 @@ import com.domaciproizvodi.dto.CategoryDTO;
 import com.domaciproizvodi.dto.mappers.CategoryMapper;
 import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,14 +36,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         Category category = categoryMapper.toEntity(categoryDTO);
         Category createdCategory = categoryService.createCategory(category);
         return ResponseEntity.ok(categoryMapper.toDTO(createdCategory));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
         try {
             Category category = categoryMapper.toEntity(categoryDTO);
             Category updatedCategory = categoryService.updateCategory(id, category);

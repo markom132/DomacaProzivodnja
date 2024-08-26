@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS category
     category_name
     VARCHAR
 (
-    30
+    50
 ) NOT NULL,
     description TEXT NOT NULL
     );

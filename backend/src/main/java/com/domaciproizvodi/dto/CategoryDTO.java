@@ -1,9 +1,17 @@
 package com.domaciproizvodi.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class CategoryDTO {
 
     private Long id;
+
+    @NotBlank(message = "Category name is mandatory")
+    @Size(max = 50, message = "Category name must be less than 50 characters")
     private String name;
+
+    @NotBlank(message = "Category description is mandatory")
     private String description;
 
     public Long getId() {
