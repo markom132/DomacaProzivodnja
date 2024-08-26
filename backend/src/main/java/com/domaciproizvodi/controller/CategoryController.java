@@ -2,6 +2,7 @@ package com.domaciproizvodi.controller;
 
 import com.domaciproizvodi.dto.CategoryDTO;
 import com.domaciproizvodi.dto.mappers.CategoryMapper;
+import com.domaciproizvodi.exceptions.CategoryNotFoundException;
 import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.service.CategoryService;
 import jakarta.validation.Valid;
@@ -31,15 +32,20 @@ public class CategoryController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
-        Optional<Category> category = categoryService.getCategoryById(id);
-        return category.map(value -> ResponseEntity.ok(categoryMapper.toDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
+        Category category = categoryService.getCategoryById(id)
+                .orElseThrow(() -> new CategoryNotFoundException("Category with id " + id + " not found"));
+        return ResponseEntity.ok(categoryMapper.toDTO(category));
     }
 
     @PostMapping
     public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
-        Category category = categoryMapper.toEntity(categoryDTO);
-        Category createdCategory = categoryService.createCategory(category);
-        return ResponseEntity.ok(categoryMapper.toDTO(createdCategory));
+        try {
+            Category category = categoryMapper.toEntity(categoryDTO);
+            Category createdCategory = categoryService.createCategory(category);
+            return ResponseEntity.ok(categoryMapper.toDTO(createdCategory));
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -57,6 +63,11 @@ public class CategoryController {
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<String> handleCategoryNotFoundException(CategoryNotFoundException e) {
+        return ResponseEntity.status(404).body(e.getMessage());
     }
 
 }
