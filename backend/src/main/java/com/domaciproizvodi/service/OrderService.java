@@ -1,5 +1,7 @@
 package com.domaciproizvodi.service;
 
+import com.domaciproizvodi.exceptions.OrderNotFoundException;
+import com.domaciproizvodi.exceptions.ProductNotFoundException;
 import com.domaciproizvodi.model.Order;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.model.Product;
@@ -37,7 +39,7 @@ public class OrderService {
 
         for (OrderItem item : order.getItems()) {
             Product product = productRepository.findById(item.getProduct().getId())
-                    .orElseThrow(() -> new RuntimeException("Proizvod nije pronađen: " + item.getProduct().getId()));
+                    .orElseThrow(() -> new ProductNotFoundException("Product not found: " + item.getProduct().getId()));
             item.setProduct(product);
             item.setOrder(order);
         }
@@ -55,7 +57,7 @@ public class OrderService {
                     }
                     order.getItems().clear();
 
-                    order = orderRepository.findById(id).orElseThrow(() -> new RuntimeException("Order not found"));
+                    order = orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order not found: " + id));
 
                     order.setOrderDate(updatedOrder.getOrderDate());
                     order.setTotalPrice(updatedOrder.getTotalPrice());
@@ -63,7 +65,7 @@ public class OrderService {
 
                     for (OrderItem item : updatedOrder.getItems()) {
                         Product product = productRepository.findById(item.getProduct().getId())
-                                .orElseThrow(() -> new RuntimeException("Proizvod nije pronađen: " + item.getProduct().getId()));
+                                .orElseThrow(() -> new ProductNotFoundException("Product not found: " + item.getProduct().getId()));
 
                         item.setProduct(product);
                         item.setOrder(order);
@@ -72,11 +74,14 @@ public class OrderService {
 
                     return orderRepository.save(order);
                 })
-                .orElseThrow(() -> new RuntimeException("Order not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
     }
 
 
     public void deleteOrder(Long id) {
+        if (!orderRepository.existsById(id)) {
+            throw new OrderNotFoundException("Order not found with id: " + id);
+        }
         orderRepository.deleteById(id);
     }
 
