@@ -6,6 +6,7 @@ import com.domaciproizvodi.dto.UserDTO;
 import com.domaciproizvodi.dto.mappers.UserMapper;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,11 +38,11 @@ public class UserController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
-    public UserDTO registerUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDTO) {
         User user = userMapper.toEntity(userDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User createdUSer = userService.createUser(user);
-        return userMapper.toDTO(createdUSer);
+        return ResponseEntity.ok(userMapper.toDTO(createdUSer));
     }
 
     @PostMapping("/login")
