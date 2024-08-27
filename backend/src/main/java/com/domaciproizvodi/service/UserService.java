@@ -1,5 +1,6 @@
 package com.domaciproizvodi.service;
 
+import com.domaciproizvodi.exceptions.UserNotFoundException;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     public User createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -46,10 +48,13 @@ public class UserService {
                     return userRepository.save(user);
 
                 })
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
     }
 
     public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new UserNotFoundException("User not found with id: " + id);
+        }
         userRepository.deleteById(id);
     }
 

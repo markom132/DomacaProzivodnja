@@ -25,37 +25,37 @@ public class CategoryController {
     private CategoryMapper categoryMapper;
 
     @GetMapping
-    public List<CategoryDTO> getAllCategories() {
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
         List<Category> categories = categoryService.getAllCategories();
-        return categories.stream().map(categoryMapper::toDTO).collect(Collectors.toList());
+        return ResponseEntity.status(HttpStatus.OK).body(categories.stream().map(categoryMapper::toDTO).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long id) {
         Category category = categoryService.getCategoryById(id)
                 .orElseThrow(() -> new CategoryNotFoundException("Category with id " + id + " not found"));
-        return ResponseEntity.ok(categoryMapper.toDTO(category));
+        return ResponseEntity.status(HttpStatus.OK).body(categoryMapper.toDTO(category));
     }
 
     @PostMapping
-    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryDTO categoryDTO) {
         try {
             Category category = categoryMapper.toEntity(categoryDTO);
             Category createdCategory = categoryService.createCategory(category);
             return ResponseEntity.status(HttpStatus.CREATED).body(categoryMapper.toDTO(createdCategory));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<?> updateCategory(@PathVariable Long id, @Valid @RequestBody CategoryDTO categoryDTO) {
         try {
             Category category = categoryMapper.toEntity(categoryDTO);
             Category updatedCategory = categoryService.updateCategory(id, category);
             return ResponseEntity.ok(categoryMapper.toDTO(updatedCategory));
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

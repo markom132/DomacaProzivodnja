@@ -31,20 +31,20 @@ public class ProductController {
     private ProductMapper productMapper;
 
     @GetMapping
-    public List<ProductDTO> getAllProducts() {
+    public ResponseEntity <List<ProductDTO>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
-        return products.stream().map(productMapper::toDTO).collect(Collectors.toList());
+        return ResponseEntity.status(HttpStatus.OK).body(products.stream().map(productMapper::toDTO).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
-        return ResponseEntity.ok(productMapper.toDTO(product));
+        return ResponseEntity.status(HttpStatus.OK).body(productMapper.toDTO(product));
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> createProduct(@Valid @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO productDTO) {
         try {
             Product product = productMapper.toEntity(productDTO);
             Category category = categoryService.getCategoryById(productDTO.getCategoryId())
@@ -54,12 +54,12 @@ public class ProductController {
             Product createdProduct = productService.addProduct(product);
             return ResponseEntity.status(HttpStatus.CREATED).body(productMapper.toDTO(createdProduct));
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductDTO productDTO) {
         try {
             Product product = productMapper.toEntity(productDTO);
             Category category = categoryService.getCategoryById(productDTO.getCategoryId())
@@ -67,9 +67,9 @@ public class ProductController {
             product.setCategory(category);
             Product updatedProduct = productService.updateProduct(id, product);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(productMapper.toDTO(updatedProduct));
+            return ResponseEntity.status(HttpStatus.OK).body(productMapper.toDTO(updatedProduct));
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
