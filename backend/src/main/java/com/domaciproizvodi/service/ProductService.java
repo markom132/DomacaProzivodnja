@@ -1,5 +1,6 @@
 package com.domaciproizvodi.service;
 
+import com.domaciproizvodi.exceptions.ProductNotFoundException;
 import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +37,13 @@ public class ProductService {
                     product.setCategory(updatedProduct.getCategory());
                     return productRepository.save(product);
                 })
-                .orElseThrow(() -> new RuntimeException("Product not found"));
+                .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
     }
 
     public void deleteProduct(Long id) {
+        if (!productRepository.existsById(id)) {
+            throw new ProductNotFoundException("Product not found with id: " + id);
+        }
         productRepository.deleteById(id);
     }
 
