@@ -120,9 +120,12 @@ CREATE TABLE IF NOT EXISTS orders
 ) NOT NULL,
     order_status ENUM
 (
+    'NOT_CONFIRMED',
+    'CONFIRMED',
     'PENDING',
     'SHIPPED',
-    'DELIVERED'
+    'DELIVERED',
+    'CANCELLED'
 ) NOT NULL,
     user_id BIGINT NOT NULL,
     FOREIGN KEY

@@ -20,7 +20,6 @@ public class OrderDTO {
     private BigDecimal totalPrice;
 
     @NotBlank(message = "Order status is mandatory")
-    @Size(max = 10, message = "Order status must be less than 10 characters")
     private String orderStatus;
 
     @Valid

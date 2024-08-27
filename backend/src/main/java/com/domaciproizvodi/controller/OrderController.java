@@ -50,6 +50,15 @@ public class OrderController {
         }
     }
 
+    @PostMapping("/confirm/{id}")
+    public ResponseEntity<OrderDTO> confirmOrder(@PathVariable Long id) {
+        try {
+            Order confirmedOrder = orderService.confirmOrder(id);
+            return ResponseEntity.ok(orderMapper.toDto(confirmedOrder));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrder(@PathVariable Long id, @Valid @RequestBody OrderDTO orderDTO) {
