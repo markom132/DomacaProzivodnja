@@ -10,7 +10,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String product_name;
+    @Column(name = "product_name")
+    private String name;
     private String description;
     private BigDecimal price;
     @Lob
@@ -28,11 +29,11 @@ public class Product {
     }
 
     public String getName() {
-        return product_name;
+        return name;
     }
 
     public void setName(String name) {
-        this.product_name = name;
+        this.name = name;
     }
 
     public String getDescription() {
