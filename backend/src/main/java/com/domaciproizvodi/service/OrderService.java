@@ -4,10 +4,11 @@ import com.domaciproizvodi.exceptions.OrderNotFoundException;
 import com.domaciproizvodi.exceptions.ProductNotFoundException;
 import com.domaciproizvodi.model.Order;
 import com.domaciproizvodi.model.OrderItem;
+import com.domaciproizvodi.model.OrderStatus;
 import com.domaciproizvodi.model.Product;
-import com.domaciproizvodi.repository.OrderItemRepository;
 import com.domaciproizvodi.repository.OrderRepository;
 import com.domaciproizvodi.repository.ProductRepository;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +27,9 @@ public class OrderService {
 
     @Autowired
     private OrderItemService orderItemService;
+
+    @Autowired
+    private EmailService emailService;
 
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
@@ -46,7 +50,25 @@ public class OrderService {
         order.calculateTotalPrice();
         return orderRepository.save(order);
     }
-
+    public Order confirmOrder(Long id) {
+        return orderRepository.findById(id)
+                .map(order -> {
+                    if (order.getOrderStatus() == OrderStatus.NOT_CONFIRMED) {
+                        order.setOrderStatus(OrderStatus.CONFIRMED);
+                        orderRepository.save(order);
+                        // Slanje emaila za potvrdu narudžbine
+                        try {
+                            emailService.sendOrderConfirmationEmail(order);
+                        } catch (MessagingException e) {
+                            throw new RuntimeException(e);
+                        }
+                        return order;
+                    } else {
+                        throw new RuntimeException("Order is already confirmed or has another status.");
+                    }
+                })
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
     @Transactional
     public Order updateOrder(Long id, Order updatedOrder) {
         return orderRepository.findById(id)

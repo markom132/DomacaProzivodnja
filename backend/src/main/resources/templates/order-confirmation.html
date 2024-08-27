@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .email-body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .product-item {
+            margin-bottom: 10px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #dff542;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .email-footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+<div class="email-body">
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order! Below are the details of your purchase:</p>
+    <div th:each="item : ${orderItems}" class="product-item">
+        <p><strong>Product:</strong> <span th:text="${item.product.getName()}">Product Name</span></p>
+        <p><strong>Quantity:</strong> <span th:text="${item.quantity}">Quantity</span></p>
+        <p><strong>Price:</strong> <span th:text="${item.price}">Price</span></p>
+    </div>
+    <p><strong>Total:</strong> <span th:text="${total}">Total Price</span></p>
+    <a href="https://www.domaciproizvodi.com" class="button">View Your Order</a>
+    <p>If you have any questions, please contact us at support@domaciproizvodi.com.</p>
+</div>
+<div class="email-footer">
+    <p>© 2023 🍏 DomaciProizvodi. All rights reserved.</p>
+    <p>123 Main Street, City, Country</p>
+</div>
+</body>
+</html>
