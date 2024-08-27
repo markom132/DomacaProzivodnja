@@ -13,8 +13,6 @@ public class OrderItemDTO {
     @Positive(message = "Product ID must be a positive number")
     private Long productId;
 
-    @NotNull(message = "Order ID is mandatory")
-    @Positive(message = "Order ID must be a positive number")
     private Long orderId;
 
     @NotNull(message = "Quantity is mandatory")
