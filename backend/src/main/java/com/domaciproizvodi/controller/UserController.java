@@ -4,15 +4,16 @@ import com.domaciproizvodi.config.AuthenticationResponse;
 import com.domaciproizvodi.config.JwtUtil;
 import com.domaciproizvodi.dto.UserDTO;
 import com.domaciproizvodi.dto.mappers.UserMapper;
+import com.domaciproizvodi.exceptions.UserNotFoundException;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,9 +30,6 @@ public class UserController {
     private UserMapper userMapper;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
@@ -39,10 +37,14 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserDTO userDTO) {
-        User user = userMapper.toEntity(userDTO);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User createdUSer = userService.createUser(user);
-        return ResponseEntity.ok(userMapper.toDTO(createdUSer));
+        try {
+            User user = userMapper.toEntity(userDTO);
+            User createdUser = userService.createUser(user);
+            return ResponseEntity.status(HttpStatus.CREATED).body(userMapper.toDTO(createdUser));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+
     }
 
     @PostMapping("/login")
@@ -55,34 +57,35 @@ public class UserController {
             return ResponseEntity.status(401).body("Invalid credentials");
         }
 
-        final Optional<User> userDetails = userService.findUserByUsername(userDTO.getUsername());
-        final User user = userDetails.get();
-        final String jwt = jwtUtil.generateToken(user);
+        User user = userService.findUserByUsername(userDTO.getUsername())
+                .orElseThrow(() -> new UserNotFoundException("User not found with username: " + userDTO.getUsername()));
+        String jwt = jwtUtil.generateToken(user);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(jwt));
     }
 
 
     @GetMapping
-    public List<UserDTO> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
         List<User> users = userService.findAllUsers();
-        return users.stream().map(userMapper::toDTO).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(users.stream().map(userMapper::toDTO).toList());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
-        Optional<User> userOpt = userService.findUserById(id);
-        return userOpt.map(value -> ResponseEntity.ok(userMapper.toDTO(value))).orElseGet(() -> ResponseEntity.notFound().build());
+        User user = userService.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTO(user));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @Valid @RequestBody UserDTO userDTO) {
         try {
             User user = userMapper.toEntity(userDTO);
             User updatedUser = userService.updateUser(id, user);
-            return ResponseEntity.ok(userMapper.toDTO(updatedUser));
+            return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTO(updatedUser));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -90,6 +93,16 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<String> handleBadCredentialsException(BadCredentialsException e) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
     }
 
 }

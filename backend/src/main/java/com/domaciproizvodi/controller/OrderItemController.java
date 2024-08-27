@@ -29,35 +29,35 @@ public class OrderItemController {
     @GetMapping
     public ResponseEntity<List<OrderItemDTO>> getAllOrderItems() {
         List<OrderItem> orderItems = orderItemService.getAllOrderItems();
-        return ResponseEntity.ok(orderItems.stream().map(orderItemMapper::toDTO).collect(Collectors.toList()));
+        return ResponseEntity.status(HttpStatus.OK).body(orderItems.stream().map(orderItemMapper::toDTO).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderItemDTO> getOrderItemById(@PathVariable Long id) {
         OrderItem orderItem = orderItemService.getOrderItemById(id)
                 .orElseThrow(() -> new OrderItemNotFOundException("Order item with not found with id: " + id));
-        return ResponseEntity.ok(orderItemMapper.toDTO(orderItem));
+        return ResponseEntity.status(HttpStatus.OK).body(orderItemMapper.toDTO(orderItem));
     }
 
     @PostMapping
-    public ResponseEntity<OrderItemDTO> createOrderItem(@Valid @RequestBody OrderItemDTO orderItemDTO) {
+    public ResponseEntity<?> createOrderItem(@Valid @RequestBody OrderItemDTO orderItemDTO) {
         try {
             OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
             OrderItem createdOrderItem = orderItemService.createOrderItem(orderItem);
             return ResponseEntity.status(HttpStatus.CREATED).body(orderItemMapper.toDTO(createdOrderItem));
         } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderItemDTO> updateOrderItem(@PathVariable Long id, @Valid @RequestBody OrderItemDTO orderItemDTO) {
+    public ResponseEntity<?> updateOrderItem(@PathVariable Long id, @Valid @RequestBody OrderItemDTO orderItemDTO) {
         try {
             OrderItem orderItem = orderItemMapper.toEntity(orderItemDTO);
             OrderItem updatedOrderItem = orderItemService.updateOrderItem(id, orderItem);
             return ResponseEntity.status(HttpStatus.OK).body(orderItemMapper.toDTO(updatedOrderItem));
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

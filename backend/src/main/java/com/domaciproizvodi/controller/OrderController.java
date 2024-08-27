@@ -27,38 +27,38 @@ public class OrderController {
     private OrderMapper orderMapper;
 
     @GetMapping
-    public List<OrderDTO> getOrders() {
+    public ResponseEntity<List<OrderDTO>> getOrders() {
         List<Order> orders = orderService.getAllOrders();
-        return orders.stream().map(orderMapper::toDto).collect(Collectors.toList());
+        return ResponseEntity.status(HttpStatus.OK).body(orders.stream().map(orderMapper::toDto).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
         Order order = orderService.getOrderById(id)
                 .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
-        return ResponseEntity.ok(orderMapper.toDto(order));
+        return ResponseEntity.status(HttpStatus.OK).body(orderMapper.toDto(order));
     }
 
     @PostMapping
-    public ResponseEntity<OrderDTO> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<?> createOrder(@Valid @RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderMapper.toEntity(orderDTO);
             Order createdOrder = orderService.createOrder(order);
             return ResponseEntity.status(HttpStatus.CREATED).body(orderMapper.toDto(createdOrder));
         } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
 
     @PutMapping("/{id}")
-    public ResponseEntity<OrderDTO> updateOrder(@PathVariable Long id, @Valid @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<?> updateOrder(@PathVariable Long id, @Valid @RequestBody OrderDTO orderDTO) {
         try {
             Order order = orderMapper.toEntity(orderDTO);
             Order updatedOrder = orderService.updateOrder(id, order);
-            return ResponseEntity.ok(orderMapper.toDto(updatedOrder));
+            return ResponseEntity.status(HttpStatus.OK).body(orderMapper.toDto(updatedOrder));
         } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
