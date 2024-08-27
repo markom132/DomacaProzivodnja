@@ -43,7 +43,7 @@ public class OrderService {
             item.setProduct(product);
             item.setOrder(order);
         }
-
+        order.calculateTotalPrice();
         return orderRepository.save(order);
     }
 
@@ -71,7 +71,7 @@ public class OrderService {
                         item.setOrder(order);
                         order.getItems().add(item);
                     }
-
+                    order.calculateTotalPrice();
                     return orderRepository.save(order);
                 })
                 .orElseThrow(() -> new OrderNotFoundException("Order not found with id: " + id));
