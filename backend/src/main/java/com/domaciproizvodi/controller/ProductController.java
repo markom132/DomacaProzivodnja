@@ -31,7 +31,7 @@ public class ProductController {
     private ProductMapper productMapper;
 
     @GetMapping
-    public ResponseEntity <List<ProductDTO>> getAllProducts() {
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
         List<Product> products = productService.getAllProducts();
         return ResponseEntity.status(HttpStatus.OK).body(products.stream().map(productMapper::toDTO).collect(Collectors.toList()));
     }
@@ -41,6 +41,12 @@ public class ProductController {
         Product product = productService.getProductById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
         return ResponseEntity.status(HttpStatus.OK).body(productMapper.toDTO(product));
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam String keyword) {
+        List<Product> products = productService.searchProducts(keyword);
+        return ResponseEntity.status(HttpStatus.OK).body(products.stream().map(productMapper::toDTO).collect(Collectors.toList()));
     }
 
     @PostMapping
