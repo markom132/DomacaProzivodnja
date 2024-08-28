@@ -35,7 +35,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // Onemogućavanje CSRF zaštite za stateless aplikacije
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/users/login", "/api/users/register").permitAll()
+                        .requestMatchers("/api/users/login", "/api/users/register", "/api/users/reset-password", "/api/users/reset-password/confirm").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

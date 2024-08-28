@@ -19,6 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
@@ -107,6 +108,22 @@ public class UserController {
             logger.error("Error occurred while updating user with id: {}: {}", id, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<String> requestPasswordReset(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        userService.sendPasswordResetCode(email);
+        return ResponseEntity.ok("Password reset code sent to " + email);
+    }
+
+    @PostMapping("/reset-password/confirm")
+    public ResponseEntity<String> confirmPasswordReset(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String code = request.get("code");
+        String newPassword = request.get("newPassword");
+        userService.resetPassword(email, code, newPassword);
+        return ResponseEntity.ok("Password reset successful");
     }
 
     @DeleteMapping("/{id}")
