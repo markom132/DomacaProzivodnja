@@ -123,6 +123,28 @@
                     <failsOnError>true</failsOnError>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.15.0</version>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <rulesets>
+                        <ruleset>rulesets/java/basic.xml</ruleset>
+                        <ruleset>rulesets/java/design.xml</ruleset>
+                        <ruleset>rulesets/java/unnecessary.xml</ruleset>
+                        <ruleset>rulesets/java/imports.xml</ruleset>
+                    </rulesets>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
