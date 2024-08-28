@@ -3,14 +3,14 @@ package com.domaciproizvodi.service;
 import com.domaciproizvodi.exceptions.UserNotFoundException;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.repository.UserRepository;
+import jakarta.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -22,6 +22,54 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    private final Map<String, String> resetCodes = new HashMap<>();
+    @Autowired
+    private EmailService emailService;
+
+    public void sendPasswordResetCode(String email) {
+        logger.info("Sending password reset email to user: {}", email);
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        if (userOpt.isPresent()) {
+            String code = generateResetCode();
+            resetCodes.put(email, code);
+            try {
+                emailService.sendPasswordResetEmail(email, code);
+                logger.info("Password reset email sent to user: {}", email);
+            } catch (MessagingException e) {
+                logger.error("Failed to send password reset email to user: {}", email);
+                throw new RuntimeException("Failed to send password reset email to user", e);
+            }
+        } else {
+            logger.error("User not found: {}", email);
+            throw new RuntimeException("User not found with email: " + email);
+        }
+    }
+
+    public void resetPassword(String email, String code, String newPassword) {
+        logger.info("Trying to reset password for user: {}", email);
+        if (resetCodes.containsKey(email) && resetCodes.get(email).equals(code)) {
+            Optional<User> userOpt = userRepository.findByEmail(email);
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                user.setPassword(passwordEncoder.encode(newPassword));
+                userRepository.save(user);
+                resetCodes.remove(email);
+            } else {
+                logger.error("User not found: {}", email);
+                throw new RuntimeException("User not found with email: " + email);
+            }
+        } else {
+            logger.error("Invalid reset code for user: {}", email);
+            throw new RuntimeException("Invalid reset code for user: " + email);
+        }
+    }
+
+    private String generateResetCode() {
+        Random random = new Random();
+        int code = 100000 + random.nextInt(900000);
+        return String.valueOf(code);
+    }
 
     public User createUser(User user) {
         logger.info("Creating new user with username: {}", user.getUsername());

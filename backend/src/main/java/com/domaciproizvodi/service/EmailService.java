@@ -55,6 +55,20 @@ public class EmailService {
         logger.info("Order confirmation email sent successfully to: {}", emailAddress);
     }
 
+    public void sendPasswordResetEmail(String to, String code) throws MessagingException {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
+        String htmlMsg = "<h3>Password Reset Code</h3>"
+                + "<p>Use the following code to reset your password:</p>"
+                + "<h2>" + code + "</h2>";
+        helper.setText(htmlMsg, true);
+        helper.setTo(to);
+        helper.setSubject("Password Reset Code");
+        helper.setFrom("no-reply@domaciproizvodi.com");
+
+        mailSender.send(mimeMessage);
+    }
+
     public void sendShipmentEmail(String to, Long orderId) {
         String subject = "Your Order Has Been Shipped - Order #" + orderId;
         String text = "Good news! Your order ID " + orderId + " has been shipped. You will receive it soon.";
