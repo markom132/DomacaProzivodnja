@@ -24,6 +24,9 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
     private final Map<String, String> resetCodes = new HashMap<>();
+
+    private final Map<String, String> verificationCodes = new HashMap<>();
+
     @Autowired
     private EmailService emailService;
 
@@ -76,7 +79,42 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User createdUser = userRepository.save(user);
         logger.info("User created successfully with id: {}", createdUser.getId());
+        String code = generateVerificationCode();
+        verificationCodes.put(createdUser.getEmail(), code);
+
+        try {
+            emailService.sendVerificationCodeEmail(createdUser.getEmail(), code);
+        } catch (MessagingException e) {
+            logger.error("Failed to send verification code email to user: {}", createdUser.getEmail());
+            throw new RuntimeException("Failed to send verification code email to user", e);
+        }
         return createdUser;
+    }
+
+    private String generateVerificationCode() {
+        Random random = new Random();
+        int code = 100000 + random.nextInt(900000);
+        return String.valueOf(code);
+    }
+
+    public void verifyUser(String email, String code) {
+        logger.info("Verifying user with email: {}", email);
+        String storedCode = verificationCodes.get(email);
+        if (storedCode != null && storedCode.equals(code)) {
+            Optional<User> userOpt = userRepository.findByEmail(email);
+            if (userOpt.isPresent()) {
+                User user = userOpt.get();
+                user.setVerified(true);
+                userRepository.save(user);
+                verificationCodes.remove(email);
+            } else {
+                logger.error("User not found with email: " + email);
+                throw new RuntimeException("User not found with email: " + email);
+            }
+        } else {
+            logger.error("Invalid verification code for user: {}", email);
+            throw new RuntimeException("Invalid verification code for user: " + email);
+        }
     }
 
     public Optional<User> findUserById(Long id) {
