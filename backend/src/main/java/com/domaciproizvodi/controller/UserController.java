@@ -54,6 +54,19 @@ public class UserController {
 
     }
 
+    @PostMapping("/verify")
+    public ResponseEntity<String> verifyUser(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
+        String code = request.get("code");
+        try {
+            userService.verifyUser(email, code);
+            return ResponseEntity.status(HttpStatus.OK).body("User verified successfully");
+        } catch (RuntimeException e) {
+            logger.error("Error occurred while verifying user: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserDTO userDTO) {
         try {

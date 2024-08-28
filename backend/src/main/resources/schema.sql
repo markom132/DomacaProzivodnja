@@ -91,7 +91,14 @@ CREATE TABLE IF NOT EXISTS users
     phone VARCHAR
 (
     20
-), -- Dodato polje za broj telefona
+),
+    verified
+    BOOLEAN
+    NOT
+    NULL
+    DEFAULT
+    FALSE,
+    -- Dodato polje za broj telefona
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
