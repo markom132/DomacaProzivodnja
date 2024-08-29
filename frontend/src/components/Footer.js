@@ -47,7 +47,7 @@ const styles = {
     borderTop: '1px solid #ddd',
     paddingTop: '10px',
     color: '#666',
-  }
+  },
 };
 
 export default Footer;

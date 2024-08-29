@@ -1,14 +1,21 @@
 import React from 'react';
 
 const CategorySelector = () => {
-  const categories = ['Top offers', 'Homemade meals', 'Local drinks', 'Miscellaneous'];
+  const categories = [
+    'Top offers',
+    'Homemade meals',
+    'Local drinks',
+    'Miscellaneous',
+  ];
 
   return (
     <section style={styles.categorySection}>
       <h2 style={styles.sectionTitle}>Explore by categories</h2>
       <div style={styles.categoryList}>
         {categories.map(category => (
-          <button key={category} style={styles.categoryButton}>{category}</button>
+          <button key={category} style={styles.categoryButton}>
+            {category}
+          </button>
         ))}
       </div>
     </section>
