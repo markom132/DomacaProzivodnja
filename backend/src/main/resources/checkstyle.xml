@@ -31,8 +31,6 @@
 
         <module name="NeedBraces"/>
 
-        <module name="FinalParameters"/>
-
         <module name="EmptyLineSeparator"/>
     </module>
 
