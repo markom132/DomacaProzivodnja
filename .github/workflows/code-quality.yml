@@ -66,6 +66,7 @@ jobs:
       - name: Run PMD Scan
         run: |
           cd backend
+          mvn clean install
           mvn pmd:check -X
 
   spotless:
