@@ -1,17 +1,20 @@
 package com.domaciproizvodi.config;
 
-import com.domaciproizvodi.repository.UserRepository;
 import java.util.ArrayList;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.domaciproizvodi.repository.UserRepository;
+
 @Configuration
 public class UserDetailsServiceConfig implements UserDetailsService {
 
   private final UserRepository userRepository;
+
   private final PasswordEncoder passwordEncoder;
 
   public UserDetailsServiceConfig(UserRepository userRepository, PasswordEncoder passwordEncoder) {

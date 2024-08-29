@@ -1,7 +1,8 @@
 package com.domaciproizvodi.model;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
+
+import jakarta.persistence.*;
 
 @Entity
 public class Product {
@@ -14,7 +15,9 @@ public class Product {
   private String name;
 
   private String description;
+
   private BigDecimal price;
+
   @Lob private byte[] image;
 
   @ManyToOne

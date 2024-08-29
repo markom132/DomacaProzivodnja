@@ -1,15 +1,8 @@
 package com.domaciproizvodi.controller;
 
-import com.domaciproizvodi.config.AuthenticationResponse;
-import com.domaciproizvodi.config.JwtUtil;
-import com.domaciproizvodi.dto.UserDTO;
-import com.domaciproizvodi.dto.mappers.UserMapper;
-import com.domaciproizvodi.exceptions.UserNotFoundException;
-import com.domaciproizvodi.model.User;
-import com.domaciproizvodi.service.UserService;
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +12,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+
+import com.domaciproizvodi.config.AuthenticationResponse;
+import com.domaciproizvodi.config.JwtUtil;
+import com.domaciproizvodi.dto.UserDTO;
+import com.domaciproizvodi.dto.mappers.UserMapper;
+import com.domaciproizvodi.exceptions.UserNotFoundException;
+import com.domaciproizvodi.model.User;
+import com.domaciproizvodi.service.UserService;
 
 @RestController
 @RequestMapping("/api/users")

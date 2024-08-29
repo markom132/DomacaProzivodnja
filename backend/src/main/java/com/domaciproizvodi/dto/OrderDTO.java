@@ -1,10 +1,11 @@
 package com.domaciproizvodi.dto;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 
 public class OrderDTO {
 

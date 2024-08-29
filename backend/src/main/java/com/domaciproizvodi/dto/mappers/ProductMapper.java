@@ -1,11 +1,12 @@
 package com.domaciproizvodi.dto.mappers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.domaciproizvodi.dto.ProductDTO;
 import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class ProductMapper {

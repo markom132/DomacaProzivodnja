@@ -1,11 +1,14 @@
 package com.domaciproizvodi.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import java.math.BigDecimal;
+
+import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class OrderItem {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -15,6 +18,7 @@ public class OrderItem {
   private Product product;
 
   private int quantity;
+
   private BigDecimal price;
 
   @ManyToOne
