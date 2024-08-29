@@ -85,7 +85,7 @@ jobs:
         run: |
           cd backend
           mvn -version
-          mvn install -DskipTests
+          mvn clean install -DskipTests
           mvn spotless:check
 
   jacoco:
