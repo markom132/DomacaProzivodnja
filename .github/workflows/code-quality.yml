@@ -15,6 +15,7 @@ jobs:
       - name: Run Eslint Check
         run: |
           cd frontend
+          rm -rf node_modules
           npm install
           npm install eslint-plugin-prettier --save-dev
           npm run lint
