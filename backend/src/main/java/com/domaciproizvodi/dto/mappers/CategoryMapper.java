@@ -1,8 +1,9 @@
 package com.domaciproizvodi.dto.mappers;
 
+import org.springframework.stereotype.Component;
+
 import com.domaciproizvodi.dto.CategoryDTO;
 import com.domaciproizvodi.model.Category;
-import org.springframework.stereotype.Component;
 
 @Component
 public class CategoryMapper {

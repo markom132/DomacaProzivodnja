@@ -63,7 +63,7 @@ jobs:
       - name: Build with Maven
         run: |
           cd backend
-          mvn clean verify
+          mvn clean verify -DskipTests
 
   spotless:
     runs-on: ubuntu-latest

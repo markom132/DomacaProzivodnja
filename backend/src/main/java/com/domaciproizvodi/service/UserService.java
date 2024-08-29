@@ -1,15 +1,18 @@
 package com.domaciproizvodi.service;
 
-import com.domaciproizvodi.exceptions.UserNotFoundException;
-import com.domaciproizvodi.model.User;
-import com.domaciproizvodi.repository.UserRepository;
-import jakarta.mail.MessagingException;
 import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import jakarta.mail.MessagingException;
+
+import com.domaciproizvodi.exceptions.UserNotFoundException;
+import com.domaciproizvodi.model.User;
+import com.domaciproizvodi.repository.UserRepository;
 
 @Service
 public class UserService {

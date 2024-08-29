@@ -1,8 +1,9 @@
 package com.domaciproizvodi.dto.mappers;
 
+import org.springframework.stereotype.Component;
+
 import com.domaciproizvodi.dto.UserDTO;
 import com.domaciproizvodi.model.User;
-import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper {

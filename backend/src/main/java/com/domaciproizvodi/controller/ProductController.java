@@ -1,5 +1,17 @@
 package com.domaciproizvodi.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+
 import com.domaciproizvodi.dto.ProductDTO;
 import com.domaciproizvodi.dto.mappers.ProductMapper;
 import com.domaciproizvodi.exceptions.CategoryNotFoundException;
@@ -8,15 +20,6 @@ import com.domaciproizvodi.model.Category;
 import com.domaciproizvodi.model.Product;
 import com.domaciproizvodi.service.CategoryService;
 import com.domaciproizvodi.service.ProductService;
-import jakarta.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/products")

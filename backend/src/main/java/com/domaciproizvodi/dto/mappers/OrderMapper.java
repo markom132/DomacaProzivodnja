@@ -1,13 +1,15 @@
 package com.domaciproizvodi.dto.mappers;
 
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.domaciproizvodi.dto.OrderDTO;
 import com.domaciproizvodi.dto.OrderItemDTO;
 import com.domaciproizvodi.model.*;
 import com.domaciproizvodi.repository.ProductRepository;
 import com.domaciproizvodi.repository.UserRepository;
-import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class OrderMapper {

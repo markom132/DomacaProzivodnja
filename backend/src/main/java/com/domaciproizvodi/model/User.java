@@ -1,7 +1,8 @@
 package com.domaciproizvodi.model;
 
-import jakarta.persistence.*;
 import java.util.List;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
@@ -12,14 +13,21 @@ public class User {
   private Long id;
 
   private String username;
+
   private String password;
+
   private String email;
 
   private String firstName;
+
   private String lastName;
+
   private String phone;
+
   private String address;
+
   private String city;
+
   private String zipCode;
 
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
