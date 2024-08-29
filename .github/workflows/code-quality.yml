@@ -3,6 +3,7 @@ name: Code Quality
 on: [ pull_request ]
 
 jobs:
+
   eslint:
     runs-on: ubuntu-latest
     steps:
@@ -13,9 +14,9 @@ jobs:
           node-version: '20.14.0'
       - name: Run Eslint Check
         run: |
-        cd frontend
-        npm install
-        npm run lint
+          cd frontend
+          npm install
+          npm run lint
        
   prettier:
     runs-on: ubuntu-latest
