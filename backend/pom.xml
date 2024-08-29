@@ -158,11 +158,23 @@
                 </executions>
                 <configuration>
                     <java>
-                        <googleJavaFormat />
-                        <removeUnusedImports />
-                        <trimTrailingWhitespace />
+                        <googleJavaFormat/>
+                        <removeUnusedImports/>
+                        <trimTrailingWhitespace/>
                     </java>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>9.2.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
