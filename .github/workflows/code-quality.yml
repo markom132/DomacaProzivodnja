@@ -11,13 +11,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.14.0'
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./frontend
-      - name: Run ESLint
-        run: npm run lint
-        working-directory: ./frontend
-
+      - name: Run Eslint Check
+        run: |
+        cd frontend
+        npm install
+        npm run lint
+       
   prettier:
     runs-on: ubuntu-latest
     steps:
