@@ -4,9 +4,15 @@ const NewsletterSignup = () => {
   return (
     <section style={styles.newsletterSection}>
       <h2 style={styles.sectionTitle}>Stay Updated!</h2>
-      <p style={styles.description}>Sign up for our newsletter to get the latest updates and special offers.</p>
+      <p style={styles.description}>
+        Sign up for our newsletter to get the latest updates and special offers.
+      </p>
       <form style={styles.form}>
-        <input type="email" placeholder="Your email address" style={styles.input}/>
+        <input
+          type="email"
+          placeholder="Your email address"
+          style={styles.input}
+        />
         <button style={styles.button}>Subscribe</button>
       </form>
     </section>

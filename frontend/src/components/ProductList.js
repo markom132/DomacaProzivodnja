@@ -16,7 +16,11 @@ const ProductList = () => {
       <div style={styles.productList}>
         {products.map(product => (
           <div key={product.name} style={styles.productCard}>
-            <img src={product.image} alt={product.name} style={styles.productImage}/>
+            <img
+              src={product.image}
+              alt={product.name}
+              style={styles.productImage}
+            />
             <h3 style={styles.productName}>{product.name}</h3>
             <p style={styles.productPrice}>{product.price}</p>
             <button style={styles.addButton}>Add to cart</button>
