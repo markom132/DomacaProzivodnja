@@ -3,31 +3,36 @@ import honeyImage from '../assets/med.jpg'; // Putanja do slike
 
 const ProductDetails = () => {
   const product = {
-    name: "Med",
-    description: "Ovo je opis testnog prozivoda----MED",
-    price: "600 RSD",
+    name: 'Med',
+    description: 'Ovo je opis testnog prozivoda----MED',
+    price: '600 RSD',
     mainImage: honeyImage,
-    thumbnails: [
-        honeyImage,
-        honeyImage,
-        honeyImage
-    ],
+    thumbnails: [honeyImage, honeyImage, honeyImage],
     relatedProducts: [
-      { id: 1, name: "Related Product 1", price: "$49.99", image: honeyImage },
-      { id: 2, name: "Related Product 2", price: "$59.99", image: honeyImage },
-      { id: 3, name: "Related Product 3", price: "$89.99", image: honeyImage },
-      { id: 4, name: "Related Product 4", price: "$79.99", image: honeyImage }
-    ]
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+    ],
   };
 
   return (
     <div style={styles.container}>
       <div style={styles.productInfo}>
         <div style={styles.images}>
-          <img src={product.mainImage} alt={product.name} style={styles.mainImage} />
+          <img
+            src={product.mainImage}
+            alt={product.name}
+            style={styles.mainImage}
+          />
           <div style={styles.thumbnails}>
             {product.thumbnails.map((thumb, index) => (
-              <img key={index} src={thumb} alt={`Thumbnail ${index + 1}`} style={styles.thumbnail} />
+              <img
+                key={index}
+                src={thumb}
+                alt={`Thumbnail ${index + 1}`}
+                style={styles.thumbnail}
+              />
             ))}
           </div>
         </div>
@@ -47,7 +52,11 @@ const ProductDetails = () => {
         <div style={styles.relatedList}>
           {product.relatedProducts.map(related => (
             <div key={related.id} style={styles.relatedCard}>
-              <img src={related.image} alt={related.name} style={styles.relatedImage} />
+              <img
+                src={related.image}
+                alt={related.name}
+                style={styles.relatedImage}
+              />
               <div>{related.name}</div>
               <div style={styles.relatedPrice}>{related.price}</div>
             </div>
@@ -122,7 +131,7 @@ const styles = {
   relatedList: {
     display: 'flex',
     justifyContent: 'center',
-    gap: '30px'
+    gap: '30px',
   },
   relatedCard: {
     textAlign: 'center',
@@ -138,7 +147,7 @@ const styles = {
   relatedPrice: {
     fontWeight: 'bold',
     marginTop: '10px',
-  }
+  },
 };
 
 export default ProductDetails;

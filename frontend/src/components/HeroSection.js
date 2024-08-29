@@ -22,7 +22,7 @@ const styles = {
     color: '#fff',
     borderRadius: '20px',
     marginBottom: '20px',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   promoText: {
     fontSize: '2em',
@@ -31,7 +31,7 @@ const styles = {
     padding: '20px',
     borderRadius: '10px',
     display: 'inline-block',
-  }
+  },
 };
 
 export default HeroSection;
