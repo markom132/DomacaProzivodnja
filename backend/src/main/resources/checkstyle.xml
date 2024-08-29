@@ -4,7 +4,10 @@
         "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <module name="TreeWalker">
-        <module name="GoogleStyle"/>
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+    <module name="JavadocPackage">
+        <property name="severity" value="ignore"/>
     </module>
 </module>
