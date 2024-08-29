@@ -18,6 +18,7 @@ jobs:
           rm -rf node_modules
           npm install
           npm install eslint-plugin-prettier --save-dev
+          npm install eslint-config-prettier
           npm run lint
        
   prettier:
