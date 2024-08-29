@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ProductCard = ({ image, name, price }) => {
   return (
@@ -8,6 +9,12 @@ const ProductCard = ({ image, name, price }) => {
       <p>{price}</p>
     </div>
   );
+};
+
+ProductCard.propTypes = {
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
 };
 
 const styles = {
