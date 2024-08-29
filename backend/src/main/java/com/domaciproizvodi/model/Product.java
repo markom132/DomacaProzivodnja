@@ -1,70 +1,71 @@
 package com.domaciproizvodi.model;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "product_name")
-    private String name;
-    private String description;
-    private BigDecimal price;
-    @Lob
-    private byte[] image;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Long getId() {
-        return id;
-    }
+  @Column(name = "product_name")
+  private String name;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  private String description;
+  private BigDecimal price;
+  @Lob private byte[] image;
 
-    public String getName() {
-        return name;
-    }
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  private Category category;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+  public String getDescription() {
+    return description;
+  }
 
-    public byte[] getImage() {
-        return image;
-    }
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
+  public BigDecimal getPrice() {
+    return price;
+  }
 
-    public Category getCategory() {
-        return category;
-    }
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
 }

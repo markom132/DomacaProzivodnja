@@ -1,63 +1,64 @@
 package com.domaciproizvodi.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity
 public class OrderItem {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-    private int quantity;
-    private BigDecimal price;
-    @ManyToOne
-    @JoinColumn(name = "orders_id", nullable = false)
-    @JsonBackReference
-    private Order order;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Long getId() {
-        return id;
-    }
+  @ManyToOne
+  @JoinColumn(name = "product_id", nullable = false)
+  private Product product;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  private int quantity;
+  private BigDecimal price;
 
-    public Product getProduct() {
-        return product;
-    }
+  @ManyToOne
+  @JoinColumn(name = "orders_id", nullable = false)
+  @JsonBackReference
+  private Order order;
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public int getQuantity() {
-        return quantity;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+  public Product getProduct() {
+    return product;
+  }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+  public int getQuantity() {
+    return quantity;
+  }
 
-    public Order getOrder() {
-        return order;
-    }
+  public void setQuantity(int quantity) {
+    this.quantity = quantity;
+  }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
+  public BigDecimal getPrice() {
+    return price;
+  }
+
+  public void setPrice(BigDecimal price) {
+    this.price = price;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public void setOrder(Order order) {
+    this.order = order;
+  }
 }
