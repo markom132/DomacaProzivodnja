@@ -63,10 +63,11 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Run PMD Scan
         run: |
           cd backend
-          mvn clean verify -DskipTests
+          mvn install
+          mvn pmd:check
 
   spotless:
     runs-on: ubuntu-latest
