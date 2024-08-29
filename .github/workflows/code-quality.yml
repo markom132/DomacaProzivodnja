@@ -18,6 +18,21 @@ jobs:
         run: npm run lint
         working-directory: ./frontend
 
+  prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+        working-directory: ./frontend
+      - name: Run Prettier
+        run: npx prettier --check .
+        working-directory: ./frontend
+
   checkstyle:
     runs-on: ubuntu-latest
     steps:
