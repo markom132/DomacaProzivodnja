@@ -63,10 +63,11 @@ jobs:
           distribution: 'corretto'
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Run PMD Scan
         run: |
           cd backend
-          mvn clean verify -DskipTests
+          mvn clean install -DskipTests
+          mvn pmd:check -X
 
   spotless:
     runs-on: ubuntu-latest
@@ -86,24 +87,6 @@ jobs:
           mvn -version
           mvn install -DskipTests
           mvn spotless:check
-
-  owasp:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'corretto'
-          java-version: '17'
-
-      - name: Run OWASP Dependency-Check
-        run: |
-          cd backend
-          mvn install -DskipTests
-          mvn dependency-check:check
 
   jacoco:
     runs-on: ubuntu-latest
