@@ -1,127 +1,126 @@
 package com.domaciproizvodi.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String username;
-    private String password;
-    private String email;
+  private String username;
+  private String password;
+  private String email;
 
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String address;
-    private String city;
-    private String zipCode;
+  private String firstName;
+  private String lastName;
+  private String phone;
+  private String address;
+  private String city;
+  private String zipCode;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  private List<Order> orders;
 
-    @Column(nullable = false)
-    private boolean verified = false;
+  @Column(nullable = false)
+  private boolean verified = false;
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public String getAddress() {
-        return address;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    public String getCity() {
-        return city;
-    }
+  public String getCity() {
+    return city;
+  }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-    public String getZipCode() {
-        return zipCode;
-    }
+  public String getZipCode() {
+    return zipCode;
+  }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
-    }
+  public void setZipCode(String zipCode) {
+    this.zipCode = zipCode;
+  }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
+  public List<Order> getOrders() {
+    return orders;
+  }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+  public void setOrders(List<Order> orders) {
+    this.orders = orders;
+  }
 
-    public boolean isVerified() {
-        return verified;
-    }
+  public boolean isVerified() {
+    return verified;
+  }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
+  public void setVerified(boolean verified) {
+    this.verified = verified;
+  }
 }

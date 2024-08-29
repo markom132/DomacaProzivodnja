@@ -2,7 +2,6 @@ package com.domaciproizvodi.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,78 +10,82 @@ import java.util.List;
 @Entity(name = "orders")
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "order_date")
-    private LocalDateTime orderDate;
-    @Column(name = "total_price")
-    private BigDecimal totalPrice;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "order_status")
-    private OrderStatus orderStatus;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<OrderItem> items = new ArrayList<>();
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+  @Column(name = "order_date")
+  private LocalDateTime orderDate;
 
-    public Long getId() {
-        return id;
-    }
+  @Column(name = "total_price")
+  private BigDecimal totalPrice;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  @Enumerated(EnumType.STRING)
+  @Column(name = "order_status")
+  private OrderStatus orderStatus;
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private List<OrderItem> items = new ArrayList<>();
 
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-    public BigDecimal calculateTotalPrice() {
-        totalPrice = items.stream()
-                .map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return totalPrice;
-    }
+  public Long getId() {
+    return id;
+  }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
+  public LocalDateTime getOrderDate() {
+    return orderDate;
+  }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-        calculateTotalPrice();
-    }
+  public void setOrderDate(LocalDateTime orderDate) {
+    this.orderDate = orderDate;
+  }
 
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
+  public BigDecimal calculateTotalPrice() {
+    totalPrice =
+        items.stream()
+            .map(item -> item.getPrice().multiply(BigDecimal.valueOf(item.getQuantity())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    return totalPrice;
+  }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
+  public BigDecimal getTotalPrice() {
+    return totalPrice;
+  }
 
-    public List<OrderItem> getItems() {
-        return items;
-    }
+  public void setTotalPrice(BigDecimal totalPrice) {
+    this.totalPrice = totalPrice;
+    calculateTotalPrice();
+  }
 
-    public void setItems(List<OrderItem> items) {
-        this.items = items;
-    }
+  public OrderStatus getOrderStatus() {
+    return orderStatus;
+  }
 
-    public User getUser() {
-        return user;
-    }
+  public void setOrderStatus(OrderStatus orderStatus) {
+    this.orderStatus = orderStatus;
+  }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+  public List<OrderItem> getItems() {
+    return items;
+  }
+
+  public void setItems(List<OrderItem> items) {
+    this.items = items;
+  }
+
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
 }

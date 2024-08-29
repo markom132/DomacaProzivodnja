@@ -12,35 +12,38 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderItemMapper {
 
-    @Autowired
-    private ProductRepository productRepository;
+  @Autowired private ProductRepository productRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+  @Autowired private OrderRepository orderRepository;
 
-    public OrderItemDTO toDTO(OrderItem orderItem) {
-        OrderItemDTO orderItemDto = new OrderItemDTO();
-        orderItemDto.setId(orderItem.getId());
-        orderItemDto.setProductId(orderItem.getProduct().getId());
-        orderItemDto.setOrderId(orderItem.getOrder().getId());
-        orderItemDto.setQuantity(orderItem.getQuantity());
-        orderItemDto.setPrice(orderItem.getPrice());
-        return orderItemDto;
-    }
+  public OrderItemDTO toDTO(OrderItem orderItem) {
+    OrderItemDTO orderItemDto = new OrderItemDTO();
+    orderItemDto.setId(orderItem.getId());
+    orderItemDto.setProductId(orderItem.getProduct().getId());
+    orderItemDto.setOrderId(orderItem.getOrder().getId());
+    orderItemDto.setQuantity(orderItem.getQuantity());
+    orderItemDto.setPrice(orderItem.getPrice());
+    return orderItemDto;
+  }
 
-    public OrderItem toEntity(OrderItemDTO orderItemDTO) {
-        OrderItem orderItem = new OrderItem();
-        orderItem.setId(orderItemDTO.getId());
-        orderItem.setQuantity(orderItemDTO.getQuantity());
-        orderItem.setPrice(orderItemDTO.getPrice());
+  public OrderItem toEntity(OrderItemDTO orderItemDTO) {
+    OrderItem orderItem = new OrderItem();
+    orderItem.setId(orderItemDTO.getId());
+    orderItem.setQuantity(orderItemDTO.getQuantity());
+    orderItem.setPrice(orderItemDTO.getPrice());
 
-        Product product = productRepository.findById(orderItemDTO.getProductId()).orElseThrow(() -> new RuntimeException("Product not found"));
-        orderItem.setProduct(product);
+    Product product =
+        productRepository
+            .findById(orderItemDTO.getProductId())
+            .orElseThrow(() -> new RuntimeException("Product not found"));
+    orderItem.setProduct(product);
 
-        Order order = orderRepository.findById(orderItemDTO.getOrderId()).orElseThrow(() -> new RuntimeException("Order not found"));
-        orderItem.setOrder(order);
+    Order order =
+        orderRepository
+            .findById(orderItemDTO.getOrderId())
+            .orElseThrow(() -> new RuntimeException("Order not found"));
+    orderItem.setOrder(order);
 
-        return orderItem;
-    }
-
+    return orderItem;
+  }
 }
