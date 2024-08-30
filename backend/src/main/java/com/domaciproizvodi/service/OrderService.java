@@ -89,7 +89,7 @@ public class OrderService {
         .orElseThrow(
             () -> {
               logger.error("Order not found with id: {}", id);
-              return new RuntimeException("Order not found");
+              return new OrderNotFoundException("Order not found");
             });
   }
 
