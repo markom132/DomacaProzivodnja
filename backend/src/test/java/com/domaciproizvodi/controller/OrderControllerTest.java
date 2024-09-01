@@ -138,6 +138,7 @@ public class OrderControllerTest {
     @Test
     @WithMockUser(username = "testuser")
     public void testUpdateOrder() throws Exception {
+        order.setTotalPrice(new BigDecimal("9.99"));
         when(orderMapper.toEntity(orderDTO)).thenReturn(order);
         when(orderService.updateOrder(1L, order)).thenReturn(order);
         when(orderMapper.toDto(order)).thenReturn(orderDTO);
@@ -147,7 +148,7 @@ public class OrderControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(orderDTO)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L));
+                .andExpect(jsonPath("$.totalPrice").value(new BigDecimal("9.99")));
     }
 
     @Test

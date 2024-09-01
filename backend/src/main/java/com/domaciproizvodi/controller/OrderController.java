@@ -56,7 +56,6 @@ public class OrderController {
       logger.info("Received request to create a new order");
       Order order = orderMapper.toEntity(orderDTO);
       Order createdOrder = orderService.createOrder(order);
-      logger.info("Order created successfully with id: {}", createdOrder.getId());
       return ResponseEntity.status(HttpStatus.CREATED).body(orderMapper.toDto(createdOrder));
     } catch (RuntimeException e) {
       logger.error("Error occurred while creating order: {}", e.getMessage());
@@ -69,7 +68,6 @@ public class OrderController {
     try {
       logger.info("Received request to confirm order with id: {}", id);
       Order confirmedOrder = orderService.confirmOrder(id);
-      logger.info("Order with id: {} confirmed successfully", id);
       return ResponseEntity.ok(orderMapper.toDto(confirmedOrder));
     } catch (RuntimeException e) {
       logger.error("Error occurred while confirming order with id: {}", id, e);
@@ -84,7 +82,6 @@ public class OrderController {
       logger.info("Received request to update order with id: {}", id);
       Order order = orderMapper.toEntity(orderDTO);
       Order updatedOrder = orderService.updateOrder(id, order);
-      logger.info("Order with id: {} updated successfully", id);
       return ResponseEntity.status(HttpStatus.OK).body(orderMapper.toDto(updatedOrder));
     } catch (RuntimeException e) {
       logger.error("Error occurred while updating order with id: {}", id, e);
@@ -96,7 +93,6 @@ public class OrderController {
   public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
     logger.info("Received request to delete order with id: {}", id);
     orderService.deleteOrder(id);
-    logger.info("Order with id: {} deleted successfully", id);
     return ResponseEntity.noContent().build();
   }
 

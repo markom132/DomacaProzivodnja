@@ -59,7 +59,6 @@ public class ProductController {
   public ResponseEntity<List<ProductDTO>> searchProducts(@RequestParam String keyword) {
     logger.info("Received request to search products with keyword: {}", keyword);
     List<Product> products = productService.searchProducts(keyword);
-    logger.info("Found {} products for keyword: {}", products.size(), keyword);
     return ResponseEntity.status(HttpStatus.OK)
         .body(products.stream().map(productMapper::toDTO).collect(Collectors.toList()));
   }
@@ -106,7 +105,6 @@ public class ProductController {
                   });
       product.setCategory(category);
       Product updatedProduct = productService.updateProduct(id, product);
-      logger.info("Product with id: {} updated successfully", id);
       return ResponseEntity.status(HttpStatus.OK).body(productMapper.toDTO(updatedProduct));
     } catch (RuntimeException e) {
       logger.error("Error occurred while updating product with id: {}", id, e);
@@ -118,7 +116,6 @@ public class ProductController {
   public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
     logger.info("Received request to delete product with id: {}", id);
     productService.deleteProduct(id);
-    logger.info("Product with id: {} deleted successfully", id);
     return ResponseEntity.noContent().build();
   }
 
