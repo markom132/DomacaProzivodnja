@@ -22,7 +22,7 @@ import com.domaciproizvodi.model.User;
 public class JwtUtil {
 
   private final SecretKey SECRET_KEY =
-      Keys.secretKeyFor(SignatureAlgorithm.HS256); // Generiše siguran ključ
+      Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
   public String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
