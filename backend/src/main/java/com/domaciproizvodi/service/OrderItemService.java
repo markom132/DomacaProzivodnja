@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.domaciproizvodi.exceptions.OrderItemNotFOundException;
+import com.domaciproizvodi.exceptions.OrderItemNotFoundException;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.repository.OrderItemRepository;
 
@@ -50,7 +50,7 @@ public class OrderItemService {
         .orElseThrow(
             () -> {
               logger.error("Order item not found with id: {}", id);
-              return new OrderItemNotFOundException("Order item not found with id: " + id);
+              return new OrderItemNotFoundException("Order item not found with id: " + id);
             });
   }
 
@@ -58,7 +58,7 @@ public class OrderItemService {
     logger.info("Attempting to delete order item with id: {}", id);
     if (!orderItemRepository.existsById(id)) {
       logger.error("Order item not found with id: {}", id);
-      throw new OrderItemNotFOundException("Order item not found with id: " + id);
+      throw new OrderItemNotFoundException("Order item not found with id: " + id);
     }
     orderItemRepository.deleteById(id);
     logger.info("Order item with id: {} deleted successfully", id);
