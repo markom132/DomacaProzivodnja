@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 
 import com.domaciproizvodi.dto.OrderItemDTO;
 import com.domaciproizvodi.dto.mappers.OrderItemMapper;
-import com.domaciproizvodi.exceptions.OrderItemNotFOundException;
+import com.domaciproizvodi.exceptions.OrderItemNotFoundException;
 import com.domaciproizvodi.exceptions.OrderNotFoundException;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.service.OrderItemService;
@@ -46,7 +46,7 @@ public class OrderItemController {
             .orElseThrow(
                 () -> {
                   logger.error("Order item not found with id: {}", id);
-                  return new OrderItemNotFOundException("Order item with id not found: " + id);
+                  return new OrderItemNotFoundException("Order item with id not found: " + id);
                 });
     return ResponseEntity.status(HttpStatus.OK).body(orderItemMapper.toDTO(orderItem));
   }
