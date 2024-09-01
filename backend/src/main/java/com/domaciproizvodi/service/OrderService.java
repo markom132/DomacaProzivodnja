@@ -1,5 +1,6 @@
 package com.domaciproizvodi.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,7 +90,7 @@ public class OrderService {
         .orElseThrow(
             () -> {
               logger.error("Order not found with id: {}", id);
-              return new RuntimeException("Order not found");
+              return new OrderNotFoundException("Order not found");
             });
   }
 
@@ -100,10 +101,12 @@ public class OrderService {
         .findById(id)
         .map(
             order -> {
-              for (OrderItem item : order.getItems()) {
-                orderItemService.deleteOrderItem(item.getId());
+                Iterator<OrderItem> iterator = order.getItems().iterator();
+              while (iterator.hasNext()) {
+                  OrderItem orderItem = iterator.next();
+                    orderItemService.deleteOrderItem(orderItem.getId());
+                    iterator.remove();
               }
-              order.getItems().clear();
 
               order =
                   orderRepository

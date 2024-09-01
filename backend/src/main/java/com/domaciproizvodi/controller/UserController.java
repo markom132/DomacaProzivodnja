@@ -118,7 +118,6 @@ public class UserController {
       logger.info("Attempting to update user with id: {}", id);
       User user = userMapper.toEntity(userDTO);
       User updatedUser = userService.updateUser(id, user);
-      logger.info("User updated successfully with id: {}", updatedUser.getId());
       return ResponseEntity.status(HttpStatus.OK).body(userMapper.toDTO(updatedUser));
     } catch (RuntimeException e) {
       logger.error("Error occurred while updating user with id: {}: {}", id, e.getMessage());
