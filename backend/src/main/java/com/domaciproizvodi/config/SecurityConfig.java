@@ -32,7 +32,7 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.csrf(csrf -> csrf.disable()) // Onemogućavanje CSRF zaštite za stateless aplikacije
+    http.csrf(csrf -> csrf.disable())
         .authorizeHttpRequests(
             auth ->
                 auth.requestMatchers(
@@ -47,7 +47,7 @@ public class SecurityConfig {
         .sessionManagement(
             session ->
                 session.sessionCreationPolicy(
-                    SessionCreationPolicy.STATELESS) // Podešavanje na stateless mod
+                    SessionCreationPolicy.STATELESS)
             );
 
     http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
