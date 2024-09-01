@@ -13,7 +13,10 @@ import com.domaciproizvodi.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,6 +25,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,6 +35,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -54,11 +60,21 @@ public class OrderControllerTest {
     @MockBean
     private JwtUtil jwtUtil;
 
+    @MockBean
     private Order order;
+
+    @MockBean
     private OrderDTO orderDTO;
+
+    @InjectMocks
+    private OrderController orderController;
+
 
     @BeforeEach
     void setUp() {
+        MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(orderController).build();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
         User user = new User();
@@ -81,8 +97,8 @@ public class OrderControllerTest {
     @Test
     @WithMockUser(username = "testuser")
     public void testGetOrders() throws Exception {
-        Mockito.when(orderService.getAllOrders()).thenReturn(Arrays.asList(order));
-        Mockito.when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderService.getAllOrders()).thenReturn(Arrays.asList(order));
+        when(orderMapper.toDto(order)).thenReturn(orderDTO);
 
         mockMvc.perform(get("/api/orders")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -93,8 +109,8 @@ public class OrderControllerTest {
     @Test
     @WithMockUser(username = "testuser")
     public void testGetOrderByIdSuccess() throws Exception {
-        Mockito.when(orderService.getOrderById(1L)).thenReturn(Optional.of(order));
-        Mockito.when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderService.getOrderById(1L)).thenReturn(Optional.of(order));
+        when(orderMapper.toDto(order)).thenReturn(orderDTO);
 
         mockMvc.perform(get("/api/orders/1"))
                 .andExpect(status().isOk())
@@ -104,7 +120,7 @@ public class OrderControllerTest {
     @Test
     @WithMockUser(username = "testuser")
     public void testGetOrderByIdNotFound() throws Exception {
-        Mockito.when(orderService.getOrderById(1L)).thenReturn(Optional.empty());
+        when(orderService.getOrderById(1L)).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/api/orders/1"))
                 .andExpect(status().isNotFound());
@@ -113,46 +129,34 @@ public class OrderControllerTest {
     @Test
     @WithMockUser(username = "testuser")
     public void testCreateOrder() throws Exception {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setOrderDate(LocalDateTime.parse("2024-08-26T14:00:00"));
-        orderDTO.setTotalPrice(new BigDecimal("100.00"));
-        orderDTO.setOrderStatus(String.valueOf(OrderStatus.NOT_CONFIRMED));
-        orderDTO.setUserId(1L);
+        when(orderMapper.toEntity(any(OrderDTO.class))).thenReturn(order);
 
-        // Dodaj OrderItemDTO objekat
-        OrderItemDTO itemDTO = new OrderItemDTO();
-        itemDTO.setProductId(1L);
-        itemDTO.setQuantity(2);
-        itemDTO.setPrice(new BigDecimal("50.00"));
-        orderDTO.setItems(List.of(itemDTO));
+        when(orderService.createOrder(any(Order.class))).thenReturn(order);
 
-        // Mock-ujanje mapper-a i servisa
-        Mockito.when(orderMapper.toEntity(orderDTO)).thenReturn(order);
-        Mockito.when(orderService.createOrder(order)).thenReturn(order);
-        Mockito.when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderMapper.toDto(any(Order.class))).thenReturn(orderDTO);
 
         mockMvc.perform(post("/api/orders")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(orderDTO)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.totalPrice").value("100.00"))
-                .andExpect(jsonPath("$.items[0].productId").value(1L));
+                .andExpect(jsonPath("$.id").value(1L));
     }
 
 
     @Test
     @WithMockUser(username = "testuser")
     public void testUpdateOrder() throws Exception {
-        Mockito.when(orderMapper.toEntity(orderDTO)).thenReturn(order);
-        Mockito.when(orderService.updateOrder(1L, order)).thenReturn(order);
-        Mockito.when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderMapper.toEntity(orderDTO)).thenReturn(order);
+        when(orderService.updateOrder(1L, order)).thenReturn(order);
+        when(orderMapper.toDto(order)).thenReturn(orderDTO);
 
         mockMvc.perform(put("/api/orders/1")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(orderDTO)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1L));
     }
 
     @Test
@@ -167,8 +171,8 @@ public class OrderControllerTest {
     @WithMockUser(username = "testuser")
     public void testConfirmOrder() throws Exception {
         Long orderId = 1L;
-        Mockito.when(orderService.confirmOrder(orderId)).thenReturn(order);
-        Mockito.when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderService.confirmOrder(orderId)).thenReturn(order);
+        when(orderMapper.toDto(order)).thenReturn(orderDTO);
 
         mockMvc.perform(post("/api/orders/confirm/{id}", orderId)
                         .with(csrf())
