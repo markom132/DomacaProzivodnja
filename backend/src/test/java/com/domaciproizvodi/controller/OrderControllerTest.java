@@ -10,6 +10,8 @@ import com.domaciproizvodi.service.OrderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +97,8 @@ public class OrderControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].id").value(1L));
+
+        verify(orderService, times(1)).getAllOrders();
     }
 
     @Test
@@ -106,6 +110,8 @@ public class OrderControllerTest {
         mockMvc.perform(get("/api/orders/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L));
+
+        verify(orderService, times(1)).getOrderById(1L);
     }
 
     @Test
@@ -132,23 +138,26 @@ public class OrderControllerTest {
                         .content(objectMapper.writeValueAsString(orderDTO)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(1L));
+
+        verify(orderService, times(1)).createOrder(any(Order.class));
     }
 
 
     @Test
     @WithMockUser(username = "testuser")
     public void testUpdateOrder() throws Exception {
-        order.setTotalPrice(new BigDecimal("9.99"));
-        when(orderMapper.toEntity(orderDTO)).thenReturn(order);
+        when(orderMapper.toEntity(any(OrderDTO.class))).thenReturn(order);
         when(orderService.updateOrder(1L, order)).thenReturn(order);
-        when(orderMapper.toDto(order)).thenReturn(orderDTO);
+        when(orderMapper.toDto(any(Order.class))).thenReturn(orderDTO);
 
         mockMvc.perform(put("/api/orders/1")
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(orderDTO)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.totalPrice").value(new BigDecimal("9.99")));
+                .andExpect(jsonPath("$.id").value(1L));
+
+        verify(orderService, times(1)).updateOrder(any(), any(Order.class));
     }
 
     @Test
@@ -157,6 +166,8 @@ public class OrderControllerTest {
         mockMvc.perform(delete("/api/orders/1")
                         .with(csrf()))
                 .andExpect(status().isNoContent());
+
+        verify(orderService, times(1)).deleteOrder(any());
     }
 
     @Test
@@ -170,8 +181,9 @@ public class OrderControllerTest {
                         .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
-    }
 
+        verify(orderService, times(1)).confirmOrder(orderId);
+    }
 
 }
 
