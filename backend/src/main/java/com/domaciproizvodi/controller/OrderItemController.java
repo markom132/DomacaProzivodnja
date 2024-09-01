@@ -15,7 +15,6 @@ import jakarta.validation.Valid;
 import com.domaciproizvodi.dto.OrderItemDTO;
 import com.domaciproizvodi.dto.mappers.OrderItemMapper;
 import com.domaciproizvodi.exceptions.OrderItemNotFoundException;
-import com.domaciproizvodi.exceptions.OrderNotFoundException;
 import com.domaciproizvodi.model.OrderItem;
 import com.domaciproizvodi.service.OrderItemService;
 
