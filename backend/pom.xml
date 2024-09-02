@@ -201,6 +201,9 @@
                                     </limits>
                                 </rule>
                             </rules>
+                            <excludes>
+                                <exclude>com/domaciproizvodi/DomaciProizvodiApplication*</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
