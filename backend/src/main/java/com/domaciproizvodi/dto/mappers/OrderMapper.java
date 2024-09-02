@@ -22,9 +22,9 @@ public class OrderMapper {
     OrderDTO dto = new OrderDTO();
     dto.setId(order.getId());
     dto.setOrderDate(order.getOrderDate());
-    dto.setTotalPrice(order.getTotalPrice());
     dto.setOrderStatus(order.getOrderStatus().name());
     dto.setItems(order.getItems().stream().map(this::toOrderItemDTO).collect(Collectors.toList()));
+    dto.setTotalPrice(order.getTotalPrice());
     dto.setUserId(order.getUser().getId());
     return dto;
   }
@@ -33,10 +33,11 @@ public class OrderMapper {
     Order order = new Order();
     order.setId(dto.getId());
     order.setOrderDate(dto.getOrderDate());
-    order.setTotalPrice(dto.getTotalPrice());
     order.setOrderStatus(OrderStatus.valueOf(dto.getOrderStatus()));
     order.setItems(
         dto.getItems().stream().map(this::toOrderItemEntity).collect(Collectors.toList()));
+
+    order.setTotalPrice(dto.getTotalPrice());
 
     User user =
         userRepository
