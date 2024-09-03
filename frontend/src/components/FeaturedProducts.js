@@ -8,6 +8,22 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
+const NextArrow = ({onClick}) => {
+  return (
+    <div style={styles.nextArrow} onClick={onClick}>
+    <span style={styles.arrowIcon}>&rarr;</span>
+  </div>
+  );
+};
+
+const PrevArrow = ({onClick}) => {
+  return (
+    <div style={styles.prevArrow} onClick={onClick}>
+      <span style={styles.arrowIcon}>&larr;</span>
+    </div>
+  );
+};
+
 const FeaturedProducts = () => {
   const products = [
     { id: 1, image: honeyImage, name: 'Organski med', price: '$7.99' },
@@ -34,6 +50,8 @@ const FeaturedProducts = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     beforeChange: (current, next) => {
       setActiveSlide(next);
       setDragging(true);
@@ -107,6 +125,45 @@ const styles = {
     flex: '1 1 250px',
     maxWidth: '300px',
   },
+  prevArrow: {
+    position: 'absolute',
+    top: '50%',
+    left: '10px',
+    transform: 'translateY(-50%)',
+    backgroundColor: '#fff',
+    border: '2px solid #ddd',
+    borderRadius: '50%',
+    width: '40px',
+    height: '40px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+    zIndex: 2,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
+  nextArrow: {
+    position: 'absolute',
+    top: '50%',
+    right: '10px',
+    transform: 'translateY(-50%)',
+    backgroundColor: '#fff',
+    border: '2px solid #ddd',
+    borderRadius: '50%',
+    width: '40px',
+    height: '40px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    cursor: 'pointer',
+    zIndex: 2,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+  },
+  arrowIcon: {
+    fontSize: '18px',
+    color: '#333',
+  }
 };
+
 
 export default FeaturedProducts;
