@@ -21,7 +21,7 @@ ProductCard.propTypes = {
 
 const styles = {
   card: {
-   display: 'flex',
+    display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
@@ -29,7 +29,7 @@ const styles = {
     overflow: 'hidden',
     boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
     backgroundColor: '#fff',
-    height: '100%'
+    height: '100%',
   },
   imageContainer: {
     width: '100%',
