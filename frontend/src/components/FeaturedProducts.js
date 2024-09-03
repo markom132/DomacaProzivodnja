@@ -7,6 +7,7 @@ import milk from '../assets/milk.jpg';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import PropTypes from 'prop-types';
 
 const NextArrow = ({ onClick }) => {
   return (
@@ -22,6 +23,14 @@ const PrevArrow = ({ onClick }) => {
       <span style={styles.arrowIcon}>&larr;</span>
     </div>
   );
+};
+
+NextArrow.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
+PrevArrow.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 const FeaturedProducts = () => {
