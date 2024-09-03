@@ -1,9 +1,14 @@
 package com.domaciproizvodi.config;
 
+import com.domaciproizvodi.controller.OrderController;
+import com.domaciproizvodi.controller.UserController;
+import com.domaciproizvodi.dto.mappers.UserMapper;
 import com.domaciproizvodi.model.User;
 import com.domaciproizvodi.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,14 +29,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@WebMvcTest(controllers = {UserController.class, SecurityConfig.class})
 public class SecurityConfigTest {
 
     @Autowired
-    private WebApplicationContext context;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private MockMvc mockMvc;
 
     @MockBean
     private AuthenticationManager authenticationManager;
@@ -40,7 +42,13 @@ public class SecurityConfigTest {
     private UserService userService;
 
     @MockBean
+    private UserMapper userMapper;
+
+    @MockBean
     private JwtUtil jwtUtil;
+
+    @MockBean
+    private PasswordEncoder passwordEncoder;
 
     @Test
     public void testPasswordEncoderBean() {
@@ -69,10 +77,6 @@ public class SecurityConfigTest {
         // Mock JwtUtil to generate a valid token
         when(jwtUtil.generateToken(mockUser)).thenReturn("mocked-jwt-token");
 
-        MockMvc mockMvc = MockMvcBuilders.webAppContextSetup(context)
-                .apply(SecurityMockMvcConfigurers.springSecurity())
-                .build();
-
         // Test login
         mockMvc.perform(post("/api/users/login")
                         .with(SecurityMockMvcRequestPostProcessors.csrf())
@@ -85,6 +89,5 @@ public class SecurityConfigTest {
                         .header("Authorization", "Bearer mocked-jwt-token"))
                 .andExpect(status().isForbidden());
     }
-
 
 }
