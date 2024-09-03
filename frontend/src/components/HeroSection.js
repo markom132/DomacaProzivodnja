@@ -18,7 +18,13 @@ const HeroSection = () => {
   }, images.length);
 
   return (
-    <section style={{...styles.hero, backgroundImage: `url(${images[currentIndex]})`}}>
+    <section 
+    style=
+    {{
+      ...styles.hero,
+       backgroundImage: `url(${images[currentIndex]})`
+       }}
+       >
       <div style={styles.promoText}>Specijalna ponuda domacih proizvoda!</div>
     </section>
   );
