@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import honeyImage from '../assets/med.jpg'; // Putanja do slike
@@ -26,18 +26,27 @@ const FeaturedProducts = () => {
     { id: 1, image: honeyImage, name: 'Organski med', price: '$7.99' },
   ];
 
+  const [dragging, setDragging] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    beforeChange: (current, next) => 
+      {
+        setActiveSlide(next)
+        setDragging(true)
+      },
+    afterChange: () => setDragging(false),
     responsive: [
       {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 1,
+          slidesToScroll: 3,
           infinite: true,
           dots: true
         }
@@ -46,7 +55,7 @@ const FeaturedProducts = () => {
         breakpoint: 600,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
+          slidesToScroll: 2,
           initialSlide: 2
         }
       },
@@ -59,6 +68,13 @@ const FeaturedProducts = () => {
       }
     ]
   };
+
+  const handleClick = (e) => {
+    if (dragging) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <section style={styles.featuredSection}>
       <h2>Featured Products</h2>
@@ -68,6 +84,7 @@ const FeaturedProducts = () => {
               to={`/product/${product.id}`}
               key={product.id}
               style={styles.productLink}
+              onClick={handleClick}
             >
               <ProductCard
                 image={product.image}
