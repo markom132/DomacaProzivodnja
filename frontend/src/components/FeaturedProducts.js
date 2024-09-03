@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import honeyImage from '../assets/med.jpg'; // Putanja do slike
-import mugsImage from '../assets/med.jpg';
-import jamsImage from '../assets/med.jpg';
+import cucumber from '../assets/cucumber.jpg';
+import milk from '../assets/milk.jpg';
 
 const FeaturedProducts = () => {
   const products = [
-    { id: 1, image: honeyImage, name: 'Organic Honey', price: '$7.99' },
-    { id: 2, image: mugsImage, name: 'Handmade Ceramic Mugs', price: '$24.99' },
-    { id: 3, image: jamsImage, name: 'Homemade Jams', price: '$8.99' },
+    { id: 1, image: honeyImage, name: 'Organski med', price: '$7.99' },
+    { id: 2, image: cucumber, name: 'Krastavci', price: '$24.99' },
+    { id: 3, image: milk, name: 'Mleko', price: '$8.99' },
   ];
 
   return (
