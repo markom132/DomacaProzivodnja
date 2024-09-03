@@ -8,15 +8,15 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 
-const NextArrow = ({onClick}) => {
+const NextArrow = ({ onClick }) => {
   return (
     <div style={styles.nextArrow} onClick={onClick}>
-    <span style={styles.arrowIcon}>&rarr;</span>
-  </div>
+      <span style={styles.arrowIcon}>&rarr;</span>
+    </div>
   );
 };
 
-const PrevArrow = ({onClick}) => {
+const PrevArrow = ({ onClick }) => {
   return (
     <div style={styles.prevArrow} onClick={onClick}>
       <span style={styles.arrowIcon}>&larr;</span>
@@ -162,8 +162,7 @@ const styles = {
   arrowIcon: {
     fontSize: '18px',
     color: '#333',
-  }
+  },
 };
-
 
 export default FeaturedProducts;
