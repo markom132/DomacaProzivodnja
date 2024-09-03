@@ -26,7 +26,7 @@ const FeaturedProducts = () => {
   ];
 
   const [dragging, setDragging] = useState(false);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0); //eslint-disable-line no-unused-vars
 
   const settings = {
     dots: true,
