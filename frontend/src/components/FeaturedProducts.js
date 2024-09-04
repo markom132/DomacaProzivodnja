@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-import honeyImage from '../assets/med.jpg'; // Putanja do slike
+import honeyImage from '../assets/med.jpg';
 import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
 import 'slick-carousel/slick/slick.css';
@@ -102,7 +102,7 @@ const FeaturedProducts = () => {
 
   return (
     <section style={styles.featuredSection}>
-      <h2>Featured Products</h2>
+      <h2>Popularni proizvodi</h2>
       <Slider {...settings}>
         {products.map(product => (
           <Link
