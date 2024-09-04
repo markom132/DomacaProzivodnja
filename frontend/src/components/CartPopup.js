@@ -2,8 +2,14 @@ import React from 'react';
 import med from '../assets/med.jpg';
 import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
+import PropTypes from 'prop-types';
+
+CartPopup.propTypes = {
+    setPopupVisible: PropTypes.func.isRequired,
+}
 
 const CartPopup = ({ setPopupVisible }) => {
+
   const getTotalPrice = () => {
     return cartItems
       .reduce((total, item) => total + item.price * item.quantity, 0)

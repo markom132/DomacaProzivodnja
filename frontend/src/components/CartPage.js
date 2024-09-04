@@ -4,7 +4,6 @@ import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
 
 const CartPage = () => {
-  // Mock podaci
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
