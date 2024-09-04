@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import CartPopup from './CartPopup'; // Import the CartPopup component
 
-
 const Header = () => {
   const location = useLocation();
 
@@ -71,9 +70,7 @@ const Header = () => {
                 Shopping Cart
               </NavLink>
               {isPopupVisible && location.pathname !== '/cart' && (
-                <CartPopup
-                  setPopupVisible={setPopupVisible}
-                />
+                <CartPopup setPopupVisible={setPopupVisible} />
               )}
             </div>
           </li>
