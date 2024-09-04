@@ -129,7 +129,6 @@ const styles = {
     borderRadius: '5px',
     border: 'none',
     cursor: 'pointer',
-    flex: '0 0 48%',
     textAlign: 'center',
   },
   checkoutButton: {
@@ -141,7 +140,6 @@ const styles = {
     borderRadius: '5px',
     border: 'none',
     cursor: 'pointer',
-    flex: '0 0 48%',
     textAlign: 'center',
   },
 };
