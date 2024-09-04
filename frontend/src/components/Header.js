@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
+import CartPopup from './CartPopup'; // Import the CartPopup component
+
 
 const Header = () => {
-  const location = useLocation(); // Prikupljanje informacija o trenutnoj ruti
+  const location = useLocation();
+
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
   return (
     <header style={styles.header}>
@@ -21,12 +25,6 @@ const Header = () => {
               })}
             >
               Home
-              <span
-                style={{
-                  ...styles.line,
-                  width: location.pathname === '/' ? '100%' : '0%',
-                }}
-              ></span>
             </NavLink>
           </li>
           <li style={styles.navItemContainer}>
@@ -40,12 +38,6 @@ const Header = () => {
               })}
             >
               Categories
-              <span
-                style={{
-                  ...styles.line,
-                  width: location.pathname === '/category' ? '100%' : '0%',
-                }}
-              ></span>
             </NavLink>
           </li>
           <li style={styles.navItemContainer}>
@@ -61,18 +53,29 @@ const Header = () => {
               Wishlist
             </NavLink>
           </li>
-          <li style={styles.navItemContainer}>
-            <NavLink
-              to="/cart"
-              style={({ isActive }) => ({
-                ...styles.navItem,
-                color: isActive ? '#dff542' : 'black',
-                fontWeight: isActive ? 'bold' : 'normal',
-                borderBottom: isActive ? '2px solid #dff542' : 'none',
-              })}
-            >
-              Shopping Cart
-            </NavLink>
+          <li
+            style={styles.navItemContainer}
+            onMouseEnter={() => setPopupVisible(true)}
+            onMouseLeave={() => setPopupVisible(false)}
+          >
+            <div style={styles.cartWrapper}>
+              <NavLink
+                to="/cart"
+                style={({ isActive }) => ({
+                  ...styles.navItem,
+                  color: isActive ? '#dff542' : 'black',
+                  fontWeight: isActive ? 'bold' : 'normal',
+                  borderBottom: isActive ? '2px solid #dff542' : 'none',
+                })}
+              >
+                Shopping Cart
+              </NavLink>
+              {isPopupVisible && location.pathname !== '/cart' && (
+                <CartPopup
+                  setPopupVisible={setPopupVisible}
+                />
+              )}
+            </div>
           </li>
         </ul>
       </nav>
@@ -120,20 +123,8 @@ const styles = {
     transition: 'color 0.3s ease',
     position: 'relative',
   },
-  activeNavItem: {
-    color: '#dff542',
-    fontWeight: 'bold',
-  },
-  line: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    height: '2px',
-    backgroundColor: '#dff542',
-    transition: 'width 0.3s ease',
-  },
-  lineActive: {
-    width: '100%',
+  cartWrapper: {
+    position: 'relative',
   },
 };
 
