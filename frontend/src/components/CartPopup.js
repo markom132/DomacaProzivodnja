@@ -4,10 +4,6 @@ import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
 import PropTypes from 'prop-types';
 
-CartPopup.propTypes = {
-  setPopupVisible: PropTypes.func.isRequired,
-};
-
 const CartPopup = ({ setPopupVisible }) => {
   const getTotalPrice = () => {
     return cartItems
@@ -142,6 +138,10 @@ const styles = {
     cursor: 'pointer',
     textAlign: 'center',
   },
+};
+
+CartPopup.propTypes = {
+  setPopupVisible: PropTypes.func.isRequired,
 };
 
 export default CartPopup;
