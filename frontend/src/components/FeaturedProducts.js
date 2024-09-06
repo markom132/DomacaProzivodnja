@@ -59,8 +59,8 @@ const FeaturedProducts = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3,
-    nextArrow: <NextArrow  onClick={() => {}} />,
-    prevArrow: <PrevArrow  onClick={() => {}} />,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
     beforeChange: (current, next) => {
       setActiveSlide(next);
       setDragging(true);
