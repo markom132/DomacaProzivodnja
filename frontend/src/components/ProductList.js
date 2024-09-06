@@ -76,13 +76,13 @@ const ProductCard = ({ product }) => {
           transition: 'background-color 0.3s ease, transform 0.3s ease',
         }}
       >
-        Add to cart
+        Dodaj u korpu
       </button>
     </div>
   );
 };
 
-ProductList.propTypes = {
+ProductCard.propTypes = {
   product: PropTypes.shape({
     image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
