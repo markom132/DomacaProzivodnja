@@ -8,6 +8,7 @@ import image4 from '../assets/milk.jpg';
 const HeroSection = () => {
   const images = [promoImage, image1, image2, image3, image4];
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -24,7 +25,22 @@ const HeroSection = () => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`,
       }}
     >
-      <div style={styles.promoText}>Specijalna ponuda domacih proizvoda!</div>
+      <div style={styles.textContainer}>
+        <div style={styles.promoText}>Specijalna ponuda domacih proizvoda</div>
+        <button
+          style={{
+            ...styles.ctaButton,
+            backgroundColor: isHovered
+              ? styles.ctaButtonHover.backgroundColor
+              : styles.ctaButton.backgroundColor,
+          }}
+          onMouseOver={() => setIsHovered(true)}
+          onMouseOut={() => setIsHovered(false)}
+        >
+          {' '}
+          Istraži ponudu
+        </button>
+      </div>
     </section>
   );
 };
@@ -46,6 +62,13 @@ const styles = {
     overflow: 'hidden',
     transition: 'background-image 1s ease-in-out',
   },
+  textContainer: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    animation: 'fadeIn 2s ease-in-out',
+  },
   promoText: {
     position: 'relative',
     fontSize: '2em',
@@ -53,8 +76,43 @@ const styles = {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: '20px',
     borderRadius: '10px',
-    zIndex: 2, // Ensure the text is above the overlay
+    zIndex: 2,
+    marginBottom: '20px',
+    animation: 'slideIn 2s ease-out',
+  },
+  ctaButton: {
+    backgroundColor: '#f7c648',
+    color: '#000',
+    border: 'none',
+    padding: '10px 20px',
+    borderRadius: '5px',
+    fontSize: '1em',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+  },
+  ctaButtonHover: {
+    backgroundColor: '#d1a51d',
   },
 };
+
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(
+  `
+  @keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+`,
+  styleSheet.cssRules.length,
+);
+styleSheet.insertRule(
+  `
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to {opacity: 1; transform: translateY(0); }
+    }
+    `,
+  styleSheet.cssRules.length,
+);
 
 export default HeroSection;
