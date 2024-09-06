@@ -21,7 +21,7 @@ const HeroSection = () => {
     <section
       style={{
         ...styles.hero,
-        backgroundImage: `url(${images[currentIndex]})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`,
       }}
     >
       <div style={styles.promoText}>Specijalna ponuda domacih proizvoda!</div>
@@ -31,6 +31,7 @@ const HeroSection = () => {
 
 const styles = {
   hero: {
+    position: 'relative',
     height: '400px',
     display: 'flex',
     justifyContent: 'center',
@@ -46,12 +47,13 @@ const styles = {
     transition: 'background-image 1s ease-in-out',
   },
   promoText: {
+    position: 'relative',
     fontSize: '2em',
     fontWeight: 'bold',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: '20px',
     borderRadius: '10px',
-    display: 'inline-block',
+    zIndex: 2, // Ensure the text is above the overlay
   },
 };
 
