@@ -4,6 +4,7 @@ import image1 from '../assets/broccoli.jpg';
 import image2 from '../assets/cucumber.jpg';
 import image3 from '../assets/med.jpg';
 import image4 from '../assets/milk.jpg';
+import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 
 const HeroSection = () => {
   const images = [promoImage, image1, image2, image3, image4];
@@ -20,11 +21,17 @@ const HeroSection = () => {
 
   return (
     <section
-      style={{
-        ...styles.hero,
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${images[currentIndex]})`,
-      }}
-    >
+      style={styles.hero}>
+      {images.map((image, index) => (
+        <div key={index}
+          style={{
+            ...styles.imageContainer,
+            opacity: currentIndex === index ? 1 : 0,
+            zIndex: currentIndex === index ? 1 : 0,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${image})`,
+          }}
+        />
+      ))}
       <div style={styles.textContainer}>
         <div style={styles.promoText}>Specijalna ponuda domacih proizvoda</div>
         <button
@@ -60,17 +67,24 @@ const styles = {
     borderRadius: '20px',
     marginBottom: '20px',
     overflow: 'hidden',
-    transition: 'background-image 1s ease-in-out',
+  },
+  imageContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    transition: 'opacity 1s ease-in-out',
   },
   textContainer: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    animation: 'fadeIn 2s ease-in-out',
   },
   promoText: {
-    position: 'relative',
     fontSize: '2em',
     fontWeight: 'bold',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -89,6 +103,8 @@ const styles = {
     fontSize: '1em',
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
+    zIndex: 1,
+    animation: 'slideIn 2s ease-out'
   },
   ctaButtonHover: {
     backgroundColor: '#d1a51d',
@@ -96,15 +112,6 @@ const styles = {
 };
 
 const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(
-  `
-  @keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}
-`,
-  styleSheet.cssRules.length,
-);
 styleSheet.insertRule(
   `
   @keyframes slideIn {
