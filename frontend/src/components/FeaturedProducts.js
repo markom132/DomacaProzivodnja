@@ -60,14 +60,14 @@ const FeaturedProducts = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setIsVisible(true);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (buttonRef.current) {
@@ -83,7 +83,7 @@ const FeaturedProducts = () => {
 
   const handleAnimationEnd = () => {
     setIsVisible(false);
-  }
+  };
 
   const settings = {
     dots: true,
@@ -93,8 +93,8 @@ const FeaturedProducts = () => {
     slidesToScroll: 3,
     autoplay: true,
     autoplaySpeed: 3000,
-    nextArrow: <NextArrow onClick={() => { }} />,
-    prevArrow: <PrevArrow onClick={() => { }} />,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
     beforeChange: (current, next) => {
       setActiveSlide(next);
       setDragging(true);
