@@ -30,7 +30,7 @@ const CartPage = () => {
       imageUrl: milk,
     },
     {
-      id: 1,
+      id: 4,
       name: 'Organski med',
       description: 'Organski med Opis',
       quantity: 1,
@@ -38,7 +38,7 @@ const CartPage = () => {
       imageUrl: med,
     },
     {
-      id: 2,
+      id: 5,
       name: 'Krastavci',
       description: 'Krastavci Opis',
       quantity: 1,
@@ -46,7 +46,7 @@ const CartPage = () => {
       imageUrl: cucumber,
     },
     {
-      id: 3,
+      id: 6,
       name: 'Mleko',
       description: 'Mleko Opis',
       quantity: 1,
