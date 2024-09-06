@@ -20,10 +20,10 @@ const HeroSection = () => {
   }, [images.length]);
 
   return (
-    <section
-      style={styles.hero}>
+    <section style={styles.hero}>
       {images.map((image, index) => (
-        <div key={index}
+        <div
+          key={index}
           style={{
             ...styles.imageContainer,
             opacity: currentIndex === index ? 1 : 0,
@@ -104,7 +104,7 @@ const styles = {
     cursor: 'pointer',
     transition: 'background-color 0.3s ease',
     zIndex: 1,
-    animation: 'slideIn 2s ease-out'
+    animation: 'slideIn 2s ease-out',
   },
   ctaButtonHover: {
     backgroundColor: '#d1a51d',

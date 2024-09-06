@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
       style={{
         ...styles.productCard,
         transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-        transition: 'transform 0.3s ease'
+        transition: 'transform 0.3s ease',
       }}
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
@@ -61,7 +61,7 @@ const ProductCard = ({ product }) => {
           style={{
             ...styles.productImage,
             border: isHovered ? '2px solid #dff542' : 'none',
-            transition: 'border 0.3s ease'
+            transition: 'border 0.3s ease',
           }}
         />
       </div>
@@ -72,7 +72,7 @@ const ProductCard = ({ product }) => {
           ...styles.addButton,
           backgroundColor: isHovered ? '#c5d047' : '#dff542',
           transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
-          transition: 'background-color 0.3s ease, transform 0.3s ease'
+          transition: 'background-color 0.3s ease, transform 0.3s ease',
         }}
       >
         Add to cart
@@ -149,6 +149,5 @@ const styles = {
     cursor: 'pointer',
   },
 };
-
 
 export default ProductList;
