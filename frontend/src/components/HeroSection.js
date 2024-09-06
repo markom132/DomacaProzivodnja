@@ -15,7 +15,7 @@ const HeroSection = () => {
     }, 5000);
 
     return () => clearInterval(intervalId);
-  }, images.length);
+  }, [images.length]);
 
   return (
     <section
