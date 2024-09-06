@@ -14,7 +14,6 @@ const Header = () => {
         <ul style={styles.navList}>
           <li style={styles.navItemContainer}>
             <NavLink
-              exact
               to="/"
               style={({ isActive }) => ({
                 ...styles.navItem,
