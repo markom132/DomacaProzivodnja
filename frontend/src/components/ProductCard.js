@@ -2,13 +2,39 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ProductCard = ({ image, name, price }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
   return (
-    <div style={styles.card}>
+    <div
+      style={{
+        ...styles.card,
+        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+      }}
+      onMouseOver={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)}
+    >
       <div style={styles.imageContainer}>
-        <img src={image} alt={name} style={styles.image} />
+        <img
+          src={image}
+          alt={name}
+          style={{
+            ...styles.image,
+            ...(isHovered ? styles.imageHover : {}),
+          }}
+        />
       </div>
-      <h3 style={styles.name}>{name}</h3>
-      <p style={styles.price}>{price}</p>
+      <div style={styles.info}>
+        <h3>{name}</h3>
+        <p>{price}</p>
+        <button
+          style={{
+            ...styles.button,
+            ...(isHovered ? styles.buttonHover : {}),
+          }}
+        >
+          Dodaj u korpu
+        </button>
+      </div>
     </div>
   );
 };
@@ -21,15 +47,12 @@ ProductCard.propTypes = {
 
 const styles = {
   card: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    textAlign: 'center',
-    borderRadius: '10px',
+    position: 'relative',
     overflow: 'hidden',
-    boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-    backgroundColor: '#fff',
-    height: '100%',
+    border: ' 1px solid #ddd',
+    borderRadius: '10px',
+    transition: 'transform 0.3s ease',
+    margin: '10px',
   },
   imageContainer: {
     width: '100%',
@@ -40,6 +63,26 @@ const styles = {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
+    transition: 'transform 0.3s ease',
+  },
+  imageHover: {
+    trnasform: 'scale(1.1)',
+  },
+  info: {
+    padding: '15px',
+    textAlign: 'center',
+  },
+  button: {
+    backgroundColor: '#f8f8f8',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '10px 20px',
+    cursor: 'pointer',
+    transition: 'background-color 0.3 ease',
+  },
+  buttonHover: {
+    backgroundColor: '#ff9800',
+    color: '#fff',
   },
   name: {
     margin: '10px 0',
