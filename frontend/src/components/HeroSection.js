@@ -27,13 +27,18 @@ const HeroSection = () => {
     >
       <div style={styles.textContainer}>
         <div style={styles.promoText}>Specijalna ponuda domacih proizvoda</div>
-        <button style={{
-          ...styles.ctaButton,
-          backgroundColor: isHovered ? styles.ctaButtonHover.backgroundColor : styles.ctaButton.backgroundColor
-        }}
+        <button
+          style={{
+            ...styles.ctaButton,
+            backgroundColor: isHovered
+              ? styles.ctaButtonHover.backgroundColor
+              : styles.ctaButton.backgroundColor,
+          }}
           onMouseOver={() => setIsHovered(true)}
           onMouseOut={() => setIsHovered(false)}
-        > Istraži ponudu
+        >
+          {' '}
+          Istraži ponudu
         </button>
       </div>
     </section>
@@ -62,7 +67,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    animation: 'fadeIn 2s ease-in-out'
+    animation: 'fadeIn 2s ease-in-out',
   },
   promoText: {
     position: 'relative',
@@ -86,22 +91,28 @@ const styles = {
     transition: 'background-color 0.3s ease',
   },
   ctaButtonHover: {
-    backgroundColor: '#d1a51d'
-  }
+    backgroundColor: '#d1a51d',
+  },
 };
 
 const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(`
+styleSheet.insertRule(
+  `
   @keyframes fadeIn {
     from { opacity: 0; }
       to { opacity: 1; }
 }
-`, styleSheet.cssRules.length);
-styleSheet.insertRule(`
+`,
+  styleSheet.cssRules.length,
+);
+styleSheet.insertRule(
+  `
   @keyframes slideIn {
     from { opacity: 0; transform: translateY(50px); }
     to {opacity: 1; transform: translateY(0); }
     }
-    `, styleSheet.cssRules.length);
+    `,
+  styleSheet.cssRules.length,
+);
 
 export default HeroSection;
