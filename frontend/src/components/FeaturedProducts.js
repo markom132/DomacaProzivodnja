@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
 import honeyImage from '../assets/med.jpg';
@@ -8,6 +8,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import PropTypes from 'prop-types';
+
+import './FeaturedProducts.css';
 
 const NextArrow = ({ onClick }) => {
   return (
@@ -52,6 +54,36 @@ const FeaturedProducts = () => {
 
   const [dragging, setDragging] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0); //eslint-disable-line no-unused-vars
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
+
+    if (buttonRef.current) {
+      observer.observe(buttonRef.current);
+    }
+
+    return () => {
+      if (buttonRef.current) {
+        observer.unobserve(buttonRef.current);
+      }
+    };
+  }, []);
+
+  const handleAnimationEnd = () => {
+    setIsVisible(false);
+  };
 
   const settings = {
     dots: true,
@@ -121,6 +153,25 @@ const FeaturedProducts = () => {
           </Link>
         ))}
       </Slider>
+      <div style={styles.ctaContainer}>
+        <Link to="/products">
+          <button
+            ref={buttonRef}
+            className={`ctaButton ${isVisible ? 'bounce' : ''}`}
+            onMouseOver={() => setIsHovered(true)}
+            onMouseOut={() => setIsHovered(false)}
+            onAnimationEnd={handleAnimationEnd}
+            style={{
+              backgroundColor: isHovered
+                ? styles.ctaButtonHover.backgroundColor
+                : styles.ctaButton.backgroundColor,
+            }}
+          >
+            {' '}
+            Pogledajte više proizvoda
+          </button>
+        </Link>
+      </div>
     </section>
   );
 };
@@ -173,6 +224,25 @@ const styles = {
   arrowIcon: {
     fontSize: '18px',
     color: '#333',
+  },
+  ctaContainer: {
+    marginTop: '40px',
+    textAlign: 'center',
+  },
+  ctaButton: {
+    backgroundColor: '#4CAF50',
+    color: '#fff',
+    padding: '15px 30px',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '1.5em',
+    cursor: 'pointer',
+    transition: 'background-color 0.3s ease',
+    minWidth: '200px',
+    height: '60px',
+  },
+  ctaButtonHover: {
+    backgroundColor: '#81C784',
   },
 };
 
