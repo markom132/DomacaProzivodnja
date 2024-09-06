@@ -59,6 +59,8 @@ const FeaturedProducts = () => {
     speed: 500,
     slidesToShow: 5,
     slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
     nextArrow: <NextArrow onClick={() => {}} />,
     prevArrow: <PrevArrow onClick={() => {}} />,
     beforeChange: (current, next) => {
