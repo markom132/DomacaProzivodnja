@@ -15,12 +15,12 @@ const CartPopup = ({ setPopupVisible }) => {
     { id: 1, name: 'Organski med', price: 7999, quantity: 1, imageUrl: med },
     { id: 2, name: 'Krastavci', price: 3999, quantity: 1, imageUrl: cucumber },
     { id: 3, name: 'Mleko', price: 3999, quantity: 1, imageUrl: milk },
-    { id: 1, name: 'Organski med', price: 7999, quantity: 1, imageUrl: med },
-    { id: 2, name: 'Krastavci', price: 3999, quantity: 1, imageUrl: cucumber },
-    { id: 3, name: 'Mleko', price: 3999, quantity: 1, imageUrl: milk },
-    { id: 1, name: 'Organski med', price: 7999, quantity: 1, imageUrl: med },
-    { id: 2, name: 'Krastavci', price: 3999, quantity: 1, imageUrl: cucumber },
-    { id: 3, name: 'Mleko', price: 3999, quantity: 1, imageUrl: milk },
+    { id: 4, name: 'Organski med', price: 7999, quantity: 1, imageUrl: med },
+    { id: 5, name: 'Krastavci', price: 3999, quantity: 1, imageUrl: cucumber },
+    { id: 6, name: 'Mleko', price: 3999, quantity: 1, imageUrl: milk },
+    { id: 7, name: 'Organski med', price: 7999, quantity: 1, imageUrl: med },
+    { id: 8, name: 'Krastavci', price: 3999, quantity: 1, imageUrl: cucumber },
+    { id: 9, name: 'Mleko', price: 3999, quantity: 1, imageUrl: milk },
   ];
 
   return (
