@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cucumber from '../assets/cucumber.jpg';
 import broccoli from '../assets/broccoli.jpg';
 import milk from '../assets/milk.jpg';
+import { height } from '@fortawesome/free-solid-svg-icons/fa0';
 const ProductList = () => {
   const products = [
     { id: 1, name: 'Cucumber1', price: '$0.99', image: cucumber },
@@ -32,20 +33,51 @@ const ProductList = () => {
       <h2 style={styles.sectionTitle}>Products</h2>
       <div style={styles.productList}>
         {products.map(product => (
-          <div key={product.name} style={styles.productCard}>
-            <img
-              src={product.image}
-              alt={product.name}
-              style={styles.productImage}
-            />
-            <h3 style={styles.productName}>{product.name}</h3>
-            <p style={styles.productPrice}>{product.price}</p>
-            <button style={styles.addButton}>Add to cart</button>
-          </div>
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
       <button style={styles.showMoreButton}>Show more</button>
     </section>
+  );
+};
+
+const ProductCard = ({ product }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      style={{
+        ...styles.productCard,
+        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+        transition: 'transform 0.3s ease'
+      }}
+      onMouseOver={() => setIsHovered(true)}
+      onMouseOut={() => setIsHovered(false)}
+    >
+      <div style={styles.productImageContainer}>
+        <img
+          src={product.image}
+          alt={product.name}
+          style={{
+            ...styles.productImage,
+            border: isHovered ? '2px solid #dff542' : 'none',
+            transition: 'border 0.3s ease'
+          }}
+        />
+      </div>
+      <h3 style={styles.productName}>{product.name}</h3>
+      <p style={styles.productPrice}>{product.price}</p>
+      <button
+        style={{
+          ...styles.addButton,
+          backgroundColor: isHovered ? '#c5d047' : '#dff542',
+          transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
+          transition: 'background-color 0.3s ease, transform 0.3s ease'
+        }}
+      >
+        Add to cart
+      </button>
+    </div>
   );
 };
 
@@ -63,15 +95,32 @@ const styles = {
     gap: '20px',
   },
   productCard: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
     padding: '10px',
     border: '1px solid #ddd',
     borderRadius: '10px',
     textAlign: 'center',
     backgroundColor: '#fff',
+    overflow: 'hidden',
+    boxSizing: 'border-box',
+    marginBottom: '20px',
+    transition: 'transform 0.3s ease',
+    position: 'relative',
+  },
+  productImageContainer: {
+    width: '100%',
+    height: '100px',
+    overflow: 'hidden',
+    borderRadius: '10px',
+    marginBottom: '10px',
   },
   productImage: {
     width: '100%',
-    borderRadius: '10px',
+    height: '100%',
+    objectFit: 'cover',
+    transition: 'border 0.3s ease',
   },
   productName: {
     fontSize: '1.2em',
@@ -87,6 +136,9 @@ const styles = {
     border: 'none',
     backgroundColor: '#dff542',
     cursor: 'pointer',
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
+    position: 'absolute',
+    bottom: '10px',
   },
   showMoreButton: {
     marginTop: '20px',
@@ -97,5 +149,6 @@ const styles = {
     cursor: 'pointer',
   },
 };
+
 
 export default ProductList;
