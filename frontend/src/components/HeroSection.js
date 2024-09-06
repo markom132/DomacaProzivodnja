@@ -4,7 +4,6 @@ import image1 from '../assets/broccoli.jpg';
 import image2 from '../assets/cucumber.jpg';
 import image3 from '../assets/med.jpg';
 import image4 from '../assets/milk.jpg';
-import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 
 const HeroSection = () => {
   const images = [promoImage, image1, image2, image3, image4];

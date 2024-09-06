@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import cucumber from '../assets/cucumber.jpg';
 import broccoli from '../assets/broccoli.jpg';
 import milk from '../assets/milk.jpg';
-import { height } from '@fortawesome/free-solid-svg-icons/fa0';
+import PropTypes from 'prop-types';
+
 const ProductList = () => {
   const products = [
     { id: 1, name: 'Cucumber1', price: '$0.99', image: cucumber },
@@ -79,6 +80,14 @@ const ProductCard = ({ product }) => {
       </button>
     </div>
   );
+};
+
+ProductList.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const styles = {
