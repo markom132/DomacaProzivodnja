@@ -1,0 +1,9 @@
+.pageContainer {
+    padding: 20px;
+    text-align: center;
+}
+
+.pageTitle {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
