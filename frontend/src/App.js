@@ -6,8 +6,8 @@ import FeaturedProducts from './components/FeaturedProducts';
 import Footer from './components/Footer';
 import ProductDetails from './components/ProductDetails';
 import CategoryPage from './components/CategoryPage';
-import CartPage from './components/CartPage'; // Stranica za korpu
-import WishlistPage from './components/WishlistPage'; // Stranica za wishlist
+import CartPage from './components/CartPage';
+import WishlistPage from './components/WishlistPage';
 
 function App() {
   return (
