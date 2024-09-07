@@ -13,16 +13,16 @@ import './FeaturedProducts.css';
 
 const NextArrow = ({ onClick }) => {
   return (
-    <div style={styles.nextArrow} onClick={onClick}>
-      <span style={styles.arrowIcon}>&rarr;</span>
+    <div className='nextArrow' onClick={onClick}>
+      <span className='arrowIcon'>&rarr;</span>
     </div>
   );
 };
 
 const PrevArrow = ({ onClick }) => {
   return (
-    <div style={styles.prevArrow} onClick={onClick}>
-      <span style={styles.arrowIcon}>&larr;</span>
+    <div className='prevArrow' onClick={onClick}>
+      <span className='arrowIcon'>&larr;</span>
     </div>
   );
 };
@@ -54,7 +54,6 @@ const FeaturedProducts = () => {
 
   const [dragging, setDragging] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0); //eslint-disable-line no-unused-vars
-  const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const buttonRef = useRef(null);
 
@@ -135,14 +134,14 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <section style={styles.featuredSection}>
+    <section className='featuredSection'>
       <h2>Popularni proizvodi</h2>
       <Slider {...settings}>
         {products.map(product => (
           <Link
             to={`/product/${product.id}`}
             key={product.id}
-            style={styles.productLink}
+            className='productLink'
             onClick={handleClick}
           >
             <ProductCard
@@ -153,19 +152,12 @@ const FeaturedProducts = () => {
           </Link>
         ))}
       </Slider>
-      <div style={styles.ctaContainer}>
+      <div className='ctaContainer'>
         <Link to="/products">
           <button
             ref={buttonRef}
             className={`ctaButton ${isVisible ? 'bounce' : ''}`}
-            onMouseOver={() => setIsHovered(true)}
-            onMouseOut={() => setIsHovered(false)}
             onAnimationEnd={handleAnimationEnd}
-            style={{
-              backgroundColor: isHovered
-                ? styles.ctaButtonHover.backgroundColor
-                : styles.ctaButton.backgroundColor,
-            }}
           >
             {' '}
             Pogledajte više proizvoda
@@ -177,73 +169,7 @@ const FeaturedProducts = () => {
 };
 
 const styles = {
-  featuredSection: {
-    padding: '20px',
-    textAlign: 'center',
-  },
-  productLink: {
-    textDecoration: 'none',
-    color: 'inherit',
-    flex: '1 1 250px',
-    maxWidth: '300px',
-  },
-  prevArrow: {
-    position: 'absolute',
-    top: '50%',
-    left: '10px',
-    transform: 'translateY(-50%)',
-    backgroundColor: '#fff',
-    border: '2px solid #ddd',
-    borderRadius: '50%',
-    width: '40px',
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    zIndex: 2,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-  nextArrow: {
-    position: 'absolute',
-    top: '50%',
-    right: '10px',
-    transform: 'translateY(-50%)',
-    backgroundColor: '#fff',
-    border: '2px solid #ddd',
-    borderRadius: '50%',
-    width: '40px',
-    height: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    zIndex: 2,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-  arrowIcon: {
-    fontSize: '18px',
-    color: '#333',
-  },
-  ctaContainer: {
-    marginTop: '40px',
-    textAlign: 'center',
-  },
-  ctaButton: {
-    backgroundColor: '#4CAF50',
-    color: '#fff',
-    padding: '15px 30px',
-    border: 'none',
-    borderRadius: '5px',
-    fontSize: '1.5em',
-    cursor: 'pointer',
-    transition: 'background-color 0.3s ease',
-    minWidth: '200px',
-    height: '60px',
-  },
-  ctaButtonHover: {
-    backgroundColor: '#81C784',
-  },
+
 };
 
 export default FeaturedProducts;

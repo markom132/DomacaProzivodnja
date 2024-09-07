@@ -15,12 +15,13 @@
 }
 
 .ctaButton {
-  background-color: #4caf50;
+  background-color: #388E3C;
   color: #fff;
   padding: 15px 30px;
   border: none;
   border-radius: 12px;
-  font-size: 1.5em;
+  font-size: 20px;
+  font-family: 'Merriweather', serif;
   cursor: pointer;
   transition:
     background-color 0.3s ease,
@@ -30,15 +31,68 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.ctaButtonHover {
+.ctaButton:hover {
   background-color: #81c784;
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .ctaButton.bounce {
   animation: bounce 1.5s ease;
 }
 
-.ctaButton:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+.featuredSection {
+  padding: 20px;
+  text-align: center;
+}
+
+.productLink {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 250px;
+}
+
+.prevArrow {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.nextArrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.arrowIcon {
+  font-size: 18px;
+  color: #333;
+}
+
+.ctaContainer {
+  margin-top: 40px;
+  text-align: center;
 }
