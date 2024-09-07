@@ -11,7 +11,7 @@ const CategorySelector = () => {
 
   return (
     <section className='categorySection'>
-      <h2 className='sectionTitle'>Istraži po kategorijama</h2>
+      <h2 className='sectionTitleCS'>Istraži po kategorijama</h2>
       <div className='categoryList'>
         {categories.map(category => (
           <button key={category} className='categoryButton'>
