@@ -38,6 +38,8 @@
 }
 
 .addButton {
+    font-family: 'Poppins', sans-serif;
+    color: #FFF;
     padding: 10px 20px;
     border-radius: 20px;
     border: none;
@@ -78,10 +80,18 @@ background-color: #2E7D32 !important;
 }
 
 .showMoreButton {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
     margin-top: 20px;
     padding: 10px 20px;
     border-radius: 20px;
     border: none;
-    background-color: #dff542;
+    background-color: #2E7D32;
     cursor: pointer;
+}
+
+.showMoreButton:hover {
+    background-color: #A0D468;
 }
