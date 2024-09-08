@@ -1,7 +1,7 @@
 .footer {
     background-color: #f4f4f4;
     padding: 20px 10px;
-    margin-top: 40px;
+    border-top: 1px solid #ddd;
   }
 
 .footerContent {

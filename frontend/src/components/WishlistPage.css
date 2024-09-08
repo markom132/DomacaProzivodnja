@@ -1,11 +1,21 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .pageContainer {
-    padding: 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 80vh;
+    min-height: 70vh;
 }
 
 .pageTitle {
@@ -20,6 +30,8 @@
     display: flex;
     background-size: contain;
     align-items: center;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
 }
 
 .cart-container:hover {
@@ -39,7 +51,6 @@
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    margin-top: 20px;
 }
 
 .pageContainer button:hover {

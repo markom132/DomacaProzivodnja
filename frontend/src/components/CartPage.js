@@ -143,6 +143,9 @@ const styles = {
     backgroundColor: '#fff',
     borderRadius: '10px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    minHeight: 'calc(80vh - 150px)',
+    display: 'flex',
+    flexDirection: 'column',
   },
   pageTitle: {
     fontSize: '2em',
