@@ -1,3 +1,17 @@
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 .pageCartContainer {
     padding: 20px;
     text-align: center;
@@ -10,8 +24,9 @@
 }
 
 .pageTitleCart {
-    font-size: 2em;
+    font-size: 24px;
     margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif
 }
 
 .cartItem {
@@ -25,12 +40,22 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.cartItem:hover {
+    background-color: #F8F8F8;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
 .productImage {
     width: 120px;
     height: 120px;
     object-fit: cover;
     border-radius: 10px;
     margin-right: 20px;
+    transition: transform 0.2s ease;
+}
+
+.productImage:hover {
+    transform: scale(1.05);
 }
 
 .productInfo {
@@ -44,8 +69,14 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.productInfo strong:hover {
+    color: #43A047;
+}
+
 .productInfo p {
     color: #7D7D7D;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 
 .quantityControl {
@@ -70,6 +101,7 @@
 
 .quantityButton:hover {
     background-color: #7CB342;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     transform: scale(1.05);
 }
 
@@ -91,6 +123,7 @@
 
 .removeButton:hover {
     transform: scale(1.05);
+    animation: pulse 0.6s infinite;
 }
 
 .checkoutSection {
@@ -105,6 +138,7 @@
     background-color: #F5F5F5;
     padding: 20px;
     border-radius: 8px;
+    border-top: 2px solid #E0E0E0;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import med from '../assets/med.jpg';
 import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
@@ -93,13 +94,17 @@ const CartPage = () => {
         <div>
           {cartItems.map(item => (
             <div key={item.id} className='cartItem'>
-              <img
-                src={item.imageUrl}
-                alt={item.name}
-                className='productImage'
-              />
+              <Link to={`/product/${item.id}`}>
+                <img
+                  src={item.imageUrl}
+                  alt={item.name}
+                  className='productImage'
+                />
+              </Link>
               <div className='productInfo'>
-                <strong>{item.name}</strong>
+                <Link to={`/product/${item.id}`} style={{ textDecoration: 'none' }}>
+                  <strong>{item.name}</strong>
+                </Link>
                 <p>{item.description}</p>
               </div>
               <div className='quantityControl'>
@@ -109,7 +114,7 @@ const CartPage = () => {
                 >
                   -
                 </button>
-                <span>{item.quantity}</span>
+                <span style={{ fontWeight: 'bold', fontSize: '18px' }}>{item.quantity}</span>
                 <button
                   onClick={() => increaseQuantity(item.id)}
                   className='quantityButton'
@@ -123,6 +128,7 @@ const CartPage = () => {
               <button
                 onClick={() => removeItem(item.id)}
                 className='removeButton'
+                title="Ukloni proizvod"
               >
                 x
               </button>
