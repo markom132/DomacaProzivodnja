@@ -21,12 +21,14 @@
     min-height: calc(80vh - 150px);
     display: flex;
     flex-direction: column;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .pageTitleCart {
     font-size: 24px;
     margin-bottom: 20px;
-    font-family: 'Poppins', sans-serif
+    font-family: 'Poppins', sans-serif;
 }
 
 .cartItem {
@@ -45,7 +47,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.productImage {
+.productImageCart {
     width: 120px;
     height: 120px;
     object-fit: cover;
@@ -105,7 +107,7 @@
     transform: scale(1.05);
 }
 
-.price {
+.priceCartItems {
     flex: 1;
     text-align: right;
     font-size: 18px;

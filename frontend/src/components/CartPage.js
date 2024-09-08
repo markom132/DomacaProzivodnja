@@ -98,7 +98,7 @@ const CartPage = () => {
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className='productImage'
+                  className='productImageCart'
                 />
               </Link>
               <div className='productInfo'>
@@ -122,7 +122,7 @@ const CartPage = () => {
                   +
                 </button>
               </div>
-              <span className='price'>
+              <span className='priceCartItems'>
                 {(item.price * item.quantity).toFixed(2)} RSD
               </span>
               <button
