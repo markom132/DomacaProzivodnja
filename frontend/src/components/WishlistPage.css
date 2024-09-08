@@ -20,13 +20,15 @@
 
 .pageTitle {
     font-size: 2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: #388E3C;
+    font-family: 'Poppins', sans-serif;
 }
 
 .cart-container {
     width: 150px;
     height: 150px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     display: flex;
     background-size: contain;
     align-items: center;
@@ -40,15 +42,18 @@
 
 .pageContainer p {
     color: #4F4F4F;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    font-size: 16px;
 }
 
 .pageContainer button {
     background-color: #A0D468;
     color: white;
-    padding: 10px 20px;
+    padding: 15px 30px;
     border: none;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.2em;
     cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
