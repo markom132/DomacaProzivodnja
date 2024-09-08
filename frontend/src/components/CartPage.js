@@ -128,8 +128,11 @@ const CartPage = () => {
               </button>
             </div>
           ))}
-          <div className='totalPrice'>
+          <div className='checkoutSection'>
             <strong>Ukupno: {getTotalPrice()} RSD</strong>
+            <button className='checkoutButton separateButton'>
+              Poruči
+            </button>
           </div>
         </div>
       )}
