@@ -1,9 +1,48 @@
 .pageContainer {
     padding: 20px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
 .pageTitle {
     font-size: 2em;
     margin-bottom: 20px;
+}
+
+.cart-container {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    display: flex;
+    background-size: contain;
+    align-items: center;
+}
+
+.cart-container:hover {
+    transform: scale(1.05);
+}
+
+.pageContainer p {
+    color: #4F4F4F;
+}
+
+.pageContainer button {
+    background-color: #A0D468;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 20px;
+}
+
+.pageContainer button:hover {
+    background-color: #8CC153;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }

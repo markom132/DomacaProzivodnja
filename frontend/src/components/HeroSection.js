@@ -9,7 +9,6 @@ import './HeroSection.css';
 const HeroSection = () => {
   const images = [promoImage, image1, image2, image3, image4];
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -34,8 +33,6 @@ const HeroSection = () => {
         <div className='promoText'>Specijalna ponuda domacih proizvoda</div>
         <button
           className='ctaButtonHeroS'
-          onMouseOver={() => setIsHovered(true)}
-          onMouseOut={() => setIsHovered(false)}
         >
           {' '}
           Istraži ponudu
@@ -44,20 +41,5 @@ const HeroSection = () => {
     </section >
   );
 };
-
-const styles = {
-  imageContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    transition: 'opacity 1s ease-in-out',
-  },
-};
-
-
 
 export default HeroSection;
