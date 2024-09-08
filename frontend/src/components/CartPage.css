@@ -41,6 +41,7 @@
 
 .productInfo strong {
     color: #388E3C;
+    font-family: 'Poppins', sans-serif;
 }
 
 .productInfo p {
@@ -94,13 +95,13 @@
 
 .checkoutSection {
     text-align: right;
-    font-size: 1.5em;
+    font-size: 20px;
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: flex-end;
-    color: #388E3C ;
+    color: #388E3C;
     background-color: #F5F5F5;
     padding: 20px;
     border-radius: 8px;
@@ -131,4 +132,6 @@
 
 .checkoutButton:hover {
     background-color: #388E3C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
 }
