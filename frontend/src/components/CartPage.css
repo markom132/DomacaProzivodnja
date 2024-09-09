@@ -47,6 +47,7 @@
     background-color: #F8F8F8;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+
 .cta-button {
     background-color: #4CAF50;
     background: linear-gradient(90deg, #4CAF50 0%, #66BB6A 100%);
@@ -61,6 +62,7 @@
     font-weight: bold;
     font-family: 'Poppins', sans-serif;
 }
+
 .cta-button:hover {
     background-color: #388E3C;
     transform: scale(1.05);
@@ -81,12 +83,12 @@
     margin-bottom: 30px;
 }
 
-.emptyCart svg{
+.emptyCart svg {
     width: 100px;
     height: 100px;
     margin-right: 8px;
     margin-bottom: 15px;
-    filter: drop-shadow( 0px 4px 6px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.15));
     filter: drop-shadow(0px 0px 8px #4CAF50);
     transition: all 0.3s ease;
 }
