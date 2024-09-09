@@ -1,0 +1,113 @@
+.cartPopup {
+    position: absolute;
+    top: 25px;
+    right: 0;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.cartPopup::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cartPopup::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+}
+
+.cartPopup::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+.popupCartItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.popupCartItem:hover {
+    background-color: #f0f0f0;
+    /* Blaga promena boje pri hoveru */
+    cursor: pointer;
+}
+
+.productImagePopup {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.productInfoPopup {
+    flex: 2;
+    text-align: left;
+    font-size: 16px;
+}
+
+.productInfoPopup strong {
+    font-weight: bold;
+}
+
+.pricePopup {
+    flex: 1;
+    text-align: right;
+    font-size: 16px;
+    color: #333;
+    margin-right: 10px;
+}
+
+.totalPrice {
+    text-align: right;
+    font-weight: bold;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cartButton {
+    flex: 1;
+    padding: 10px;
+    background-color: #dff542;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.checkoutButtonPopup {
+    flex: 1;
+    padding: 10px;
+    background-color: #32CD32;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+@media (max-width: 768px) {
+    .cart-modal {
+        width: 90%;
+        /* Skoro pun ekran na mobilnim uređajima */
+        height: auto;
+    }
+}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import med from '../assets/med.jpg';
 import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
+import EmptyCartSVGIcon from './EmptyCartSVGIcon';
 import './CartPage.css';
 
 const CartPage = () => {
@@ -89,7 +90,13 @@ const CartPage = () => {
     <div className='pageCartContainer'>
       <h2 className='pageTitleCart'>Vaša korpa</h2>
       {cartItems.length === 0 ? (
-        <p>Vaša korpa je prazna.</p>
+        <div className='emptyCart'>
+          <EmptyCartSVGIcon />
+          <h2>Vaša korpa je trenutno prazna.</h2>
+          <p> Istražite našu ponudu i dodajte proizvode u korpu!</p>
+          <a href="/proizvodi" className="cta-button">Istraži proizvode</a>
+
+        </div>
       ) : (
         <div>
           {cartItems.map(item => (

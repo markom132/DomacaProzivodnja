@@ -12,8 +12,8 @@ const Header = () => {
   return (
     <header className='header'>
       <div className='logo'>
-      <LogoSVGIcon /> {/* SVG ikonica */}
-      <span>DomaciProizvodi</span> {/* Tekst pored SVG ikone */}
+      <LogoSVGIcon />
+      <span>DomaciProizvodi</span>
       </div>
       <nav>
         <ul className='navList'>

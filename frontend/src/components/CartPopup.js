@@ -3,6 +3,7 @@ import med from '../assets/med.jpg';
 import cucumber from '../assets/cucumber.jpg';
 import milk from '../assets/milk.jpg';
 import PropTypes from 'prop-types';
+import './CartPopup.css';
 
 const CartPopup = ({ setPopupVisible }) => {
   const getTotalPrice = () => {
@@ -25,38 +26,38 @@ const CartPopup = ({ setPopupVisible }) => {
 
   return (
     <div
-      style={styles.cartPopup}
+      className='cartPopup'
       onMouseEnter={() => setPopupVisible(true)}
       onMouseLeave={() => setPopupVisible(false)}
     >
       {cartItems.length > 0 ? (
         <>
-          <div style={styles.cartList}>
+          <div>
             {cartItems.map(item => (
-              <div key={item.id} style={styles.popupCartItem}>
+              <div key={item.id} className='popupCartItem'>
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  style={styles.productImagePopup}
+                  className='productImagePopup'
                 />
-                <div style={styles.productInfoPopup}>
+                <div className='productInfoPopup'>
                   <strong>{item.name}</strong>
                   <p>
                     {item.quantity} x {(item.price / 100).toFixed(2)} RSD
                   </p>
                 </div>
-                <span style={styles.pricePopup}>
+                <span className='pricePopup'>
                   {((item.price * item.quantity) / 100).toFixed(2)} RSD
                 </span>
               </div>
             ))}
           </div>
-          <div style={styles.totalPrice}>
+          <div className='totalPrice'>
             <strong>Ukupno: {getTotalPrice()} RSD</strong>
           </div>
-          <div style={styles.buttonContainer}>
-            <button style={styles.cartButton}>Pregled korpe</button>
-            <button style={styles.checkoutButton}>Poruči</button>
+          <div className='buttonContainer'>
+            <button className='cartButton'>Pregled korpe</button>
+            <button className='checkoutButtonPopup'>Poruči</button>
           </div>
         </>
       ) : (
@@ -64,80 +65,6 @@ const CartPopup = ({ setPopupVisible }) => {
       )}
     </div>
   );
-};
-
-const styles = {
-  cartPopup: {
-    position: 'absolute',
-    top: '25px',
-    right: '0',
-    width: '300px',
-    maxHeight: '400px',
-    overflowY: 'auto',
-    backgroundColor: '#fff',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '20px',
-    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-    zIndex: '10',
-  },
-  popupCartItem: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: '10px',
-    borderBottom: '1px solid #ddd',
-    paddingBottom: '10px',
-  },
-  productImagePopup: {
-    width: '50px',
-    height: '50px',
-    objectFit: 'cover',
-    borderRadius: '5px',
-    marginRight: '10px',
-  },
-  productInfoPopup: {
-    flex: '2',
-    textAlign: 'left',
-  },
-  pricePopup: {
-    flex: '1',
-    textAlign: 'right',
-    fontSize: '1.2em',
-    color: '#333',
-  },
-  totalPrice: {
-    textAlign: 'right',
-    fontWeight: 'bold',
-  },
-  buttonContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    gap: '10px',
-    marginTop: '10px',
-  },
-  cartButton: {
-    flex: '1',
-    padding: '10px',
-    backgroundColor: '#dff542',
-    color: '#000',
-    textDecoration: 'none',
-    borderRadius: '5px',
-    border: 'none',
-    cursor: 'pointer',
-    textAlign: 'center',
-  },
-  checkoutButton: {
-    flex: '1',
-    padding: '10px',
-    backgroundColor: '#32CD32',
-    color: '#fff',
-    textDecoration: 'none',
-    borderRadius: '5px',
-    border: 'none',
-    cursor: 'pointer',
-    textAlign: 'center',
-  },
 };
 
 CartPopup.propTypes = {
