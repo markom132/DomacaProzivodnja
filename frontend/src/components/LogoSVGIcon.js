@@ -13,11 +13,11 @@ const LogoSVGIcon = () => (
                 <feDropShadow dx="5" dy="5" stdDeviation="5" floodColor="rgba(0, 0, 0, 0.3)" />
             </filter>
             <radialGradient id="light-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                <stop offset="0%" stopColor="#fff7a0" stopOpacity="0.6" />
-                <stop offset="100%" stopColor="rgba(255, 215, 0, 0)" />
+                <stop offset="0%" stopColor="rgba(255, 255, 255, 0.4)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="rgba(255, 255, 255, 0)" />
             </radialGradient>
             <linearGradient id="apple-gradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#FFD700"></stop>
+                <stop offset="0%" stopColor="#FFE066"></stop>
                 <stop offset="100%" stopColor="#FFA000"></stop>
             </linearGradient>
         </defs>
@@ -29,7 +29,7 @@ const LogoSVGIcon = () => (
             ></path>
             <path
                 d="M183.065,5.528 C217.473,-3.692 244.464,4.784 245.972,10.413 C247.653,16.685 228.344,36.877 193.935,46.097 C159.527,55.317 133.743,51.348 131.027,41.212 C128.311,31.076 148.656,14.748 183.065,5.528 Z"
-                fill="#388E3C"
+                fill="#006400"
                 fillRule="evenodd"
             ></path>
             <path
