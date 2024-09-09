@@ -4,17 +4,17 @@ import './NewsletterSignup.css';
 const NewsletterSignup = () => {
   return (
     <section className='newsletterSection'>
-      <h2 className='sectionTitle'>Stay Updated!</h2>
+      <h2 className='sectionTitle'>Ostanite u toku!</h2>
       <p className='description'>
-        Sign up for our newsletter to get the latest updates and special offers.
+        Prijavite se na naš  newsletter da bi dobili najnovije izmene i specijalne ponude.
       </p>
       <form className='form'>
         <input
           type="email"
-          placeholder="Your email address"
+          placeholder="Vaša email adresa"
           className='input'
         />
-        <button className='button'>Subscribe</button>
+        <button className='buttonNS'>Zapratite nas</button>
       </form>
     </section>
   );
