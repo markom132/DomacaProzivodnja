@@ -1,0 +1,59 @@
+.newsletterSection {
+    padding: 40px 20px;
+    background-color: #F9F9F9;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.sectionTitle {
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+}
+
+.description {
+    margin-bottom: 25px;
+    font-size: 16px;
+    color: #666666;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #DDDDDD;
+    outline: none;
+    width: 250px;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus,
+.input:hover {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FFD600;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    background-color: #FFB900;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
+}
