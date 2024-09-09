@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import CartPopup from './CartPopup';
+import LogoSVGIcon from './LogoSVGIcon';
 import './Header.css';
 
 const Header = () => {
@@ -10,7 +11,10 @@ const Header = () => {
 
   return (
     <header className='header'>
-      <div className='logo'>🍏 DomaciProizvodi</div>
+      <div className='logo'>
+      <LogoSVGIcon /> {/* SVG ikonica */}
+      <span>DomaciProizvodi</span> {/* Tekst pored SVG ikone */}
+      </div>
       <nav>
         <ul className='navList'>
           <li className='navItemContainer'>
