@@ -1,24 +1,22 @@
 import React from 'react';
+import WishlistSVGIcon from './WishlistSVGIcon';
+import './WishlistPage.css';
 
 const WishlistPage = () => {
   return (
-    <div style={styles.pageContainer}>
-      <h2 style={styles.pageTitle}>Wishlist</h2>
-      <p>Your wishlist is currently empty.</p>
-      {/* Ovde ćeš prikazivati artikle na wishlisti kada budu dodati */}
+    <div className="pageContainer">
+      <h2 className="pageTitle">Sačuvani proizvodi</h2>
+      <div className="cart-container">
+        <WishlistSVGIcon />
+      </div>
+      <p>
+        Izgleda da nemate sačuvane proizvode.
+        <br />
+        Počnite da istražujete i sačuvajte svoje omiljene artikle!
+      </p>
+      <button>Istraži ponudu</button>
     </div>
   );
-};
-
-const styles = {
-  pageContainer: {
-    padding: '20px',
-    textAlign: 'center',
-  },
-  pageTitle: {
-    fontSize: '2em',
-    marginBottom: '20px',
-  },
 };
 
 export default WishlistPage;

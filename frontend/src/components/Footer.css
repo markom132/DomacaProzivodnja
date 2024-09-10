@@ -1,0 +1,38 @@
+.footer {
+  background-color: #f4f4f4;
+  padding: 20px 10px;
+  border-top: 1px solid #ddd;
+}
+
+.footerContent {
+  display: flex;
+  justify-content: space-around;
+  text-align: left;
+}
+
+.footerSection {
+  flex: 1;
+  margin: 0 20px;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  color: #333333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+.footer h4 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  color: #333333;
+}
+
+.footer p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #333333;
+}

@@ -1,0 +1,32 @@
+.categorySection {
+  padding: 20px;
+}
+
+.sectionTitleCS {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  color: #333333;
+}
+
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categoryButton {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  cursor: pointer;
+  color: #333333;
+}
+
+.categoryButton:hover {
+  background-color: #a0d468;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  color: #388e3c;
+  transform: scale(1.05);
+}

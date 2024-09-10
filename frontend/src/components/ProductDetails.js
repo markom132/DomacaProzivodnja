@@ -1,7 +1,61 @@
-import React from 'react';
-import honeyImage from '../assets/med.jpg'; // Putanja do slike
+import React, { useState } from 'react';
+import honeyImage from '../assets/med.jpg';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
+import PropTypes from 'prop-types';
+
+import './ProductDetails.css';
 
 const ProductDetails = () => {
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className="nextArrow" onClick={onClick}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: '50px', height: '50px' }}
+          fill="currentColor"
+          className="bi bi-arrow-right-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className="prevArrow" onClick={onClick}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ width: '50px', height: '50px' }}
+          fill="currentColor"
+          className="bi bi-arrow-left-circle"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+          />
+        </svg>
+      </div>
+    );
+  };
+
+  NextArrow.propTypes = {
+    onClick: PropTypes.func.isRequired,
+  };
+
+  PrevArrow.propTypes = {
+    onClick: PropTypes.func.isRequired,
+  };
+  const [dragging, setDragging] = useState(false); //eslint-disable-line no-unused-vars
+  const [activeSlide, setActiveSlide] = useState(0); //eslint-disable-line no-unused-vars
+
   const product = {
     name: 'Med',
     description: 'Ovo je opis testnog prozivoda----MED',
@@ -13,141 +67,123 @@ const ProductDetails = () => {
       { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
       { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
       { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
+      { id: 1, name: 'Related Product 1', price: '$49.99', image: honeyImage },
+      { id: 2, name: 'Related Product 2', price: '$59.99', image: honeyImage },
+      { id: 3, name: 'Related Product 3', price: '$89.99', image: honeyImage },
+      { id: 4, name: 'Related Product 4', price: '$79.99', image: honeyImage },
     ],
   };
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    nextArrow: <NextArrow onClick={() => {}} />,
+    prevArrow: <PrevArrow onClick={() => {}} />,
+    beforeChange: (current, next) => {
+      setActiveSlide(next);
+      setDragging(true);
+    },
+    afterChange: () => setDragging(false),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+    centerMode: false,
+    variableWidth: true,
+  };
+
   return (
-    <div style={styles.container}>
-      <div style={styles.productInfo}>
-        <div style={styles.images}>
+    <div className="container">
+      <div className="productDetailsInfo">
+        <div className="images">
           <img
             src={product.mainImage}
             alt={product.name}
-            style={styles.mainImage}
+            className="mainImage"
           />
-          <div style={styles.thumbnails}>
+          <div className="thumbnails">
             {product.thumbnails.map((thumb, index) => (
               <img
                 key={index}
                 src={thumb}
                 alt={`Thumbnail ${index + 1}`}
-                style={styles.thumbnail}
+                className="thumbnail"
               />
             ))}
           </div>
         </div>
-        <div style={styles.details}>
+        <div className="details">
           <h1>{product.name}</h1>
           <p>{product.description}</p>
-          <p style={styles.price}>{product.price}</p>
-          <div style={styles.buttons}>
-            <button style={styles.addToCart}>Dodaj u korpu</button>
-            <button style={styles.addToWishlist}>Dodaj na listu zelja</button>
+          <p className="productDetailsPrice">{product.price}</p>
+          <div className="buttons">
+            <button className="addToCart">Dodaj u korpu</button>
+            <button className="addToWishlist">Sačuvaj proizvod</button>
           </div>
         </div>
       </div>
 
-      <div style={styles.relatedProducts}>
+      <div className="relatedProducts">
         <h2>Slicni proizvodi</h2>
-        <div style={styles.relatedList}>
+        <Slider {...settings} className="relatedList">
           {product.relatedProducts.map(related => (
-            <div key={related.id} style={styles.relatedCard}>
+            <div key={related.id} className="relatedCard">
               <img
                 src={related.image}
                 alt={related.name}
-                style={styles.relatedImage}
+                className="relatedImage"
               />
-              <div>{related.name}</div>
-              <div style={styles.relatedPrice}>{related.price}</div>
+              <h4>{related.name}</h4>
+              <div className="relatedPrice">{related.price}</div>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    padding: '20px',
-  },
-  productInfo: {
-    display: 'flex',
-    marginBottom: '40px',
-  },
-  images: {
-    flex: 1,
-    marginRight: '20px',
-  },
-  mainImage: {
-    width: '100%',
-    borderRadius: '10px',
-  },
-  thumbnails: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '10px',
-  },
-  thumbnail: {
-    width: '30%',
-    cursor: 'pointer',
-    borderRadius: '10px',
-  },
-  details: {
-    flex: 2,
-  },
-  price: {
-    fontSize: '1.5em',
-    fontWeight: 'bold',
-    margin: '20px 0',
-  },
-  buttons: {
-    display: 'flex',
-    gap: '10px',
-    marginBottom: '20px',
-  },
-  addToCart: {
-    padding: '10px 20px',
-    backgroundColor: '#dff542',
-    border: 'none',
-    borderRadius: '999px',
-    cursor: 'pointer',
-  },
-  addToWishlist: {
-    padding: '10px 20px',
-    backgroundColor: '#ddd',
-    border: 'none',
-    borderRadius: '999px',
-    cursor: 'pointer',
-  },
-  backToCategories: {
-    color: '#dff542',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  },
-  relatedProducts: {
-    marginTop: '40px',
-  },
-  relatedList: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '30px',
-  },
-  relatedCard: {
-    textAlign: 'center',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    maxWidth: '200px',
-  },
-  relatedImage: {
-    width: '100%',
-    borderRadius: '10px',
-  },
-  relatedPrice: {
-    fontWeight: 'bold',
-    marginTop: '10px',
-  },
 };
 
 export default ProductDetails;
