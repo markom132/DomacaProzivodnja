@@ -51,7 +51,6 @@ const ProductList = () => {
 };
 
 const ProductCard = ({ product }) => {
-
   return (
     <div className="productCard">
       <div className="productImageContainer">
@@ -59,11 +58,7 @@ const ProductCard = ({ product }) => {
       </div>
       <h3 className="productName">{product.name}</h3>
       <p className="productPrice">{product.price}</p>
-      <button
-        className="addButton"
-      >
-        Dodaj u korpu
-      </button>
+      <button className="addButton">Dodaj u korpu</button>
     </div>
   );
 };

@@ -53,7 +53,7 @@ const ProductDetails = () => {
   PrevArrow.propTypes = {
     onClick: PropTypes.func.isRequired,
   };
-  const [dragging, setDragging] = useState(false);
+  const [dragging, setDragging] = useState(false); //eslint-disable-line no-unused-vars
   const [activeSlide, setActiveSlide] = useState(0); //eslint-disable-line no-unused-vars
 
   const product = {
