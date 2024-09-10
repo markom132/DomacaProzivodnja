@@ -1,5 +1,6 @@
 import React from 'react';
-import honeyImage from '../assets/med.jpg'; // Putanja do slike
+import honeyImage from '../assets/med.jpg';
+import './ProductDetails.css';
 
 const ProductDetails = () => {
   const product = {
@@ -17,137 +18,54 @@ const ProductDetails = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <div style={styles.productInfo}>
-        <div style={styles.images}>
+    <div className='container'>
+      <div className='productDetailsInfo'>
+        <div className='images'>
           <img
             src={product.mainImage}
             alt={product.name}
-            style={styles.mainImage}
+            className='mainImage'
           />
-          <div style={styles.thumbnails}>
+          <div className='thumbnails'>
             {product.thumbnails.map((thumb, index) => (
               <img
                 key={index}
                 src={thumb}
                 alt={`Thumbnail ${index + 1}`}
-                style={styles.thumbnail}
+                className='thumbnail'
               />
             ))}
           </div>
         </div>
-        <div style={styles.details}>
+        <div className='details'>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
-          <p style={styles.price}>{product.price}</p>
-          <div style={styles.buttons}>
-            <button style={styles.addToCart}>Dodaj u korpu</button>
-            <button style={styles.addToWishlist}>Dodaj na listu zelja</button>
+          <p className='productDetailsPrice'>{product.price}</p>
+          <div className='buttons'>
+            <button className='addToCart'>Dodaj u korpu</button>
+            <button className='addToWishlist'>Sačuvaj proizvod</button>
           </div>
         </div>
       </div>
 
-      <div style={styles.relatedProducts}>
+      <div className='relatedProducts'>
         <h2>Slicni proizvodi</h2>
-        <div style={styles.relatedList}>
+        <div className='relatedList'>
           {product.relatedProducts.map(related => (
-            <div key={related.id} style={styles.relatedCard}>
+            <div key={related.id} className='relatedCard'>
               <img
                 src={related.image}
                 alt={related.name}
-                style={styles.relatedImage}
+                className='relatedImage'
               />
-              <div>{related.name}</div>
-              <div style={styles.relatedPrice}>{related.price}</div>
+              <h4>{related.name}</h4>
+              <div className='relatedPrice'>{related.price}</div>
             </div>
           ))}
         </div>
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    padding: '20px',
-  },
-  productInfo: {
-    display: 'flex',
-    marginBottom: '40px',
-  },
-  images: {
-    flex: 1,
-    marginRight: '20px',
-  },
-  mainImage: {
-    width: '100%',
-    borderRadius: '10px',
-  },
-  thumbnails: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginTop: '10px',
-  },
-  thumbnail: {
-    width: '30%',
-    cursor: 'pointer',
-    borderRadius: '10px',
-  },
-  details: {
-    flex: 2,
-  },
-  price: {
-    fontSize: '1.5em',
-    fontWeight: 'bold',
-    margin: '20px 0',
-  },
-  buttons: {
-    display: 'flex',
-    gap: '10px',
-    marginBottom: '20px',
-  },
-  addToCart: {
-    padding: '10px 20px',
-    backgroundColor: '#dff542',
-    border: 'none',
-    borderRadius: '999px',
-    cursor: 'pointer',
-  },
-  addToWishlist: {
-    padding: '10px 20px',
-    backgroundColor: '#ddd',
-    border: 'none',
-    borderRadius: '999px',
-    cursor: 'pointer',
-  },
-  backToCategories: {
-    color: '#dff542',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  },
-  relatedProducts: {
-    marginTop: '40px',
-  },
-  relatedList: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '30px',
-  },
-  relatedCard: {
-    textAlign: 'center',
-    padding: '10px',
-    border: '1px solid #ddd',
-    borderRadius: '10px',
-    maxWidth: '200px',
-  },
-  relatedImage: {
-    width: '100%',
-    borderRadius: '10px',
-  },
-  relatedPrice: {
-    fontWeight: 'bold',
-    marginTop: '10px',
-  },
 };
 
 export default ProductDetails;

@@ -1,0 +1,170 @@
+.container {
+    padding: 20px;
+}
+
+.productDetailsInfo {
+    display: flex;
+    margin-bottom: 40px;
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #E0E0E0;
+    border-top: 1px solid #E0E0E0;
+}
+
+.images {
+    flex: 1;
+    margin-right: 24px;
+    margin-bottom: 20px;
+    margin-left: 16px;
+    margin-top: 20px;
+}
+
+.mainImage {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.thumbnail {
+    width: 30%;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.details {
+    flex: 2;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.details h1 {
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    color: #2B2B2B;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.productDetailsPrice {
+    font-family: 'Merriweather', serif;
+    font-size: 28px;
+    color: #388E3C;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.addToCart {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.addToCart:hover {
+    background-color: #388E3C;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+}
+
+.addToWishlist {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    padding: 12px 24px;
+    background-color: #E0E0E0;
+    color: #666666;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.addToWishlist:hover {
+    background-color: #BDBDBD;
+    transform: scale(1.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backToCategories {
+    color: #dff542;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.relatedProducts {
+    margin-top: 40px;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #E0E0E0;
+    border-top: 1px solid #E0E0E0;
+}
+
+.relatedProducts h2 {
+    font-family: 'Merriweather', serif;
+    font-size: 32px;
+    color: #2B2B2B;
+    font-weight: bold;
+    line-height: 1.4;
+    display: block;
+    text-align: center;
+
+}
+
+.relatedList {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.relatedCard {
+    font-family: 'Merriweather', serif;
+    font-size: 16px;
+    color: #333333;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    max-width: 200px;
+    margin-bottom: 40px;
+    margin-right: 16px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1)
+}
+
+.relatedCard:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+}
+
+.relatedCard h4:hover {
+    color: #4CAF50;
+    cursor: pointer;
+}
+
+.relatedImage {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.relatedPrice {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #FF9800;
+}
