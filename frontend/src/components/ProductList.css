@@ -54,6 +54,7 @@
 
 .addButton:hover {
   background-color: #2e7d32 !important;
+  transform: translateY(-5px);
 }
 
 .productImageContainer {

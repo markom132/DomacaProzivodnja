@@ -6,7 +6,7 @@ const WishlistPage = () => {
   return (
     <div className="pageContainer">
       <h2 className="pageTitle">Sačuvani proizvodi</h2>
-      <div class="cart-container">
+      <div className="cart-container">
         <WishlistSVGIcon />
       </div>
       <p>

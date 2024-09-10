@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cucumber from '../assets/cucumber.jpg';
 import broccoli from '../assets/broccoli.jpg';
 import milk from '../assets/milk.jpg';
@@ -51,7 +51,6 @@ const ProductList = () => {
 };
 
 const ProductCard = ({ product }) => {
-  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="productCard">
@@ -62,11 +61,6 @@ const ProductCard = ({ product }) => {
       <p className="productPrice">{product.price}</p>
       <button
         className="addButton"
-        style={{
-          backgroundColor: isHovered ? '#c5d047' : '#dff542',
-          transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',
-          transition: 'background-color 0.3s ease, transform 0.3s ease',
-        }}
       >
         Dodaj u korpu
       </button>

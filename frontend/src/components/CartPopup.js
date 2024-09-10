@@ -70,23 +70,23 @@ const CartPopup = ({ setPopupVisible }) => {
                 <span className="pricePopup">
                   {((item.price * item.quantity) / 100).toFixed(2)} RSD
                 </span>
-                <div class="quantity-controls">
+                <div className="quantity-controls">
                   <button
-                    class="quantity-button"
+                    className="quantity-button"
                     onClick={() => decreaseQuantity(item.id)}
                   >
                     −
                   </button>
-                  <span class="quantity-display">{item.quantity}</span>
+                  <span className="quantity-display">{item.quantity}</span>
                   <button
-                    class="quantity-button"
+                    className="quantity-button"
                     onClick={() => increaseQuantity(item.id)}
                   >
                     +
                   </button>
                 </div>
                 <button
-                  class="remove-button"
+                  className="remove-button"
                   onClick={() => removeItem(item.id)}
                 >
                   ×

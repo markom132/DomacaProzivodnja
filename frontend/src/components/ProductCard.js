@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ProductCard.css';
 
 const ProductCard = ({ image, name, price }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false); //eslint-disable-line no-unused-vars
 
   return (
     <div
