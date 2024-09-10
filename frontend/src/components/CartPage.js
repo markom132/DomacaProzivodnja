@@ -87,65 +87,69 @@ const CartPage = () => {
   };
 
   return (
-    <div className='pageCartContainer'>
-      <h2 className='pageTitleCart'>Vaša korpa</h2>
+    <div className="pageCartContainer">
+      <h2 className="pageTitleCart">Vaša korpa</h2>
       {cartItems.length === 0 ? (
-        <div className='emptyCart'>
+        <div className="emptyCart">
           <EmptyCartSVGIcon />
           <h2>Vaša korpa je trenutno prazna.</h2>
           <p> Istražite našu ponudu i dodajte proizvode u korpu!</p>
-          <a href="/proizvodi" className="cta-button">Istraži proizvode</a>
-
+          <a href="/proizvodi" className="cta-button">
+            Istraži proizvode
+          </a>
         </div>
       ) : (
         <div>
           {cartItems.map(item => (
-            <div key={item.id} className='cartItem'>
+            <div key={item.id} className="cartItem">
               <Link to={`/product/${item.id}`}>
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className='productImageCart'
+                  className="productImageCart"
                 />
               </Link>
-              <div className='productInfo'>
-                <Link to={`/product/${item.id}`} style={{ textDecoration: 'none' }}>
+              <div className="productInfo">
+                <Link
+                  to={`/product/${item.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
                   <strong>{item.name}</strong>
                 </Link>
                 <p>{item.description}</p>
               </div>
-              <div className='quantityControl'>
+              <div className="quantityControl">
                 <button
                   onClick={() => decreaseQuantity(item.id)}
-                  className='quantityButton'
+                  className="quantityButton"
                 >
                   -
                 </button>
-                <span style={{ fontWeight: 'bold', fontSize: '18px' }}>{item.quantity}</span>
+                <span style={{ fontWeight: 'bold', fontSize: '18px' }}>
+                  {item.quantity}
+                </span>
                 <button
                   onClick={() => increaseQuantity(item.id)}
-                  className='quantityButton'
+                  className="quantityButton"
                 >
                   +
                 </button>
               </div>
-              <span className='priceCartItems'>
+              <span className="priceCartItems">
                 {(item.price * item.quantity).toFixed(2)} RSD
               </span>
               <button
                 onClick={() => removeItem(item.id)}
-                className='removeButton'
+                className="removeButton"
                 title="Ukloni proizvod"
               >
                 x
               </button>
             </div>
           ))}
-          <div className='checkoutSection'>
+          <div className="checkoutSection">
             <strong>Ukupno: {getTotalPrice()} RSD</strong>
-            <button className='checkoutButton separateButton'>
-              Poruči
-            </button>
+            <button className="checkoutButton separateButton">Poruči</button>
           </div>
         </div>
       )}

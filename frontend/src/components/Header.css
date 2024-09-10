@@ -1,109 +1,109 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f8f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
 }
 
 .logo {
-    font-size: 1.5em;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-    font-family: 'Merriweather', serif;
-    color: #006400;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+  color: #006400;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .logo svg {
-    width: 40px;
-    height: 40px;
-    margin-right: 8px;
-    margin-bottom: 12px;
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+  margin-bottom: 12px;
 }
 
 .navList {
-    display: flex;
-    list-style: none;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .searchBar {
-    display: flex;
-    align-items: center
+  display: flex;
+  align-items: center;
 }
 
 .searchInput {
-    padding: 10px 20px;
-    border-radius: 999px;
-    border: 1px solid #ddd;
-    outline: none;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  outline: none;
 }
 
 .searchButton {
-    padding: 10px 20px;
-    margin-left: 10px;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 999px;
-    cursor: pointer;
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
 .searchButton:hover {
-    background-color: #388E3C;
+  background-color: #388e3c;
 }
 
 .navItem {
-    text-decoration: none;
-    color: black;
-    padding: 5px 0;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-    min-width: 100px;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  color: black;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  min-width: 100px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navItemActive {
-    text-decoration: none;
-    padding: 5px 0;
-    color: #dff542;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    border-bottom: 2px solid #dff542;
-    font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  padding: 5px 0;
+  color: #dff542;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid #dff542;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navItemContainer {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .navItem:hover {
-    color: #A0D468;
+  color: #a0d468;
 }
 
 .navItem::before {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #dff542;
-    visibility: hidden;
-    transition: all 0.3 ease-in-out;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #dff542;
+  visibility: hidden;
+  transition: all 0.3 ease-in-out;
 }
 
 .navItem:hover::before,
 .navItemActive::before {
-    visibility: visible;
-    width: 100%;
+  visibility: visible;
+  width: 100%;
 }
 
 .cartWrapper {
-    position: relative;
+  position: relative;
 }

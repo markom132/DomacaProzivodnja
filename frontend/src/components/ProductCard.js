@@ -7,25 +7,17 @@ const ProductCard = ({ image, name, price }) => {
 
   return (
     <div
-      className='card'
+      className="card"
       onMouseOver={() => setIsHovered(true)}
       onMouseOut={() => setIsHovered(false)}
     >
-      <div className='imageContainer'>
-        <img
-          src={image}
-          alt={name}
-          className='image'
-        />
+      <div className="imageContainer">
+        <img src={image} alt={name} className="image" />
       </div>
-      <div className='info'>
-        <h3 className='name'>{name}</h3>
-        <p className='price'>{price}</p>
-        <button
-          className='button'
-        >
-          Dodaj u korpu
-        </button>
+      <div className="info">
+        <h3 className="name">{name}</h3>
+        <p className="price">{price}</p>
+        <button className="button">Dodaj u korpu</button>
       </div>
     </div>
   );

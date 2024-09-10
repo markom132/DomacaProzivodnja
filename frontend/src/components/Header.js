@@ -10,46 +10,54 @@ const Header = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
 
   return (
-    <header className='header'>
-      <div className='logo'>
-      <LogoSVGIcon />
-      <span>DomaciProizvodi</span>
+    <header className="header">
+      <div className="logo">
+        <LogoSVGIcon />
+        <span>DomaciProizvodi</span>
       </div>
       <nav>
-        <ul className='navList'>
-          <li className='navItemContainer'>
+        <ul className="navList">
+          <li className="navItemContainer">
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? 'navItemActive' : 'navItem')}
+              className={({ isActive }) =>
+                isActive ? 'navItemActive' : 'navItem'
+              }
             >
               Pocetna
             </NavLink>
           </li>
-          <li className='navItemContainer'>
+          <li className="navItemContainer">
             <NavLink
               to="/category"
-              className={({ isActive }) => (isActive ? 'navItemActive' : 'navItem')}
+              className={({ isActive }) =>
+                isActive ? 'navItemActive' : 'navItem'
+              }
             >
               Kategorije
             </NavLink>
           </li>
-          <li className='navItemContainer'>
+          <li className="navItemContainer">
             <NavLink
               to="/wishlist"
-              className={({ isActive }) => (isActive ? 'navItemActive' : 'navItem')}
+              className={({ isActive }) =>
+                isActive ? 'navItemActive' : 'navItem'
+              }
             >
               Sačuvani prozivodi
             </NavLink>
           </li>
           <li
-            className='navItemContainer'
+            className="navItemContainer"
             onMouseEnter={() => setPopupVisible(true)}
             onMouseLeave={() => setPopupVisible(false)}
           >
-            <div className='cartWrapper'>
+            <div className="cartWrapper">
               <NavLink
                 to="/cart"
-                className={({ isActive }) => (isActive ? 'navItemActive' : 'navItem')}
+                className={({ isActive }) =>
+                  isActive ? 'navItemActive' : 'navItem'
+                }
               >
                 Korpa
               </NavLink>
@@ -60,9 +68,9 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <div className='searchBar'>
-        <input type="text" placeholder="Search..." className='searchInput' />
-        <button className='searchButton'>Search</button>
+      <div className="searchBar">
+        <input type="text" placeholder="Search..." className="searchInput" />
+        <button className="searchButton">Search</button>
       </div>
     </header>
   );

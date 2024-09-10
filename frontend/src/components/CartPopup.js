@@ -9,7 +9,7 @@ import './CartPopup.css';
 const CartPopup = ({ setPopupVisible }) => {
   const getTotalPrice = () => {
     return cartItems
-      .reduce((total, item) => total + item.price / 100 * item.quantity, 0)
+      .reduce((total, item) => total + (item.price / 100) * item.quantity, 0)
       .toFixed(2);
   };
 
@@ -47,7 +47,7 @@ const CartPopup = ({ setPopupVisible }) => {
   };
   return (
     <div
-      className='cartPopup'
+      className="cartPopup"
       onMouseEnter={() => setPopupVisible(true)}
       onMouseLeave={() => setPopupVisible(false)}
     >
@@ -55,43 +55,61 @@ const CartPopup = ({ setPopupVisible }) => {
         <>
           <div>
             {cartItems.map(item => (
-              <div key={item.id} className='popupCartItem'>
+              <div key={item.id} className="popupCartItem">
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className='productImagePopup'
+                  className="productImagePopup"
                 />
-                <div className='productInfoPopup'>
+                <div className="productInfoPopup">
                   <strong>{item.name}</strong>
                   <p>
                     {item.quantity} x {(item.price / 100).toFixed(2)} RSD
                   </p>
                 </div>
-                <span className='pricePopup'>
+                <span className="pricePopup">
                   {((item.price * item.quantity) / 100).toFixed(2)} RSD
                 </span>
                 <div class="quantity-controls">
-                  <button class="quantity-button" onClick={() => decreaseQuantity(item.id)}>−</button>
+                  <button
+                    class="quantity-button"
+                    onClick={() => decreaseQuantity(item.id)}
+                  >
+                    −
+                  </button>
                   <span class="quantity-display">{item.quantity}</span>
-                  <button class="quantity-button" onClick={() => increaseQuantity(item.id)}>+</button>
+                  <button
+                    class="quantity-button"
+                    onClick={() => increaseQuantity(item.id)}
+                  >
+                    +
+                  </button>
                 </div>
-                <button class="remove-button" onClick={() => removeItem(item.id)}>×</button>
+                <button
+                  class="remove-button"
+                  onClick={() => removeItem(item.id)}
+                >
+                  ×
+                </button>
               </div>
             ))}
           </div>
-          <div className='totalPrice'>
+          <div className="totalPrice">
             <strong>Ukupno: {getTotalPrice()} RSD</strong>
           </div>
-          <div className='buttonContainer'>
-            <button className='cartButton'>Pregled korpe</button>
-            <button className='checkoutButtonPopup'>Poruči</button>
+          <div className="buttonContainer">
+            <button className="cartButton">Pregled korpe</button>
+            <button className="checkoutButtonPopup">Poruči</button>
           </div>
         </>
       ) : (
-        <div className='emptyCartPopup'>
-          <p>Vaša korpa je trenutno prazna. Pogledajte naše proizvode i dodajte ih u korpu!</p>
+        <div className="emptyCartPopup">
+          <p>
+            Vaša korpa je trenutno prazna. Pogledajte naše proizvode i dodajte
+            ih u korpu!
+          </p>
           <EmptyCartSVGIcon />
-          <button className='checkoutButtonPopup'>Istraži ponudu</button>
+          <button className="checkoutButtonPopup">Istraži ponudu</button>
         </div>
       )}
     </div>

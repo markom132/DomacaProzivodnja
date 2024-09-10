@@ -1,62 +1,66 @@
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pageContainer {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 70vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
 }
 
 .pageTitle {
-    font-size: 2em;
-    margin-bottom: 30px;
-    color: #388E3C;
-    font-family: 'Poppins', sans-serif;
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #388e3c;
+  font-family: 'Poppins', sans-serif;
 }
 
 .cart-container {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 30px;
-    display: flex;
-    background-size: contain;
-    align-items: center;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 30px;
+  display: flex;
+  background-size: contain;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
 }
 
 .pageContainer p {
-    color: #4F4F4F;
-    line-height: 1.6;
-    margin-bottom: 30px;
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+  color: #4f4f4f;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .pageContainer button {
-    background-color: #A0D468;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #a0d468;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .pageContainer button:hover {
-    background-color: #8CC153;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  background-color: #8cc153;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
 }

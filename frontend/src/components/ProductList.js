@@ -32,20 +32,20 @@ const ProductList = () => {
   ];
 
   return (
-    <section className='productSection'>
-      <h2 className='sectionTitle'>Products</h2>
-      <div className='productList'>
+    <section className="productSection">
+      <h2 className="sectionTitle">Products</h2>
+      <div className="productList">
         {products.map(product => (
           <Link
             to={`/product/${product.id}`}
             key={product.id}
-            className='productLink'
+            className="productLink"
           >
             <ProductCard key={product.id} product={product} />
           </Link>
         ))}
       </div>
-      <button className='showMoreButton'>Show more</button>
+      <button className="showMoreButton">Show more</button>
     </section>
   );
 };
@@ -54,20 +54,14 @@ const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className='productCard'
-    >
-      <div className='productImageContainer'>
-        <img
-          src={product.image}
-          alt={product.name}
-          className='productImage'
-        />
+    <div className="productCard">
+      <div className="productImageContainer">
+        <img src={product.image} alt={product.name} className="productImage" />
       </div>
-      <h3 className='productName'>{product.name}</h3>
-      <p className='productPrice'>{product.price}</p>
+      <h3 className="productName">{product.name}</h3>
+      <p className="productPrice">{product.price}</p>
       <button
-        className='addButton'
+        className="addButton"
         style={{
           backgroundColor: isHovered ? '#c5d047' : '#dff542',
           transform: isHovered ? 'translateY(-5px)' : 'translateY(0)',

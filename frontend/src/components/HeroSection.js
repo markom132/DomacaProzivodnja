@@ -19,7 +19,7 @@ const HeroSection = () => {
   }, [images.length]);
 
   return (
-    <section className='hero'>
+    <section className="hero">
       {images.map((image, index) => (
         <div
           key={index}
@@ -29,16 +29,11 @@ const HeroSection = () => {
           }}
         />
       ))}
-      <div className='textContainer'>
-        <div className='promoText'>Specijalna ponuda domacih proizvoda</div>
-        <button
-          className='ctaButtonHeroS'
-        >
-          {' '}
-          Istraži ponudu
-        </button>
+      <div className="textContainer">
+        <div className="promoText">Specijalna ponuda domacih proizvoda</div>
+        <button className="ctaButtonHeroS"> Istraži ponudu</button>
       </div>
-    </section >
+    </section>
   );
 };
 
