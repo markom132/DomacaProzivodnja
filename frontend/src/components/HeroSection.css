@@ -39,9 +39,8 @@
   text-align: center;
   background-size: cover;
   background-position: center;
-  color: #fff;
+  color: #f0eadb;
   border-radius: 20px;
-  margin-bottom: 20px;
   overflow: hidden;
 }
 
@@ -67,8 +66,8 @@
 }
 
 .ctaButtonHeroS {
-  background-color: #f7c648;
-  color: #000;
+  background-color: #6b9e97;
+  color: #f0eadb;
   border: none;
   padding: 10px 20px;
   border-radius: 10px;
@@ -84,7 +83,7 @@
 }
 
 .ctaButtonHeroS:hover {
-  background-color: #d1a51d;
+  background-color: #5a857f;
   transform: scale(1.05);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
