@@ -5,6 +5,7 @@
   border-radius: 10px;
   transition: transform 0.3s ease;
   margin: 10px;
+  background-color: #f0eadb;
 }
 
 .card:hover {
@@ -34,7 +35,7 @@
 }
 
 .button {
-  background-color: #388e3c;
+  background-color: #ffca99;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
@@ -45,12 +46,11 @@
     transform 0.3s ease;
   font-family: 'Poppins', sans-serif;
   font-size: 16px;
-  color: #ffffff;
+  color: #333333;
 }
 
 .button:hover {
-  background-color: #2e7d32;
-  color: #ffffff;
+  background-color: #e2ccc1;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
@@ -64,6 +64,6 @@
 
 .price {
   font-size: 16px;
-  color: #333333;
+  color: #6b9e97;
   font-family: 'Roboto', sans-serif;
 }

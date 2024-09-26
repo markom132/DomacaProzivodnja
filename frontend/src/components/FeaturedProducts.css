@@ -44,6 +44,8 @@
 .featuredSection {
   padding: 20px;
   text-align: center;
+  background-color: #e2ccc1;
+  color: #6b9e97;
 }
 
 .productLink {
@@ -67,6 +69,7 @@
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .nextArrow {
   position: absolute;
@@ -83,11 +86,17 @@
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.arrowIcon {
-  font-size: 18px;
+.prevArrow:hover {
   color: #333;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.nextArrow:hover {
+  color: #333;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .ctaContainer {

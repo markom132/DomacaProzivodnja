@@ -1,5 +1,5 @@
 .footer {
-  background-color: #f4f4f4;
+  background-color: #6b9e97;
   padding: 20px 10px;
   border-top: 1px solid #ddd;
 }
@@ -20,7 +20,7 @@
   margin-top: 20px;
   border-top: 1px solid #ddd;
   padding-top: 10px;
-  color: #333333;
+  color: #f0eadb;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
@@ -28,11 +28,11 @@
 .footer h4 {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
-  color: #333333;
+  color: #f0eadb;
 }
 
 .footer p {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  color: #333333;
+  color: #f0eadb;
 }
