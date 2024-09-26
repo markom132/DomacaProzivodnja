@@ -1,7 +1,7 @@
 .footer {
   background-color: #6b9e97;
   padding: 20px 10px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #f0eadb;
 }
 
 .footerContent {
@@ -18,7 +18,7 @@
 .footerBottom {
   text-align: center;
   margin-top: 20px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #f0eadb;
   padding-top: 10px;
   color: #f0eadb;
   font-family: 'Roboto', sans-serif;
