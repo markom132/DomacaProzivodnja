@@ -4,10 +4,11 @@
 
 .sectionTitle {
   margin-bottom: 10px;
-  font-size: 26px;
+  font-size: 20px;
   font-family: 'Poppins', sans-serif;
   font-weight: bold;
   color: #333333;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .productList {
@@ -24,15 +25,17 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   text-align: center;
-  background-color: #fff;
+  background-color: #f0eadb;
   overflow: hidden;
   box-sizing: border-box;
   margin-bottom: 20px;
   transition: transform 0.3s ease;
   position: relative;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .productCard:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
   transition: transform 0.3s ease;
 }
@@ -53,8 +56,9 @@
 }
 
 .addButton:hover {
-  background-color: #2e7d32 !important;
+  background-color: #4CAF50 !important;
   transform: translateY(-5px);
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .productImageContainer {
@@ -75,11 +79,13 @@
 .productName {
   font-size: 1.2em;
   margin: 10px 0;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  color: #333333;
 }
 
 .productPrice {
   font-size: 1em;
-  color: #555;
+  color: #6b9e97;
 }
 
 .showMoreButton {
@@ -88,7 +94,7 @@
   font-weight: bold;
   color: #fff;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border-radius: 20px;
   border: none;
   background-color: #2e7d32;
@@ -96,5 +102,6 @@
 }
 
 .showMoreButton:hover {
-  background-color: #a0d468;
+  background-color: #4CAF50;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
 }
