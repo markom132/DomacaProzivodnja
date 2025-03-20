@@ -18,16 +18,16 @@
 
 .categoryButton {
   padding: 10px 20px;
-  border-radius: 20px;
+  border-radius: 999px;
   border: 1px solid #e0e0e0;
-  background-color: #f0eadb;
+  background-color: #6b9e97;
   cursor: pointer;
-  color: #333333;
+  color: #f0eadb;
   font-size: 16px;
 }
 
 .categoryButton:hover {
-  background-color: #b6b795;
+  background-color: #ffca99;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transform: scale(1.05);
 }

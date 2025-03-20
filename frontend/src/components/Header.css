@@ -14,7 +14,7 @@
   align-items: center;
   font-weight: bold;
   font-family: 'Merriweather', serif;
-  color: #4CAF50;
+  color: #f0eadb;
   text-shadow: 0.5px 0.5px 1px #b6b795;
 }
 
@@ -52,16 +52,19 @@
 }
 
 .searchButton {
-  padding: 10px 20px;
+  padding: 8px 16px;
   margin-left: 10px;
-  background-color: #4caf50;
+  background-color: #ffca99;
+  font-size: 14px;
+  color: #6b9e97;
   border: none;
   border-radius: 999px;
+  height: 40px;
   cursor: pointer;
 }
 
 .searchButton:hover {
-  background-color: #388e3c;
+  background-color: #e2ccc1;
 }
 
 .navItem {
@@ -123,18 +126,25 @@
 
 .authButtonText {
   font-family: 'Poppins', sans-serif;
-  padding: 10px 20px;
-  color: #333333;
+  padding: 8px 16px;
+  color: #ffca99;
   background: none;
-  border: none;
-  font-size: 16px;
+  border: 2px solid #ffca99;
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
+  margin-left: 15px;
+  height: 40px;
   transition: color 0.3s ease;
 }
 
 .authButtonText:hover {
-  color: #ffca99;
+  color: #e2ccc1;
+  border-color: #e2ccc1;
+  background-color: rgba(255, 202, 153, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 202, 153, 0.3);
 }
 
 .profileIcon {
