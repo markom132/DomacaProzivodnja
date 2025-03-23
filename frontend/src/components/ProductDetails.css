@@ -5,10 +5,10 @@
 .productDetailsInfo {
   display: flex;
   margin-bottom: 10px;
-  background-color: #f8f8f8;
-  border-bottom: 1px solid #e0e0e0;
-  border-top: 1px solid #e0e0e0;
   background-color: #f0eadb;
+  border-bottom: 1px solid #e2ccc1;
+  border-top: 1px solid #e2ccc1;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -54,7 +54,7 @@
 .details h1 {
   font-family: 'Merriweather', serif;
   font-size: 40px;
-  color: #333333;
+  color: #6b9e97;
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 15px;
@@ -65,7 +65,7 @@
 .productDetailsPrice {
   font-family: 'Lato', sans-serif;
   font-size: 28px;
-  color: #ffae73;
+  color: #6b9e97;
   font-weight: bold;
   line-height: 1.2;
   margin: 20px 0;
@@ -81,7 +81,7 @@
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   padding: 12px 24px;
-  background-color: #4caf50;
+  background-color: #6b9e97;
   color: #f0eadb;
   border: none;
   border-radius: 999px;
@@ -90,7 +90,8 @@
 }
 
 .addToCart:hover {
-  background-color: #388e3c;
+  background-color: #ffca99;
+  color: #6b9e97;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transform: scale(1.05);
 }
@@ -99,23 +100,17 @@
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   padding: 12px 24px;
-  background-color: #b6b795;
-  color: #333333;
+  background-color: #e2ccc1;
+  color: #6b9e97;
   border: none;
   border-radius: 999px;
   cursor: pointer;
 }
 
 .addToWishlist:hover {
-  background-color: #e2ccc1;
+  background-color: #ffca99;
   transform: scale(1.05);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.backToCategories {
-  color: #dff542;
-  text-decoration: none;
-  font-weight: bold;
 }
 
 .relatedProducts {
@@ -184,11 +179,13 @@
   font-size: 18px;
   font-weight: bold;
   margin-top: 10px;
-  color: #FFAB74;
+  color: #6b9e97;
 }
 
 .prevArrow {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,6 +197,8 @@
 
 .nextArrow {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,12 +209,13 @@
 }
 
 .nextArrow:hover {
-  background-color: #f0f0f0;
-  color: #333333;
+  background-color: #ffca99;
+  color: #6b9e97;
   transition: background-color 0.3s ease;
 }
 
 .prevArrow:hover {
-  background-color: #f0f0f0;
+  background-color: #ffca99;
+  color: #6b9e97;
   transition: background-color 0.3s ease;
 }

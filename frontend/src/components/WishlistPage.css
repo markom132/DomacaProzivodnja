@@ -1,11 +1,11 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(10px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -22,7 +22,7 @@
 .pageTitle {
   font-size: 28px;
   margin-bottom: 30px;
-  color: #4CAF50;
+  color: #6b9e97;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .pageContainer p {
-  color: #6b9e97;
+  color: #5a8a85;
   line-height: 1.6;
   margin-bottom: 30px;
   margin-top: 20px;
@@ -48,7 +48,7 @@
 
 .pageContainer button {
   background-color: #6b9e97;
-  color: white;
+  color: #f0eadb;
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
@@ -62,7 +62,8 @@
 }
 
 .pageContainer button:hover {
-  background-color: #4CAF50;
+  background-color: #ffca99;
+  color: #6b9e97;
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.08);
