@@ -1,7 +1,7 @@
 .footer {
-  background-color: #f4f4f4;
+  background-color: #6b9e97;
   padding: 20px 10px;
-  border-top: 1px solid #ddd;
+  border-top: 2px solid #f0eadb;
 }
 
 .footerContent {
@@ -13,26 +13,28 @@
 .footerSection {
   flex: 1;
   margin: 0 20px;
+  padding: 10px;
 }
 
 .footerBottom {
   text-align: center;
-  margin-top: 20px;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
-  color: #333333;
+  margin-top: 30px;
+  border-top: 2px solid #f0eadb;
+  padding-top: 20px;
+  color: #f0eadb;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
 
 .footer h4 {
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  color: #333333;
+  font-size: 18px;
+  color: #ffca99;
+  margin-bottom: 15px;
 }
 
 .footer p {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
-  color: #333333;
+  color: #f0eadb;
 }

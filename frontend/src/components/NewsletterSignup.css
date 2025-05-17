@@ -1,6 +1,6 @@
 .newsletterSection {
-  padding: 40px 20px;
-  background-color: #f9f9f9;
+  padding: 30px;
+  background-color: #f0eadb;
   text-align: center;
   border-radius: 6px;
 }
@@ -10,13 +10,15 @@
   font-size: 28px;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
-  color: #333333;
+  color: #6b9e97 !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1) !important;
 }
 
 .description {
   margin-bottom: 25px;
   font-size: 16px;
-  color: #666666;
+  color: #5a8a85;
+  padding: 20px;
 }
 
 .form {
@@ -29,7 +31,7 @@
 .input {
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid #dddddd;
+  border: 1px solid #e2ccc1;
   outline: none;
   width: 250px;
   transition: border-color 0.3s ease;
@@ -37,7 +39,7 @@
 
 .input:focus,
 .input:hover {
-  border-color: #4caf50;
+  border-color: #6b9e97;
   outline: none;
 }
 
@@ -45,17 +47,36 @@
   padding: 10px 20px;
   border-radius: 5px;
   border: none;
-  background-color: #ffd600;
-  color: white;
+  background-color: #6b9e97;
+  color: #f0eadb;
   cursor: pointer;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition:
     background-color 0.3s ease,
     box-shadow 0.3s ease;
+  font-size: 16px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .buttonNS:hover {
-  background-color: #ffb900;
+  background-color: #ffca99;
+  color: #6b9e97;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
   transform: scale(1.05);
+}
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .buttonNS {
+    width: 100%;
+    max-width: 300px;
+  }
 }

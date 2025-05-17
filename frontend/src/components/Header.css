@@ -3,7 +3,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #f8f8f8;
+  background-color: #6b9e97;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .logo {
@@ -13,8 +14,8 @@
   align-items: center;
   font-weight: bold;
   font-family: 'Merriweather', serif;
-  color: #006400;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: #f0eadb;
+  text-shadow: 0.5px 0.5px 1px #b6b795;
 }
 
 .logo svg {
@@ -22,6 +23,7 @@
   height: 40px;
   margin-right: 8px;
   margin-bottom: 12px;
+  filter: drop-shadow(3px 3px 5px #333333);
 }
 
 .navContainer {
@@ -45,26 +47,29 @@
 .searchInput {
   padding: 10px 20px;
   border-radius: 999px;
-  border: 1px solid #ddd;
+  border: 1px solid #e2ccc1;
   outline: none;
 }
 
 .searchButton {
-  padding: 10px 20px;
+  padding: 8px 16px;
   margin-left: 10px;
-  background-color: #4caf50;
+  background-color: #ffca99;
+  font-size: 14px;
+  color: #6b9e97;
   border: none;
   border-radius: 999px;
+  height: 40px;
   cursor: pointer;
 }
 
 .searchButton:hover {
-  background-color: #388e3c;
+  background-color: #e2ccc1;
 }
 
 .navItem {
   text-decoration: none;
-  color: black;
+  color: #f0eadb;
   padding: 5px 0;
   transition: color 0.3s ease;
   white-space: nowrap;
@@ -76,10 +81,10 @@
 .navItemActive {
   text-decoration: none;
   padding: 5px 0;
-  color: #dff542;
+  color: #f0eadb;
   font-weight: bold;
   transition: color 0.3s ease;
-  border-bottom: 2px solid #dff542;
+  border-bottom: 2px solid #ffca99;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -89,7 +94,7 @@
 }
 
 .navItem:hover {
-  color: #a0d468;
+  color: #ffca99;
 }
 
 .navItem::before {
@@ -99,7 +104,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #dff542;
+  background-color: #ffca99;
   visibility: hidden;
   transition: all 0.3 ease-in-out;
 }
@@ -121,18 +126,25 @@
 
 .authButtonText {
   font-family: 'Poppins', sans-serif;
-  padding: 10px 20px;
-  color: #4caf50;
+  padding: 8px 16px;
+  color: #ffca99;
   background: none;
-  border: none;
-  font-size: 16px;
+  border: 2px solid #ffca99;
+  border-radius: 999px;
+  font-size: 14px;
   font-weight: bold;
+  text-decoration: none;
   cursor: pointer;
+  margin-left: 15px;
+  height: 40px;
   transition: color 0.3s ease;
 }
 
 .authButtonText:hover {
-  color: #388e3c;
+  color: #e2ccc1;
+  border-color: #e2ccc1;
+  background-color: rgba(255, 202, 153, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 202, 153, 0.3);
 }
 
 .profileIcon {
@@ -160,5 +172,5 @@
 }
 
 .profileIcon:hover svg {
-  fill: #388e3c;
+  fill: #ffca99;
 }
