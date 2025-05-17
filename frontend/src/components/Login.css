@@ -1,0 +1,145 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  background-color: #f0eadb;
+}
+
+.loginCard {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.loginCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.loginTitle {
+  color: #6b9e97;
+  text-align: center;
+  margin-bottom: 25px;
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formLabel {
+  font-family: 'Poppins', sans-serif;
+  color: #5a8a85;
+  font-size: 16px;
+}
+
+.formInput {
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #e2ccc1;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #6b9e97;
+  box-shadow: 0 0 0 2px rgba(107, 158, 151, 0.2);
+}
+
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.errorMessage {
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 5px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.forgotPassword {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.forgotPasswordLink {
+  color: #6b9e97;
+  text-decoration: none;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.forgotPasswordLink:hover {
+  color: #ffca99;
+  text-decoration: underline;
+}
+
+.loginButton {
+  background-color: #6b9e97;
+  color: #f0eadb;
+  border: none;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 10px;
+}
+
+.loginButton:hover {
+  background-color: #5a857f;
+  transform: scale(1.02);
+}
+
+.registerPrompt {
+  margin-top: 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.registerLink {
+  color: #6b9e97;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.registerLink:hover {
+  color: #ffca99;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 20px;
+  }
+
+  .loginTitle {
+    font-size: 24px;
+  }
+
+  .formInput,
+  .loginButton {
+    padding: 10px;
+  }
+}

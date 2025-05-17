@@ -23,7 +23,9 @@ const HeroSection = () => {
       {images.map((image, index) => (
         <div
           key={index}
-          className={`imageContainerHeroPage ${currentIndex === index ? 'visible' : 'hidden'}`}
+          className={`imageContainerHeroPage ${
+            currentIndex === index ? 'visible' : 'hidden'
+          }`}
           style={{
             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${image})`,
           }}

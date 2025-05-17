@@ -8,6 +8,7 @@ import ProductDetails from './components/ProductDetails';
 import CategoryPage from './components/CategoryPage';
 import CartPage from './components/CartPage';
 import WishlistPage from './components/WishlistPage';
+import Login from './components/Login';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/category" element={<CategoryPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </Router>
