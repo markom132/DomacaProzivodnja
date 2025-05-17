@@ -100,7 +100,9 @@
   border: none;
   cursor: pointer;
   text-align: center;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
 }
@@ -125,7 +127,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   font-size: 18px;
   font-family: 'Poppins', sans-serif;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .checkoutButtonPopup:hover {

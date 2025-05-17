@@ -53,7 +53,9 @@
   border-radius: 5px;
   border: 1px solid #e2ccc1;
   font-size: 16px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .formInput:focus {
@@ -100,7 +102,9 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
   font-family: 'Poppins', sans-serif;
   margin-top: 10px;
 }
