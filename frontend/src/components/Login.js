@@ -9,13 +9,13 @@ const Login = () => {
   });
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors({
@@ -27,34 +27,31 @@ const Login = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.email) {
       newErrors.email = 'Email je obavezan';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email nije validan';
     }
-    
+
     if (!formData.password) {
       newErrors.password = 'Lozinka je obavezna';
     } else if (formData.password.length < 6) {
       newErrors.password = 'Lozinka mora imati najmanje 6 karaktera';
     }
-    
+
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
-    
+
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
-    // Here you would typically handle the login logic
-    console.log('Login attempt with:', formData);
-    
+
     // For now, just simulate a successful login
     alert('Uspešna prijava!');
   };
@@ -65,7 +62,9 @@ const Login = () => {
         <h2 className="loginTitle">Prijava</h2>
         <form onSubmit={handleSubmit} className="loginForm">
           <div className="formGroup">
-            <label htmlFor="email" className="formLabel">Email</label>
+            <label htmlFor="email" className="formLabel">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -75,11 +74,15 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Unesite vaš email"
             />
-            {errors.email && <span className="errorMessage">{errors.email}</span>}
+            {errors.email && (
+              <span className="errorMessage">{errors.email}</span>
+            )}
           </div>
-          
+
           <div className="formGroup">
-            <label htmlFor="password" className="formLabel">Lozinka</label>
+            <label htmlFor="password" className="formLabel">
+              Lozinka
+            </label>
             <input
               type="password"
               id="password"
@@ -89,20 +92,22 @@ const Login = () => {
               onChange={handleChange}
               placeholder="Unesite vašu lozinku"
             />
-            {errors.password && <span className="errorMessage">{errors.password}</span>}
+            {errors.password && (
+              <span className="errorMessage">{errors.password}</span>
+            )}
           </div>
-          
+
           <div className="forgotPassword">
             <NavLink to="/forgot-password" className="forgotPasswordLink">
               Zaboravili ste lozinku?
             </NavLink>
           </div>
-          
+
           <button type="submit" className="loginButton">
             Prijavi se
           </button>
         </form>
-        
+
         <div className="registerPrompt">
           Nemate nalog?{' '}
           <NavLink to="/register" className="registerLink">

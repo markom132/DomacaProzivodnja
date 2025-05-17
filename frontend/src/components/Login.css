@@ -133,12 +133,13 @@
   .loginCard {
     padding: 20px;
   }
-  
+
   .loginTitle {
     font-size: 24px;
   }
-  
-  .formInput, .loginButton {
+
+  .formInput,
+  .loginButton {
     padding: 10px;
   }
 }

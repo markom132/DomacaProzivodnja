@@ -23,9 +23,7 @@
   font-size: 20px;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   min-width: 200px;
   height: 60px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,9 +72,7 @@
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 .nextArrow {
   position: absolute;
@@ -93,9 +89,7 @@
   cursor: pointer;
   z-index: 2;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .prevArrow:hover {
