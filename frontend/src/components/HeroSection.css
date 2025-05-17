@@ -75,7 +75,9 @@
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease,
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
     box-shadow 0.3 ease;
   z-index: 2;
   animation: slideIn 2s ease-out;

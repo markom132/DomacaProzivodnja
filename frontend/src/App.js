@@ -9,6 +9,7 @@ import CategoryPage from './components/CategoryPage';
 import CartPage from './components/CartPage';
 import WishlistPage from './components/WishlistPage';
 import Login from './components/Login';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/wishlist" element={<WishlistPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
       <Footer />
     </Router>
